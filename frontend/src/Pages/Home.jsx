@@ -10,6 +10,7 @@ import { FaReact, FaNodeJs, FaRust } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { SiExpress } from "react-icons/si";
 import { DiMongodb } from "react-icons/di";
+import { FiGithub } from "react-icons/fi";
 
 // Home function
 export function Home() {
@@ -29,7 +30,7 @@ export function Home() {
 // content
 function Content() {
     return (
-        <div className="text-white flex flex-col justify-center items-center p-8 h-full">
+        <div className="text-white flex flex-col justify-center items-center p-8 h-full font-poppins">
             {/* Floating Icons */}
             <div className="p-4 absolute top-30 left-25 rounded-xl rotate-12 bg-white/5 backdrop-blur-sm animate-float">
                 <FaReact className="text-cyan-400 text-4xl" />
@@ -61,11 +62,13 @@ function Content() {
             <p className="text-[21px] mb-4 w-[45%] text-center">Built for developers, powered by collaboration.</p>
 
             <div className="flex flex-row gap-4 mt-5">
-                <button className="text-[17px] py-2 px-4 cursor-pointer text-black bg-white rounded-xl capitalize">
+                <button className="text-[17px] py-2 px-4 cursor-pointer text-black bg-white rounded-xl capitalize
+                flex flex-row justify-center items-center gap-1.5">
+                    <FiGithub />
                     How to contribute resources?
                 </button>
                 <Link to="/resources">
-                    <button className="text-[17px] py-2 px-4 cursor-pointer text-black bg-white rounded-xl capitalize
+                    <button className="text-[17px] py-2 px-4 cursor-pointer text-white bg-white/10 rounded-xl capitalize
                 flex flex-row justify-center items-center gap-1.5">
                         <GrResources />
                         Browse resources
