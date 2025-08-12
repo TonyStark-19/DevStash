@@ -33,11 +33,11 @@ function Content() {
             <p className="text-2xl text-center">Discover, save, and share top coding tutorials, tools, and guides for developers
                 worldwide.</p>
 
-            <div className="flex flex-row flex-wrap justify-center items-center pt-20 gap-5 w-[90%]">
+            <div className="flex flex-row flex-wrap justify-center items-center pt-15 gap-5 w-[90%]">
                 {resources.map((res, idx) => (
-                    <div className="p-5 bg-white/10 hover:bg-white/12 transition rounded-2xl flex flex-col gap-2.5 
+                    <div className="p-5 bg-white/10 hover:bg-white/13 duration-400 rounded-2xl flex flex-col gap-2.5 
                     cursor-pointer" key={idx}>
-                        <img src={res.src} className="w-[140px]" alt={res.alt}></img>
+                        <img src={res.src} className="w-[150px] h-[110px]" alt={res.alt}></img>
                         <div className="uppercase text-[16px] font-semibold text-center">{res.name}</div>
                     </div>
                 ))}
