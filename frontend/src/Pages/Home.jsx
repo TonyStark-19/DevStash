@@ -16,7 +16,7 @@ import { FiGithub } from "react-icons/fi";
 export function Home() {
     return (
         <>
-            <div className="h-screen"
+            <div className="h-screen overflow-hidden"
                 style={{
                     background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
                 }}>
@@ -30,7 +30,7 @@ export function Home() {
 // content
 function Content() {
     return (
-        <div className="text-white flex flex-col justify-center items-center p-8 h-full font-poppins">
+        <div className="text-white flex flex-col justify-center items-center p-8 h-[75%] font-poppins">
             {/* Floating Icons */}
             <div className="p-4 absolute top-30 left-25 rounded-xl rotate-12 bg-white/5 backdrop-blur-sm animate-float">
                 <FaReact className="text-cyan-400 text-4xl" />
