@@ -1,6 +1,7 @@
 // import pages
 import { Home } from "./Pages/Home";
 import { Resources } from "./Pages/Resources";
+import { React } from "./Pages/React";
 
 // import router
 import { Routes, Route } from "react-router-dom";
@@ -11,6 +12,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/resources" element={<Resources />} />
+      <Route path="/react" element={<React />} />
     </Routes>
   )
 }

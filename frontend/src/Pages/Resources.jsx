@@ -1,8 +1,10 @@
 // import components
 import { Navbar } from "../Components/Navbar";
+import { Footer } from "../Components/Footer";
 
 // import use state and use effect
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Resource page
 export function Resources() {
@@ -13,6 +15,7 @@ export function Resources() {
             }}>
             <Navbar />
             <Content />
+            <Footer />
         </div>
     )
 }
@@ -39,13 +42,16 @@ function Content() {
     }, []);
 
     return (
-        <div className="p-8 text-white/80 font-poppins h-full pt-15 flex flex-col items-center">
+        <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             <h1 className="text-5xl text-center mb-3 font-semibold">Curated Tech & Coding Resources</h1>
-            <p className="text-[22px] text-center">Discover, save, and share top coding tutorials, tools, and guides for developers
-                worldwide.</p>
+            <p className="text-[22px] text-center pb-10 border-b-2 border-white/30 tracking-wide">Discover, save, and share top coding
+                tutorials, tools, and guides for developers worldwide.</p>
+            <Link to="/react">
+                Open me
+            </Link>
 
             {Object.entries(resources).map(([categoryKey, items]) => (
-                <section key={categoryKey} className="mb-8 mt-20 pb-10 border-b-2 border-white/60">
+                <section key={categoryKey} className="mb-6 mt-20 pb-10 border-b-2 border-white/30">
                     <h2 className="text-3xl font-bold mb-6">
                         {labels[categoryKey] || categoryKey} :
                     </h2>
@@ -54,8 +60,8 @@ function Content() {
                         {items.map((res, i) => (
                             <div
                                 key={i}
-                                className="p-5 bg-white/10 hover:bg-white/20 rounded-2xl flex flex-col items-center gap-3
-                                transition cursor-pointer"
+                                className="p-5 bg-white/10 hover:bg-white/15 rounded-2xl flex flex-col items-center gap-3
+                                transition cursor-pointer hover:transform hover:scale-105"
                             >
                                 <img
                                     src={res.src}
@@ -72,7 +78,7 @@ function Content() {
             ))}
 
             {/* Call-to-action section */}
-            <div className="mt-2 p-8 rounded-xl text-center max-w-3xl">
+            <div className="p-8 text-center max-w-3xl">
                 <h2 className="text-2xl font-bold mb-4">
                     Do you see a missing tech & coding resource?
                 </h2>
