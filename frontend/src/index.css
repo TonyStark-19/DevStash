@@ -50,3 +50,18 @@
 .delay-800 {
     animation-delay: 0.8s;
 }
+
+/* Custom Scrollbar: Transparent Track */
+.scrollbar-transparent::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollbar-transparent::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scrollbar-transparent::-webkit-scrollbar-thumb {
+    background-color: #06B6D440;
+    /* semi-transparent white */
+    border-radius: 10px;
+}
