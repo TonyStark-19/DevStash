@@ -1,17 +1,26 @@
 // import components
 import { Footer } from "../Components/Footer";
 
+// react icons
+import { CiBookmark } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa";
+
+// import use state
+import { useState } from "react";
+
 // resource page
 export function React() {
     return (
         <div
-            className="min-h-screen"
+            className="h-screen overflow-y-scroll scrollbar-transparent"
             style={{
                 background:
                     "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
             }}
         >
-            <Content />
+            <div>
+                <Content />
+            </div>
             <Footer />
         </div>
     );
@@ -87,6 +96,12 @@ const youtubeResources = [
 ];
 
 function Content() {
+    const [saved, setSaved] = useState(false);
+
+    const handleSave = () => {
+        setSaved(!saved);
+    };
+
     return (
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             {/* Page heading */}
@@ -142,6 +157,14 @@ function Content() {
                             >
                                 Visit Resource →
                             </a>
+
+                            {/* Save button */}
+                            <button
+                                onClick={handleSave}
+                                className="text-blue-400 absolute right-6 bottom-6 text-xl"
+                            >
+                                {saved ? <FaBookmark /> : <CiBookmark />}
+                            </button>
                         </div>
                     ))}
                 </div>
@@ -186,6 +209,14 @@ function Content() {
                             >
                                 Visit Resource →
                             </a>
+
+                            {/* Save button */}
+                            <button
+                                onClick={handleSave}
+                                className="text-blue-400 absolute right-6 bottom-6 text-xl"
+                            >
+                                {saved ? <FaBookmark /> : <CiBookmark />}
+                            </button>
                         </div>
                     ))}
                 </div>

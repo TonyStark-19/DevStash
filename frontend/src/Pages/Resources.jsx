@@ -9,12 +9,14 @@ import { Link } from "react-router-dom";
 // Resource page
 export function Resources() {
     return (
-        <div className="min-h-screen"
+        <div className="h-screen overflow-y-scroll scrollbar-transparent"
             style={{
                 background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
             }}>
             <Navbar />
-            <Content />
+            <div>
+                <Content />
+            </div>
             <Footer />
         </div>
     )
@@ -86,7 +88,7 @@ function Content() {
                     Let us know and we will add it as soon as possible!
                 </p>
                 <button
-                    className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 rounded-lg text-black font-semibold transition
+                    className="px-6 py-2.5 bg-cyan-500 hover:bg-cyan-600 rounded-lg text-black font-semibold transition
                     cursor-pointer"
                     onClick={() => alert("Feature coming soon!")}
                 >

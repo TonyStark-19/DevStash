@@ -8,7 +8,7 @@ export function Login() {
                 background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
             }}
         >
-            <div className="flex flex-col md:flex-row bg-black/50 rounded-2xl overflow-hidden max-w-4xl w-full 
+            <div className="flex flex-col md:flex-row bg-black/50 rounded-2xl overflow-hidden font-poppins w-[950px]
             shadow-2xl shadow-cyan-500/20">
 
                 {/* Left: Login form */}
@@ -61,14 +61,14 @@ export function Login() {
 
                 {/* Right: Side welcome box */}
                 <div className="bg-gradient-to-b from-cyan-500/20 to-cyan-700/20 flex flex-col justify-center items-center
-                py-8 px-6 flex-1">
+                py-8 px-6 flex-1 text-gray-300">
                     <img
                         src="/images/Login/SideBox.png"
                         alt="Developer at desk"
                         className="w-80 mb-6"
                     />
-                    <h2 className="text-3xl font-bold mb-3 text-white">Welcome Back</h2>
-                    <p className="text-gray-300 text-[17px] mb-2 text-center">
+                    <h2 className="text-3xl font-bold mb-4">Welcome Back</h2>
+                    <p className="text-[17px] mb-2 text-center">
                         Access your DevStash account to continue exploring top-notch tutorials,
                         tools, and resources — all in one place.
                     </p>

@@ -16,14 +16,14 @@ export function Signup() {
 
                 {/* Left side - Image & Intro */}
                 <div className="w-1/2 bg-gradient-to-b from-cyan-500/20 to-cyan-700/20 py-8 px-6 flex flex-col 
-                justify-center items-center text-white">
+                justify-center items-center text-gray-300">
                     <img
                         src="/images/Login/SideBox.png"
                         alt="Developer at work"
                         className="w-90 h-auto mb-6"
                     />
                     <h2 className="text-3xl font-bold mb-4">Welcome to DevStash</h2>
-                    <p className="text-[17px] mb-2 text-center text-gray-300">
+                    <p className="text-[17px] mb-2 text-center">
                         Your personal hub for curated tech & coding resources.
                         Discover top-notch tutorials, tools, and guides — all in one place.
                     </p>

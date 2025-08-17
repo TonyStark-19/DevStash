@@ -36,20 +36,25 @@ function Content() {
             <div className="p-4 absolute top-30 left-25 rounded-xl rotate-12 bg-white/5 backdrop-blur-sm animate-float">
                 <FaReact className="text-cyan-400 text-4xl" />
             </div>
+
             <div className="p-4 absolute top-30 right-25 rounded-xl -rotate-12 bg-white/5 backdrop-blur-sm animate-float 
             delay-200">
                 <VscAzure className="text-[#0078D4] text-4xl" />
             </div>
+
             <div className="p-4 absolute bottom-20 left-25 rounded-xl -rotate-12 bg-white/10 backdrop-blur-sm animate-float 
             delay-500">
                 <GrDocker className="text-[#2496ED] text-4xl" />
             </div>
+
             <div className="p-4 absolute top-85 left-45 rounded-xl bg-white/10 backdrop-blur-sm animate-float delay-700">
                 <SiFastapi className="text-[#009688] text-4xl" />
             </div>
+
             <div className="p-4 absolute top-85 right-45 rounded-xl bg-white/10 backdrop-blur-sm animate-float delay-300">
                 <DiMongodb className="text-green-500 text-4xl" />
             </div>
+
             <div className="p-4 absolute bottom-20 right-25 rounded-xl rotate-12 bg-white/10 backdrop-blur-sm animate-float 
             delay-600">
                 <FaRust className="text-orange-500 text-4xl" />
