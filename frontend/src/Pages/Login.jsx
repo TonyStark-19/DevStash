@@ -1,6 +1,37 @@
-import { Link } from "react-router-dom";
+// import Link and use navigate
+import { Link, useNavigate } from "react-router-dom";
+
+// import axios
+import axios from 'axios';
+
+// import use state
+import { useState } from "react";
 
 export function Login() {
+    const navigate = useNavigate();
+
+    // form entires
+    const [formData, setFormData] = useState({ email: "", password: "" });
+
+    // handle change
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // handle submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await axios.post("http://localhost:3000/api/auth/login", formData);
+            localStorage.setItem("token", res.data.token); // store token
+            navigate("/home");
+        } catch (err) {
+            console.error(err);
+            alert("Login failed: " + err.response.data.message);
+        }
+    };
+
     return (
         <div
             className="flex justify-center items-center h-screen px-4"
@@ -15,7 +46,7 @@ export function Login() {
                 <div className="bg-[#06B6D440]/40 p-8 flex-1 text-gray-300">
                     <h1 className="text-4xl mb-8 font-bold">Login</h1>
 
-                    <form className="flex flex-col">
+                    <form className="flex flex-col" onSubmit={handleSubmit}>
 
                         <label htmlFor="email" className="mb-2 text-sm font-medium text-gray-300">
                             Email Address
@@ -28,6 +59,8 @@ export function Login() {
                             required
                             autoComplete="email"
                             className="border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
+                            value={formData.email}
+                            onChange={handleChange}
                         />
 
                         <label htmlFor="password" className="mb-2 text-sm font-medium text-gray-300">
@@ -40,6 +73,8 @@ export function Login() {
                             placeholder="Password"
                             required
                             className="border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
+                            value={formData.password}
+                            onChange={handleChange}
                         />
 
                         <button
