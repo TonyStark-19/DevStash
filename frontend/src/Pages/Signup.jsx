@@ -7,9 +7,13 @@ import axios from 'axios';
 // import use state
 import { useState } from "react";
 
+// import context
+import { useAuth } from "../Context/AuthContext";
+
 // Signup page
 export function Signup() {
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     // form entries
     const [formData, setFormData] = useState({
@@ -37,8 +41,9 @@ export function Signup() {
 
         try {
             const res = await axios.post("http://localhost:3000/api/auth/signup", { email, password });
-            localStorage.setItem("token", res.data.token); // Store JWT
-            navigate("/home");
+            login(res.data.token);
+            // ✅ Redirect to home
+            navigate("/home", { replace: true });
         } catch (err) {
             console.error(err);
             alert("Signup failed: " + err.response.data.message);

@@ -1,4 +1,4 @@
-// router
+// App.jsx
 import { Routes, Route } from "react-router-dom";
 
 // import components, pages, context
@@ -9,56 +9,76 @@ import { Login } from "./Pages/Login";
 import { Signup } from "./Pages/Signup";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import PublicRoute from "./Components/PublicRoute";
-import { AuthProvider } from "./Context/AuthContext";
+import { AuthProvider, useAuth } from "./Context/AuthContext";
+
+function AppRoutes() {
+  const { loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen text-white"
+        style={{
+          background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
+        }}>
+        {/* A simple Tailwind spinner */}
+        <div className="w-12 h-12 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  return (
+    <Routes>
+      {/* Public routes */}
+      <Route
+        path="/"
+        element={
+          <PublicRoute>
+            <Signup />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        }
+      />
+
+      {/* Protected routes */}
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/resources"
+        element={
+          <ProtectedRoute>
+            <Resources />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/react"
+        element={
+          <ProtectedRoute>
+            <React />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  );
+}
 
 export default function App() {
   return (
     <AuthProvider>
-      <Routes>
-        {/* Public routes (only when NOT logged in) */}
-        <Route
-          path="/"
-          element={
-            <PublicRoute>
-              <Signup />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
-          }
-        />
-
-        {/* Protected routes (only when logged in) */}
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/resources"
-          element={
-            <ProtectedRoute>
-              <Resources />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/react"
-          element={
-            <ProtectedRoute>
-              <React />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <AppRoutes />
     </AuthProvider>
   );
 }

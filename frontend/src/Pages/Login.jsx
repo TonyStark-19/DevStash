@@ -7,8 +7,12 @@ import axios from 'axios';
 // import use state
 import { useState } from "react";
 
+// import context
+import { useAuth } from "../Context/AuthContext";
+
 export function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     // form entires
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -24,8 +28,9 @@ export function Login() {
 
         try {
             const res = await axios.post("http://localhost:3000/api/auth/login", formData);
-            localStorage.setItem("token", res.data.token); // store token
-            navigate("/home");
+            login(res.data.token);
+            // ✅ Redirect to home
+            navigate("/home", { replace: true });
         } catch (err) {
             console.error(err);
             alert("Login failed: " + err.response.data.message);
