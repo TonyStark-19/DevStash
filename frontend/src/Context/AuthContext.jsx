@@ -14,7 +14,9 @@ export function AuthProvider({ children }) {
 
   const login = (token) => {
     localStorage.setItem("token", token);
+    setLoading(true);   // show loading immediately
     setIsAuthenticated(true);
+    setTimeout(() => setLoading(false), 100); // small delay for smooth transition
   };
 
   const logout = () => {

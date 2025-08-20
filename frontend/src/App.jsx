@@ -20,8 +20,6 @@ function AppRoutes() {
         style={{
           background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
         }}>
-        {/* A simple Tailwind spinner */}
-        <div className="w-12 h-12 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
