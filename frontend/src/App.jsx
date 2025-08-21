@@ -7,6 +7,7 @@ import { Resources } from "./Pages/Resources";
 import { React } from "./Pages/React";
 import { Login } from "./Pages/Login";
 import { Signup } from "./Pages/Signup";
+import { SavedResources } from "./Pages/SavedResources";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import PublicRoute from "./Components/PublicRoute";
 import { AuthProvider, useAuth } from "./Context/AuthContext";
@@ -66,6 +67,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <React />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/saved"
+        element={
+          <ProtectedRoute>
+            <SavedResources />
           </ProtectedRoute>
         }
       />
