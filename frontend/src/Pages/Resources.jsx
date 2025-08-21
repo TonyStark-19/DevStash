@@ -46,8 +46,8 @@ function Content() {
     return (
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             <h1 className="text-5xl text-center mb-3 font-semibold">Curated Tech & Coding Resources</h1>
-            <p className="text-[22px] text-center pb-10 border-b-2 border-white/30 tracking-wide">Discover, save, and share top coding
-                tutorials, tools, and guides for developers worldwide.</p>
+            <p className="text-[22px] text-center pb-10 border-b-2 border-white/30 tracking-wide">Discover, save, and
+                share top coding tutorials, tools, and guides for developers worldwide.</p>
             <Link to="/react">
                 Open me
             </Link>
