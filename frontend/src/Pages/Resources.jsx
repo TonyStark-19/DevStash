@@ -80,7 +80,7 @@ function Content() {
             ))}
 
             {/* Call-to-action section */}
-            <div className="p-8 text-center max-w-3xl">
+            <div className="p-8 text-center max-w-3xl mb-5">
                 <h2 className="text-2xl font-bold mb-4">
                     Do you see a missing tech & coding resource?
                 </h2>

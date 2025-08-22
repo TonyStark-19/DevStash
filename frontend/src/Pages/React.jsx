@@ -213,7 +213,7 @@ function Content() {
                             {/* Save button */}
                             <button
                                 onClick={handleSave}
-                                className="text-blue-400 absolute right-6 bottom-6 text-xl"
+                                className="text-blue-400 absolute right-6 bottom-6 text-xl cursor-pointer"
                             >
                                 {saved ? <FaBookmark /> : <CiBookmark />}
                             </button>
@@ -221,7 +221,7 @@ function Content() {
                     ))}
                 </div>
 
-                <div className="mt-10 p-6 text-white text-center">
+                <div className="mt-10 p-6 text-white text-center mb-5">
                     <h2 className="text-xl font-bold mb-3">
                         Do you want to contribute your own favorite resource which is not present here?
                     </h2>

@@ -38,7 +38,7 @@ export function Navbar() {
                         onMouseLeave={() => setShowMenu(false)}>
                         <Link
                             to="/saved"
-                            className="text-[15px] mb-3 hover:text-cyan-400"
+                            className="text-[15px] mb-2 hover:text-cyan-400"
                         >
                             Saved Resources
                         </Link>
