@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
+// import all resources, resource routes
+const allResources = require("./allResources");
+const resourcesRoutes = require("./routes/resource")
+
 // use .env variables
 dotenv.config();
 
@@ -22,6 +26,9 @@ app.use(express.json());
 // auth routes
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
+
+// resource routes
+app.use("/api/resources", resourcesRoutes);
 
 // import resources
 const resources = require("./resource");
