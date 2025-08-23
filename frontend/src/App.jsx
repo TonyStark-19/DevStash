@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 // import components, pages, context
 import { Home } from "./Pages/Home";
 import { Resources } from "./Pages/Resources";
-import { React } from "./Pages/React";
+import { ResourceDetail } from "./Pages/ResourceDetail";
 import { Login } from "./Pages/Login";
 import { Signup } from "./Pages/Signup";
 import { SavedResources } from "./Pages/SavedResources";
@@ -63,10 +63,10 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/react"
+        path="/resources/:toolId"
         element={
           <ProtectedRoute>
-            <React />
+            <ResourceDetail />
           </ProtectedRoute>
         }
       />

@@ -9,7 +9,7 @@ import { FaBookmark } from "react-icons/fa";
 import { useState } from "react";
 
 // resource page
-export function React() {
+export function ResourceDetail() {
     return (
         <div
             className="h-screen overflow-y-scroll scrollbar-transparent"
@@ -26,75 +26,76 @@ export function React() {
     );
 }
 
-// 📘 Documentation & Official Resources
-const docsResources = [
-    {
-        id: 1,
-        title: "React Official Docs",
-        description:
-            "The official React documentation covering fundamentals, hooks, and advanced concepts.",
-        image: "/images/frontend/React.svg",
-        tags: ["Documentation", "Official", "Author Suggested"],
-        link: "https://react.dev/",
-    },
-    {
-        id: 2,
-        title: "React Hot Toast",
-        description:
-            "Lightweight and customizable toast notifications for React applications.",
-        image: "/images/frontend/React.svg",
-        tags: ["Library", "UI", "Notifications", "Author Suggested"],
-        link: "https://react-hot-toast.com/",
-    },
-    {
-        id: 3,
-        title: "MDN Web Docs - React",
-        description:
-            "MDN's React tutorial series introducing core concepts and usage.",
-        image: "/images/frontend/React.svg",
-        tags: ["Documentation", "Learning", "AI Suggested"],
-        link: "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started",
-    },
-    {
-        id: 4,
-        title: "UIverse",
-        description:
-            "Free open-source UI elements for React projects.",
-        image: "/images/frontend/React.svg",
-        tags: ["UI", "Components", "AI Suggested"],
-        link: "https://uiverse.io/",
-    },
-    {
-        id: 5,
-        title: "React Hook Form",
-        description:
-            "Performant, flexible, and extensible forms with easy-to-use validation.",
-        image: "/images/frontend/React.svg",
-        tags: ["Forms", "Library", "AI Suggested"],
-        link: "https://react-hook-form.com/",
-    },
-];
+// // 📘 Documentation & Official Resources
+// const docsResources = [
+//     {
+//         id: 1,
+//         title: "React Official Docs",
+//         description:
+//             "The official React documentation covering fundamentals, hooks, and advanced concepts.",
+//         image: "/images/frontend/React.svg",
+//         tags: ["Documentation", "Official", "Author Suggested"],
+//         link: "https://react.dev/",
+//     },
+//     {
+//         id: 2,
+//         title: "React Hot Toast",
+//         description:
+//             "Lightweight and customizable toast notifications for React applications.",
+//         image: "/images/frontend/React.svg",
+//         tags: ["Library", "UI", "Notifications", "Author Suggested"],
+//         link: "https://react-hot-toast.com/",
+//     },
+//     {
+//         id: 3,
+//         title: "MDN Web Docs - React",
+//         description:
+//             "MDN's React tutorial series introducing core concepts and usage.",
+//         image: "/images/frontend/React.svg",
+//         tags: ["Documentation", "Learning", "AI Suggested"],
+//         link: "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started",
+//     },
+//     {
+//         id: 4,
+//         title: "UIverse",
+//         description:
+//             "Free open-source UI elements for React projects.",
+//         image: "/images/frontend/React.svg",
+//         tags: ["UI", "Components", "AI Suggested"],
+//         link: "https://uiverse.io/",
+//     },
+//     {
+//         id: 5,
+//         title: "React Hook Form",
+//         description:
+//             "Performant, flexible, and extensible forms with easy-to-use validation.",
+//         image: "/images/frontend/React.svg",
+//         tags: ["Forms", "Library", "AI Suggested"],
+//         link: "https://react-hook-form.com/",
+//     },
+// ];
 
-// 🎥 YouTube Resources
-const youtubeResources = [
-    {
-        id: 1,
-        title: "React Tutorial (Code With Harry)",
-        description: "Beginner-friendly React tutorial in Hindi for building real-world projects.",
-        image: "/images/frontend/React.svg",
-        tags: ["react", "beginner", "hindi", "tutorial", "author-suggested"],
-        link: "https://youtu.be/RGKi6LSPDLU?si=8cF79M9Jt8UHwX79"
-    },
-    {
-        id: 2,
-        title: "React Hooks Tutorial (Code Bless You)",
-        description: "In-depth explanation of React Hooks and how to use them effectively.",
-        image: "/images/frontend/React.svg",
-        tags: ["react", "hooks", "tutorial", "intermediate", "author-suggested"],
-        link: "https://youtu.be/HnXPKtro4SM?si=IUgtjGQJKBFigkAA"
-    },
-];
+// // 🎥 YouTube Resources
+// const youtubeResources = [
+//     {
+//         id: 1,
+//         title: "React Tutorial (Code With Harry)",
+//         description: "Beginner-friendly React tutorial in Hindi for building real-world projects.",
+//         image: "/images/frontend/React.svg",
+//         tags: ["react", "beginner", "hindi", "tutorial", "author-suggested"],
+//         link: "https://youtu.be/RGKi6LSPDLU?si=8cF79M9Jt8UHwX79"
+//     },
+//     {
+//         id: 2,
+//         title: "React Hooks Tutorial (Code Bless You)",
+//         description: "In-depth explanation of React Hooks and how to use them effectively.",
+//         image: "/images/frontend/React.svg",
+//         tags: ["react", "hooks", "tutorial", "intermediate", "author-suggested"],
+//         link: "https://youtu.be/HnXPKtro4SM?si=IUgtjGQJKBFigkAA"
+//     },
+// ];
 
+// content
 function Content() {
     const [saved, setSaved] = useState(false);
 

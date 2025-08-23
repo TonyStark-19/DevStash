@@ -48,9 +48,6 @@ function Content() {
             <h1 className="text-5xl text-center mb-3 font-semibold">Curated Tech & Coding Resources</h1>
             <p className="text-[22px] text-center pb-10 border-b-2 border-white/30 tracking-wide">Discover, save, and
                 share top coding tutorials, tools, and guides for developers worldwide.</p>
-            <Link to="/react">
-                Open me
-            </Link>
 
             {Object.entries(resources).map(([categoryKey, items]) => (
                 <section key={categoryKey} className="mb-6 mt-20 pb-10 border-b-2 border-white/30">
@@ -60,7 +57,8 @@ function Content() {
 
                     <div className="grid grid-cols-5 gap-6 place-items-center">
                         {items.map((res, i) => (
-                            <div
+                            <Link
+                                to={`/resources/${res.id}`}
                                 key={i}
                                 className="p-5 bg-white/10 hover:bg-white/15 rounded-2xl flex flex-col items-center gap-3
                                 transition cursor-pointer hover:transform hover:scale-105"
@@ -73,7 +71,7 @@ function Content() {
                                 <div className="uppercase text-sm font-semibold text-center">
                                     {res.name}
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </section>
