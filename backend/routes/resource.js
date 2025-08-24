@@ -5,11 +5,11 @@ const Resource = require("../models/Resource")
 // router
 const router = express.Router();
 
-router.get("/:language", async (req, res) => {
+router.get("/:subcategory", async (req, res) => {
     try {
-        const { language } = req.params;
+        const { subcategory } = req.params;
 
-        const resources = await Resource.findOne({ language });
+        const resources = await Resource.findOne({ subcategory });
 
         // if not found
         if (!resources) {
