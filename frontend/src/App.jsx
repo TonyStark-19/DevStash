@@ -63,7 +63,7 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/resources/:toolId"
+        path="/resources/:subcategory"
         element={
           <ProtectedRoute>
             <ResourceDetail />

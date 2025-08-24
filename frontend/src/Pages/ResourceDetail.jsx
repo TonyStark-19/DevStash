@@ -5,8 +5,11 @@ import { Footer } from "../Components/Footer";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 
-// import use state
-import { useState } from "react";
+// import useState and useEffect
+import { useState, useEffect } from "react";
+
+// import use params
+import { useParams } from "react-router-dom";
 
 // resource page
 export function ResourceDetail() {
@@ -26,94 +29,74 @@ export function ResourceDetail() {
     );
 }
 
-// // 📘 Documentation & Official Resources
-// const docsResources = [
-//     {
-//         id: 1,
-//         title: "React Official Docs",
-//         description:
-//             "The official React documentation covering fundamentals, hooks, and advanced concepts.",
-//         image: "/images/frontend/React.svg",
-//         tags: ["Documentation", "Official", "Author Suggested"],
-//         link: "https://react.dev/",
-//     },
-//     {
-//         id: 2,
-//         title: "React Hot Toast",
-//         description:
-//             "Lightweight and customizable toast notifications for React applications.",
-//         image: "/images/frontend/React.svg",
-//         tags: ["Library", "UI", "Notifications", "Author Suggested"],
-//         link: "https://react-hot-toast.com/",
-//     },
-//     {
-//         id: 3,
-//         title: "MDN Web Docs - React",
-//         description:
-//             "MDN's React tutorial series introducing core concepts and usage.",
-//         image: "/images/frontend/React.svg",
-//         tags: ["Documentation", "Learning", "AI Suggested"],
-//         link: "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started",
-//     },
-//     {
-//         id: 4,
-//         title: "UIverse",
-//         description:
-//             "Free open-source UI elements for React projects.",
-//         image: "/images/frontend/React.svg",
-//         tags: ["UI", "Components", "AI Suggested"],
-//         link: "https://uiverse.io/",
-//     },
-//     {
-//         id: 5,
-//         title: "React Hook Form",
-//         description:
-//             "Performant, flexible, and extensible forms with easy-to-use validation.",
-//         image: "/images/frontend/React.svg",
-//         tags: ["Forms", "Library", "AI Suggested"],
-//         link: "https://react-hook-form.com/",
-//     },
-// ];
-
-// // 🎥 YouTube Resources
-// const youtubeResources = [
-//     {
-//         id: 1,
-//         title: "React Tutorial (Code With Harry)",
-//         description: "Beginner-friendly React tutorial in Hindi for building real-world projects.",
-//         image: "/images/frontend/React.svg",
-//         tags: ["react", "beginner", "hindi", "tutorial", "author-suggested"],
-//         link: "https://youtu.be/RGKi6LSPDLU?si=8cF79M9Jt8UHwX79"
-//     },
-//     {
-//         id: 2,
-//         title: "React Hooks Tutorial (Code Bless You)",
-//         description: "In-depth explanation of React Hooks and how to use them effectively.",
-//         image: "/images/frontend/React.svg",
-//         tags: ["react", "hooks", "tutorial", "intermediate", "author-suggested"],
-//         link: "https://youtu.be/HnXPKtro4SM?si=IUgtjGQJKBFigkAA"
-//     },
-// ];
-
 // content
 function Content() {
-    const [saved, setSaved] = useState(false);
+    const { subcategory } = useParams();
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [savedResources, setSavedResources] = useState([]);
 
-    const handleSave = () => {
-        setSaved(!saved);
+    // fetch resources from DB
+    useEffect(() => {
+        fetch(`http://localhost:3000/api/resources/${subcategory}`)
+            .then((res) => res.json())
+            .then((json) => {
+                setData(json);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error(err);
+                setLoading(false);
+            });
+    }, [subcategory]);
+
+    // handle save
+    const handleSave = (resource, type) => {
+        const cleanResource = {
+            id: `${type}-${resource.id}`,
+            title: resource.title,
+            description: resource.description,
+            image: resource.image,
+            tags: resource.tags,
+            link: resource.link,
+        };
+
+        setSavedResources((prev) => {
+            const exists = prev.find((item) => item.id === cleanResource.id);
+            if (exists) {
+                return prev.filter((item) => item.id !== cleanResource.id);
+            } else {
+                return [...prev, cleanResource];
+            }
+        });
     };
+
+    // hydrate saved resources from localStorage
+    useEffect(() => {
+        const stored = localStorage.getItem("savedResources");
+        if (stored) {
+            setSavedResources(JSON.parse(stored));
+        }
+    }, []);
+
+    // update localStorage when savedResources changes
+    useEffect(() => {
+        localStorage.setItem("savedResources", JSON.stringify(savedResources));
+    }, [savedResources]);
+
+    if (loading) return <p className="text-white">Loading...</p>;
+    if (!data) return <p className="text-red-500">No resources found</p>;
+
+    // resources
+    const { resources } = data;
 
     return (
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             {/* Page heading */}
             <div className="w-[70%] text-center">
-                <h1 className="text-4xl mb-3 font-semibold leading-12">
-                    React — Curated Docs, Libraries & Tools
+                <h1 className="text-4xl mb-3 font-semibold leading-12 pb-10 border-b-2 border-white/30">
+                    {subcategory.toUpperCase()} Resources
                 </h1>
-                <p className="text-[22px] pb-10 border-b-2 border-white/30 tracking-wide">
-                    Everything you need to build modern, fast, and scalable UI with
-                    React — from beginner tutorials to advanced libraries.
-                </p>
             </div>
 
             {/* Resources Section */}
@@ -121,9 +104,9 @@ function Content() {
                 <h2 className="text-3xl font-semibold mb-6">Docs & Articles :</h2>
 
                 <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10">
-                    {docsResources.map((res) => (
+                    {resources.docs.map((res, idx) => (
                         <div
-                            key={res.id}
+                            key={`docs-${res.id || idx}`}
                             className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative shadow-lg shadow-cyan-500/10"
                         >
                             {/* Logo */}
@@ -161,10 +144,14 @@ function Content() {
 
                             {/* Save button */}
                             <button
-                                onClick={handleSave}
+                                onClick={() => handleSave(res, "docs")}
                                 className="text-blue-400 absolute right-6 bottom-6 text-xl"
                             >
-                                {saved ? <FaBookmark /> : <CiBookmark />}
+                                {savedResources.some((item) => item.id === `docs-${res.id}`) ? (
+                                    <FaBookmark />
+                                ) : (
+                                    <CiBookmark />
+                                )}
                             </button>
                         </div>
                     ))}
@@ -173,9 +160,9 @@ function Content() {
                 <h2 className="text-3xl font-semibold mt-18 mb-6">Youtube Resources :</h2>
 
                 <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10">
-                    {youtubeResources.map((res) => (
+                    {resources.youtube.map((res, idx) => (
                         <div
-                            key={res.id}
+                            key={`youtube-${res.id || idx}`}
                             className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative shadow-lg shadow-cyan-500/10"
                         >
                             {/* Logo */}
@@ -213,10 +200,14 @@ function Content() {
 
                             {/* Save button */}
                             <button
-                                onClick={handleSave}
+                                onClick={() => handleSave(res, "youtube")}
                                 className="text-blue-400 absolute right-6 bottom-6 text-xl cursor-pointer"
                             >
-                                {saved ? <FaBookmark /> : <CiBookmark />}
+                                {savedResources.some((item) => item.id === `youtube-${res.id}`) ? (
+                                    <FaBookmark />
+                                ) : (
+                                    <CiBookmark />
+                                )}
                             </button>
                         </div>
                     ))}

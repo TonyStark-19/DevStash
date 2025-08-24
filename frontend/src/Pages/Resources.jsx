@@ -58,7 +58,7 @@ function Content() {
                     <div className="grid grid-cols-5 gap-6 place-items-center">
                         {items.map((res, i) => (
                             <Link
-                                to={`/resources/${res.id}`}
+                                to={`/resources/${res.subcategory}`}
                                 key={i}
                                 className="p-5 bg-white/10 hover:bg-white/15 rounded-2xl flex flex-col items-center gap-3
                                 transition cursor-pointer hover:transform hover:scale-105"
