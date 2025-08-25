@@ -31,7 +31,7 @@ export function Navbar() {
                 className="relative inline-block"
                 onMouseEnter={() => setShowMenu(true)}
             >
-                <FaRegUser className="text-xl cursor-pointer" />
+                <FaRegUser className="text-[22px] cursor-pointer" />
 
                 {showMenu && (
                     <div className="absolute flex flex-col bg-white/10 right-0 w-45 mt-2 py-3 px-4 rounded-lg shadow-lg"

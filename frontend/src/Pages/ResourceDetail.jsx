@@ -94,7 +94,7 @@ function Content() {
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             {/* Page heading */}
             <div className="w-[70%] text-center">
-                <h1 className="text-4xl mb-3 font-semibold leading-12 pb-10 border-b-2 border-white/30">
+                <h1 className="text-6xl mb-3 font-semibold leading-12 pb-10 border-b-2 border-white/30">
                     {subcategory.toUpperCase()} Resources
                 </h1>
             </div>
@@ -107,7 +107,8 @@ function Content() {
                     {resources.docs.map((res, idx) => (
                         <div
                             key={`docs-${res.id || idx}`}
-                            className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative shadow-lg shadow-cyan-500/10"
+                            className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative
+                            shadow-lg shadow-cyan-500/10"
                         >
                             {/* Logo */}
                             <img
@@ -145,7 +146,7 @@ function Content() {
                             {/* Save button */}
                             <button
                                 onClick={() => handleSave(res, "docs")}
-                                className="text-blue-400 absolute right-6 bottom-6 text-xl"
+                                className="text-blue-400 absolute right-6 bottom-6 text-xl cursor-pointer"
                             >
                                 {savedResources.some((item) => item.id === `docs-${res.id}`) ? (
                                     <FaBookmark />
@@ -163,7 +164,8 @@ function Content() {
                     {resources.youtube.map((res, idx) => (
                         <div
                             key={`youtube-${res.id || idx}`}
-                            className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative shadow-lg shadow-cyan-500/10"
+                            className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative
+                            shadow-lg shadow-cyan-500/10"
                         >
                             {/* Logo */}
                             <img

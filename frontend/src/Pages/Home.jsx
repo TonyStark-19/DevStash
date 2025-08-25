@@ -66,13 +66,13 @@ function Content() {
                     <p className="text-[15px]">48 Resources accross domains</p>
                 </div> */}
 
-                <h1 className="text-6xl mb-4 font-semibold">Discover & Share</h1>
-                <h2 className="text-6xl mb-6 font-semibold">The Best Dev Resources</h2>
-                <p className="text-[21px] mb-4 w-[45%] text-center">Your go-to hub for curated coding tutorials, tools, and
+                <h1 className="text-[55px] leading-18 font-semibold">Discover & Share</h1>
+                <h2 className="text-[55px] mb-2 font-semibold">The Best Dev Resources</h2>
+                <p className="text-[20px] mb-3 w-[45%] text-center">Your go-to hub for curated coding tutorials, tools, and
                     guides.</p>
-                <p className="text-[21px] mb-4 w-[45%] text-center">Explore top resources, save your favorites, and share your
+                <p className="text-[20px] mb-3 w-[45%] text-center">Explore top resources, save your favorites, and share your
                     own finds with the developer community.</p>
-                <p className="text-[21px] mb-4 w-[45%] text-center">Built for developers, powered by collaboration.</p>
+                <p className="text-[20px] mb-4 w-[45%] text-center">Built for developers, powered by collaboration.</p>
 
                 <div className="flex flex-row gap-4 mt-5">
                     <button className="text-[17px] py-2 px-4 cursor-pointer text-black bg-white rounded-xl capitalize

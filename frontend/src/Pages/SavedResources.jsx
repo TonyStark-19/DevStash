@@ -1,5 +1,6 @@
 // import components
 import { Navbar } from "../Components/Navbar";
+import { Footer } from "../Components/Footer";
 
 // import useState and useEffect
 import { useState, useEffect } from "react";
@@ -11,12 +12,15 @@ import { FaBookmark } from "react-icons/fa";
 export function SavedResources() {
     return (
         <>
-            <div className="h-screen overflow-hidden"
+            <div className="min-h-screen overflow-hidden"
                 style={{
                     background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
                 }}>
                 <Navbar />
-                <Content />
+                <div>
+                    <Content />
+                </div>
+                <Footer />
             </div>
         </>
     )
@@ -45,11 +49,12 @@ function Content() {
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             <h1 className="text-5xl text-center mb-3 font-semibold pb-10 border-b-2 border-white/30 w-[70%]">Saved Resources</h1>
 
-            <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10">
+            <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10 w-[70%] mt-10">
                 {savedResources.map((res, idx) => (
                     <div
                         key={res.id || idx}
-                        className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative shadow-lg shadow-cyan-500/10"
+                        className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative 
+                        shadow-lg shadow-cyan-500/10"
                     >
                         {/* Logo */}
                         <img
@@ -87,7 +92,7 @@ function Content() {
                         {/* Save button */}
                         <button
                             onClick={() => handleRemove(res.id)}
-                            className="text-blue-400 absolute right-6 bottom-6 text-xl"
+                            className="text-blue-400 absolute right-6 bottom-6 text-xl cursor-pointer"
                         >
                             <FaBookmark />
                         </button>
