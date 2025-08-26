@@ -12,7 +12,13 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    savedResources: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Resource"
+        }
+    ]
 });
 
 // export schema
