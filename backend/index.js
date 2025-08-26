@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 // import all resources, resource routes
 const allResources = require("./allResources");
 const resourcesRoutes = require("./routes/resource")
+const savedResourcesRoutes = require("./routes/resourceRoutes")
 
 // use .env variables
 dotenv.config();
@@ -29,6 +30,9 @@ app.use("/api/auth", authRoutes);
 
 // resource routes
 app.use("/api/resources", resourcesRoutes);
+
+// saved resources
+app.use("/api/resources", savedResourcesRoutes);
 
 // import resources
 const resources = require("./resource");
