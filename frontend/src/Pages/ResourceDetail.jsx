@@ -11,6 +11,9 @@ import { useState, useEffect } from "react";
 // import use params
 import { useParams } from "react-router-dom";
 
+// import axios instance
+import api from "../api";
+
 // resource page
 export function ResourceDetail() {
     return (
@@ -50,40 +53,51 @@ function Content() {
             });
     }, [subcategory]);
 
-    // handle save
-    const handleSave = (resource, type) => {
-        const cleanResource = {
-            id: `${type}-${resource.id}`,
-            title: resource.title,
-            description: resource.description,
-            image: resource.image,
-            tags: resource.tags,
-            link: resource.link,
-        };
-
-        setSavedResources((prev) => {
-            const exists = prev.find((item) => item.id === cleanResource.id);
-            if (exists) {
-                return prev.filter((item) => item.id !== cleanResource.id);
-            } else {
-                return [...prev, cleanResource];
-            }
-        });
-    };
-
-    // hydrate saved resources from localStorage
+    // fetch saved resources on mount
     useEffect(() => {
-        const stored = localStorage.getItem("savedResources");
-        if (stored) {
-            setSavedResources(JSON.parse(stored));
-        }
+        const fetchSaved = async () => {
+            try {
+                const res = await api.get("/saved-resources/saved");
+                setSavedResources(res.data); // flat array from backend
+            } catch (err) {
+                console.error("Error fetching saved resources:", err.response?.data || err.message);
+            }
+        };
+        fetchSaved();
     }, []);
 
-    // update localStorage when savedResources changes
-    useEffect(() => {
-        localStorage.setItem("savedResources", JSON.stringify(savedResources));
-    }, [savedResources]);
+    // handle saving
+    const handleSave = async (resourceId, type, itemId) => {
+        try {
+            const exists = savedResources.some(
+                (item) =>
+                    item.resourceId === resourceId &&
+                    item.type === type &&
+                    item.itemId === itemId
+            );
 
+            if (exists) {
+                await api.post(`/saved-resources/unsave/${resourceId}`, { type, itemId });
+                setSavedResources((prev) =>
+                    prev.filter(
+                        (item) =>
+                            !(
+                                item.resourceId === resourceId &&
+                                item.type === type &&
+                                item.itemId === itemId
+                            )
+                    )
+                );
+            } else {
+                await api.post(`/saved-resources/save/${resourceId}`, { type, itemId });
+                setSavedResources((prev) => [...prev, { resourceId, type, itemId }]);
+            }
+        } catch (err) {
+            console.error("Error saving/unsaving resource:", err.response?.data || err.message);
+        }
+    };
+
+    // loading
     if (loading) return <p className="text-white">Loading...</p>;
     if (!data) return <p className="text-red-500">No resources found</p>;
 
@@ -103,6 +117,7 @@ function Content() {
             <div className="w-[70%] mt-15">
                 <h2 className="text-3xl font-semibold mb-6">Docs & Articles :</h2>
 
+                {/* docs */}
                 <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10">
                     {resources.docs.map((res, idx) => (
                         <div
@@ -145,10 +160,15 @@ function Content() {
 
                             {/* Save button */}
                             <button
-                                onClick={() => handleSave(res, "docs")}
+                                onClick={() => handleSave(data._id, "docs", res._id)}
                                 className="text-blue-400 absolute right-6 bottom-6 text-xl cursor-pointer"
                             >
-                                {savedResources.some((item) => item.id === `docs-${res.id}`) ? (
+                                {savedResources.some(
+                                    (item) =>
+                                        item.resourceId === data._id &&
+                                        item.type === "docs" &&
+                                        item.itemId === res._id
+                                ) ? (
                                     <FaBookmark />
                                 ) : (
                                     <CiBookmark />
@@ -160,6 +180,7 @@ function Content() {
 
                 <h2 className="text-3xl font-semibold mt-18 mb-6">Youtube Resources :</h2>
 
+                {/* youtube */}
                 <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10">
                     {resources.youtube.map((res, idx) => (
                         <div
@@ -202,10 +223,15 @@ function Content() {
 
                             {/* Save button */}
                             <button
-                                onClick={() => handleSave(res, "youtube")}
+                                onClick={() => handleSave(data._id, "youtube", res._id)}
                                 className="text-blue-400 absolute right-6 bottom-6 text-xl cursor-pointer"
                             >
-                                {savedResources.some((item) => item.id === `youtube-${res.id}`) ? (
+                                {savedResources.some(
+                                    (item) =>
+                                        item.resourceId === data._id &&
+                                        item.type === "youtube" &&
+                                        item.itemId === res._id
+                                ) ? (
                                     <FaBookmark />
                                 ) : (
                                     <CiBookmark />
@@ -215,6 +241,7 @@ function Content() {
                     ))}
                 </div>
 
+                {/* contribute resource */}
                 <div className="mt-10 p-6 text-white text-center mb-5">
                     <h2 className="text-xl font-bold mb-3">
                         Do you want to contribute your own favorite resource which is not present here?

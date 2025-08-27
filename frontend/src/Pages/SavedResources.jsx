@@ -8,8 +8,8 @@ import { useState, useEffect } from "react";
 // react icons
 import { FaBookmark } from "react-icons/fa";
 
-// import axios
-import axios from "axios";
+// import axios instance
+import api from "../api";
 
 // saved resources page
 export function SavedResources() {
@@ -38,62 +38,48 @@ function Content() {
     useEffect(() => {
         const fetchSavedResources = async () => {
             try {
-                const token = localStorage.getItem("token");
-                const res = await axios.get(
-                    "http://localhost:3000/api/resources/saved",
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+                const res = await api.get("/saved-resources/saved");
                 setSavedResources(res.data);
             } catch (err) {
-                console.error("Error fetching saved resources:", err);
+                console.error("Error fetching saved resources:", err.response?.data || err.message);
             } finally {
                 setLoading(false);
             }
         };
-
         fetchSavedResources();
     }, []);
 
-    // handle remove (unsave)
-    const handleRemove = async (id) => {
+    // handle removal of resources
+    const handleRemove = async (resourceId, type, itemId) => {
         try {
-            const token = localStorage.getItem("token");
-            await axios.post(
-                `http://localhost:3000/api/resources/unsave/${id}`,
-                {},
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-
-            // update UI
+            await api.post(`/saved-resources/unsave/${resourceId}`, { type, itemId });
             setSavedResources((prev) =>
-                prev.filter((item) => item._id !== id)
+                prev.filter(
+                    (item) =>
+                        !(item.resourceId === resourceId && item.type === type && item.itemId === itemId)
+                )
             );
         } catch (err) {
-            console.error("Error unsaving resource:", err);
+            console.error("Error unsaving resource:", err.response?.data || err.message);
         }
     };
+
+    // loading
+    if (loading) return <p className="text-white">Loading...</p>;
 
     return (
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             <h1 className="text-5xl text-center mb-3 font-semibold pb-10 border-b-2 border-white/30 w-[70%]">Saved Resources</h1>
 
-            <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10 w-[70%] mt-10">
+            <div className="w-[70%] my-10 flex flex-col gap-8">
                 {savedResources.length === 0 ? (
                     <p className="text-gray-400 text-center">No saved resources yet :(</p>
                 ) : (
                     savedResources.map((res, idx) => (
                         <div
-                            key={res.id || idx}
-                            className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative 
-                        shadow-lg shadow-cyan-500/10"
+                            key={idx}
+                            className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative
+                            shadow-lg shadow-cyan-500/10"
                         >
                             {/* Logo */}
                             <img
@@ -130,7 +116,7 @@ function Content() {
 
                             {/* Save button */}
                             <button
-                                onClick={() => handleRemove(res._id)}
+                                onClick={() => handleRemove(res.resourceId, res.type, res.itemId)}
                                 className="text-blue-400 absolute right-6 bottom-6 text-xl cursor-pointer"
                             >
                                 <FaBookmark />
