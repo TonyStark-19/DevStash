@@ -32,7 +32,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/resources", resourcesRoutes);
 
 // saved resources
-app.use("/api/resources", savedResourcesRoutes);
+app.use("/api/saved-resources", savedResourcesRoutes);
 
 // import resources
 const resources = require("./resource");
