@@ -64,16 +64,16 @@ function Content() {
         }
     };
 
-    // loading
-    if (loading) return <p className="text-white">Loading...</p>;
+    // // loading
+    // if (loading) return <p className="text-white">Loading...</p>;
 
     return (
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             <h1 className="text-5xl text-center mb-3 font-semibold pb-10 border-b-2 border-white/30 w-[70%]">Saved Resources</h1>
 
-            <div className="w-[70%] my-10 flex flex-col gap-8">
+            <div className="w-[70%] my-10 flex flex-col gap-8 min-h-60">
                 {savedResources.length === 0 ? (
-                    <p className="text-gray-400 text-center">No saved resources yet :(</p>
+                    <p className="text-gray-400 text-center text-[18px]">No saved resources yet :(</p>
                 ) : (
                     savedResources.map((res, idx) => (
                         <div

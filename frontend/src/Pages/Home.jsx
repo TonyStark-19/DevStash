@@ -76,13 +76,13 @@ function Content() {
 
                 <div className="flex flex-row gap-4 mt-5">
                     <button className="text-[17px] py-2 px-4 cursor-pointer text-black bg-white rounded-xl capitalize
-                    flex flex-row justify-center items-center gap-1.5">
+                    flex flex-row justify-center items-center gap-1.5 hover:-translate-y-0.5 duration-300">
                         <FiGithub />
                         How to contribute resources?
                     </button>
                     <Link to="/resources">
                         <button className="text-[17px] py-2 px-4 cursor-pointer text-white bg-white/10 rounded-xl capitalize
-                        flex flex-row justify-center items-center gap-1.5">
+                        flex flex-row justify-center items-center gap-1.5 hover:-translate-y-0.5 duration-300">
                             <GrResources />
                             Browse resources
                         </button>

@@ -15,6 +15,7 @@ export function Navbar() {
     const { logout } = useAuth();
     const [showMenu, setShowMenu] = useState(false);
 
+    // handle logout
     const handleLogout = () => {
         logout();
         navigate("/"); // back to signup
@@ -34,7 +35,7 @@ export function Navbar() {
                 <FaRegUser className="text-[22px] cursor-pointer" />
 
                 {showMenu && (
-                    <div className="absolute flex flex-col bg-white/10 right-0 w-45 mt-2 py-3 px-4 rounded-lg shadow-lg"
+                    <div className="absolute flex flex-col bg-white/10 right-0 w-45 mt-2 py-3 px-5 rounded-lg shadow-lg"
                         onMouseLeave={() => setShowMenu(false)}>
                         <Link
                             to="/saved"
