@@ -118,5 +118,54 @@ router.get("/saved", protect, async (req, res) => {
     }
 });
 
+// contribute resource
+router.post("/contribute/:category/:subcategory", protect, async (req, res) => {
+    try {
+        const { category, subcategory } = req.params;
+        const { type, title, description, tags, link } = req.body;
+
+        if (!title || !description || !tags || !link || !type) {
+            return res.status(400).json({ message: "All fields required" });
+        }
+        if (tags.length < 2 || tags.length > 4) {
+            return res.status(400).json({ message: "Tags must be 2-4" });
+        }
+        if (!["docs", "youtube"].includes(type)) {
+            return res.status(400).json({ message: "Invalid resource type" });
+        }
+
+        // Find the resource group (category + subcategory)
+        const resourceGroup = await Resource.findOne({ category, subcategory });
+        if (!resourceGroup) {
+            return res.status(404).json({ message: "Resource group not found" });
+        }
+
+        // Auto image based on category (e.g. js.png, react.png)
+        const image = `/images/${subcategory.toLowerCase()}.png`;
+
+        // New resource object
+        const newResource = {
+            title,
+            description,
+            link,
+            image,
+            tags: [...tags, "contributed"],
+        };
+
+        // ✅ Push into correct array
+        resourceGroup.resources[type].push(newResource);
+
+        // Save updated group
+        await resourceGroup.save();
+
+        // Return the last added resource
+        const added = resourceGroup.resources[type][resourceGroup.resources[type].length - 1];
+
+        res.status(201).json({ message: "Resource contributed successfully", resource: newResource });
+    } catch (err) {
+        res.status(500).json({ message: "Server Error", error: err.message });
+    }
+});
+
 // export router
 module.exports = router;

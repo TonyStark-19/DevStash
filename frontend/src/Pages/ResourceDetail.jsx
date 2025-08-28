@@ -38,6 +38,7 @@ function Content() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [savedResources, setSavedResources] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
 
     // fetch resources from DB
     useEffect(() => {
@@ -97,6 +98,65 @@ function Content() {
         }
     };
 
+    // form data
+    const [formData, setFormData] = useState({
+        type: "",
+        title: "",
+        description: "",
+        tags: "",
+        link: "",
+    });
+
+    // handle change
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // prepare tags
+        const tagsArray = formData.tags
+            .split(",")
+            .map((tag) => tag.trim())
+            .filter((tag) => tag.length > 0);
+
+        // min and max tags
+        if (tagsArray.length < 2 || tagsArray.length > 4) {
+            alert("Please provide between 2 and 4 tags.");
+            return;
+        }
+
+        // final data
+        const finalData = { ...formData, tags: tagsArray };
+
+        try {
+            const res = await api.post(
+                `/api/resources/contribute/${data.category}/${subcategory.toLowerCase()}`,
+                finalData
+            );
+
+            // success
+            if (res.status === 201) {
+                alert("Resource submitted!");
+
+                // Optimistic UI update → append resource locally
+                setData((prev) => {
+                    const updated = { ...prev };
+                    updated.resources[formData.type].push(res.data.resource);
+                    return updated;
+                });
+
+                setIsOpen(false);
+                setFormData({ title: "", description: "", tags: "", link: "", type: "" });
+            }
+        } catch (err) {
+            console.error("Error contributing resource:", err.response?.data || err.message);
+            alert("Error contributing resource");
+        }
+    };
+
     // loading
     if (loading) return <p className="text-white">Loading...</p>;
     if (!data) return <p className="text-red-500">No resources found</p>;
@@ -108,7 +168,7 @@ function Content() {
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             {/* Page heading */}
             <div className="w-[70%] text-center">
-                <h1 className="text-6xl mb-3 font-semibold leading-12 pb-10 border-b-2 border-white/30">
+                <h1 className="text-5xl mb-3 font-semibold leading-12 pb-10 border-b-2 border-white/30">
                     {subcategory.toUpperCase()} Resources
                 </h1>
             </div>
@@ -250,9 +310,74 @@ function Content() {
                         Help others by sharing what has helped you in your learning journey.
                     </p>
                     <button className="px-6 py-2 rounded-lg font-semibold bg-cyan-500 hover:bg-cyan-600 text-black
-                    cursor-pointer">
+                    cursor-pointer"
+                        onClick={() => setIsOpen(true)}>
                         Contribute Your Resource
                     </button>
+
+                    {isOpen && (
+                        <div className="fixed inset-0 flex justify-center items-center"
+                            style={{
+                                background:
+                                    "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
+                            }}>
+                            <div className="bg-[#06B6D440]/40 py-6 px-8 rounded-xl w-[700px] shadow-xl">
+                                <h3 className="text-3xl mb-8 font-bold text-gray-300">Contribute Resource</h3>
+                                <form onSubmit={handleSubmit} className="space-y-3 text-gray-300">
+                                    <select
+                                        name="type"
+                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
+                                        onChange={handleChange}
+                                        value={formData.type}
+                                        required
+                                    >
+                                        <option value="" disabled>Select Type</option>
+                                        <option value="docs">Docs / Article</option>
+                                        <option value="youtube">YouTube</option>
+                                    </select>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        placeholder="Resource Title"
+                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <textarea
+                                        name="description"
+                                        placeholder="Short Description"
+                                        rows={1}
+                                        className="w-full border border-gray-400 rounded-md p-3 mb-4 bg-transparent"
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <input
+                                        type="text"
+                                        name="tags"
+                                        placeholder="Tags (comma separated, min 2, max 4)"
+                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <input
+                                        type="url"
+                                        name="link"
+                                        placeholder="Valid Link to Resource"
+                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="w-full py-2.5 px-4 bg-[#06B6D440]/60 hover:bg-[#06B6D440]/80 
+                                        text-gray-300 font-semibold rounded-md cursor-pointer transition mb-6"
+                                    >
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
