@@ -1,13 +1,13 @@
-// backend resourecs
+// backend resources
 const backendResources = {
     nodejs: {
         docsResources: [
             {
                 id: 1,
-                title: "Node.js Docs",
-                description: "Official Node.js documentation covering APIs and guides.",
+                title: "Node.js Official Docs",
+                description: "Comprehensive Node.js documentation with API references, guides, and best practices.",
                 image: "/images/backend/Node.js.svg",
-                tags: ["nodejs", "docs", "official"],
+                tags: ["nodejs", "backend", "official", "docs"],
                 link: "https://nodejs.org/en/docs/",
             },
         ],
@@ -15,10 +15,18 @@ const backendResources = {
             {
                 id: 1,
                 title: "Node.js Crash Course - Traversy Media",
-                description: "Learn Node.js fundamentals in this crash course.",
+                description: "A crash course covering the fundamentals of Node.js, including modules, file system, and server basics.",
                 image: "/images/backend/Node.js.svg",
-                tags: ["nodejs", "beginner", "course"],
+                tags: ["nodejs", "beginner", "crash-course"],
                 link: "https://www.youtube.com/watch?v=fBNz5xF-Kx4",
+            },
+            {
+                id: 2,
+                title: "Node.js Tutorial in Hindi - Code with Harry",
+                description: "Beginner-friendly Node.js tutorial in Hindi, covering server-side development step by step.",
+                image: "/images/backend/Node.js.svg",
+                tags: ["nodejs", "beginner", "curated", "hindi"],
+                link: "https://youtu.be/BLl32FvcdVM?si=49Im1hjell3zlKcU",
             },
         ],
     },
@@ -27,10 +35,10 @@ const backendResources = {
         docsResources: [
             {
                 id: 1,
-                title: "Express Docs",
-                description: "Fast, unopinionated, minimalist web framework for Node.js.",
+                title: "Express.js Official Docs",
+                description: "Official documentation for Express.js, a fast and minimalist web framework for Node.js.",
                 image: "/images/backend/Express.svg",
-                tags: ["express", "nodejs", "docs"],
+                tags: ["express", "nodejs", "backend", "official", "docs"],
                 link: "https://expressjs.com/",
             },
         ],
@@ -38,10 +46,18 @@ const backendResources = {
             {
                 id: 1,
                 title: "Express.js Crash Course - Traversy Media",
-                description: "Learn Express.js basics including routing and middleware.",
+                description: "Learn the basics of Express.js including routing, middleware, and server setup.",
                 image: "/images/backend/Express.svg",
-                tags: ["express", "nodejs", "tutorial"],
+                tags: ["express", "nodejs", "beginner", "crash-course"],
                 link: "https://www.youtube.com/watch?v=L72fhGm1tfE",
+            },
+            {
+                id: 2,
+                title: "Express.js Tutorial in Hindi - Code with Harry",
+                description: "Step-by-step Express.js tutorial in Hindi, ideal for beginners learning backend development.",
+                image: "/images/backend/Express.svg",
+                tags: ["express", "nodejs", "tutorial", "curated", "hindi"],
+                link: "https://youtu.be/7H_QH9nipNs?si=hjLfe33K3c5bYYY5",
             },
         ],
     },
@@ -50,10 +66,10 @@ const backendResources = {
         docsResources: [
             {
                 id: 1,
-                title: "Django Docs",
-                description: "Official Django documentation covering models, views, and templates.",
+                title: "Django Official Docs",
+                description: "Extensive Django documentation covering models, views, templates, and REST integration.",
                 image: "/images/backend/Django.svg",
-                tags: ["django", "python", "docs"],
+                tags: ["django", "python", "backend", "official", "docs"],
                 link: "https://docs.djangoproject.com/en/stable/",
             },
         ],
@@ -61,9 +77,9 @@ const backendResources = {
             {
                 id: 1,
                 title: "Django Tutorial for Beginners - Programming with Mosh",
-                description: "Step by step Django tutorial for building web apps.",
+                description: "Beginner-friendly Django tutorial to build dynamic web applications step by step.",
                 image: "/images/backend/Django.svg",
-                tags: ["django", "python", "tutorial"],
+                tags: ["django", "python", "backend", "beginner", "course"],
                 link: "https://www.youtube.com/watch?v=rHux0gMZ3Eg",
             },
         ],
@@ -73,10 +89,10 @@ const backendResources = {
         docsResources: [
             {
                 id: 1,
-                title: "Flask Docs",
-                description: "The official Flask documentation with tutorials and API reference.",
+                title: "Flask Official Docs",
+                description: "Flask documentation with tutorials, quickstart guides, and API references.",
                 image: "/images/backend/Flask.svg",
-                tags: ["flask", "python", "docs"],
+                tags: ["flask", "python", "backend", "official", "docs"],
                 link: "https://flask.palletsprojects.com/en/stable/",
             },
         ],
@@ -84,9 +100,9 @@ const backendResources = {
             {
                 id: 1,
                 title: "Flask Tutorial - Corey Schafer",
-                description: "Flask beginner tutorial covering web development fundamentals.",
+                description: "Beginner-friendly Flask tutorial covering routing, templates, and web development fundamentals.",
                 image: "/images/backend/Flask.svg",
-                tags: ["flask", "python", "course"],
+                tags: ["flask", "python", "backend", "course"],
                 link: "https://www.youtube.com/watch?v=MwZwr5Tvyxo",
             },
         ],
@@ -96,20 +112,20 @@ const backendResources = {
         docsResources: [
             {
                 id: 1,
-                title: "Ruby on Rails Guides",
-                description: "Official Ruby on Rails guides and documentation.",
+                title: "Ruby on Rails Official Guides",
+                description: "Guides and documentation for Ruby on Rails covering models, controllers, and deployment.",
                 image: "/images/backend/RubyOnRails.svg",
-                tags: ["rails", "ruby", "docs"],
+                tags: ["rails", "ruby", "backend", "official", "docs"],
                 link: "https://guides.rubyonrails.org/",
             },
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "Ruby on Rails Tutorial - FreeCodeCamp",
-                description: "Learn Ruby on Rails framework from scratch.",
+                title: "Ruby on Rails Full Course - FreeCodeCamp",
+                description: "Learn Ruby on Rails from scratch with hands-on examples and projects.",
                 image: "/images/backend/RubyOnRails.svg",
-                tags: ["rails", "ruby", "tutorial"],
+                tags: ["rails", "ruby", "backend", "course"],
                 link: "https://www.youtube.com/watch?v=fmyvWz5TUWg",
             },
         ],
@@ -119,10 +135,10 @@ const backendResources = {
         docsResources: [
             {
                 id: 1,
-                title: "Laravel Docs",
-                description: "The official Laravel PHP framework documentation.",
+                title: "Laravel Official Docs",
+                description: "Official Laravel documentation with guides on routing, authentication, and APIs.",
                 image: "/images/backend/Laravel.svg",
-                tags: ["laravel", "php", "docs"],
+                tags: ["laravel", "php", "backend", "official", "docs"],
                 link: "https://laravel.com/docs",
             },
         ],
@@ -130,9 +146,9 @@ const backendResources = {
             {
                 id: 1,
                 title: "Laravel Tutorial for Beginners - Code With Dary",
-                description: "Beginner-friendly tutorial for Laravel framework.",
+                description: "Beginner-friendly Laravel tutorial covering fundamentals of PHP backend development.",
                 image: "/images/backend/Laravel.svg",
-                tags: ["laravel", "php", "tutorial"],
+                tags: ["laravel", "php", "backend", "beginner", "tutorial"],
                 link: "https://www.youtube.com/watch?v=ImtZ5yENzgE",
             },
         ],
@@ -142,25 +158,25 @@ const backendResources = {
         docsResources: [
             {
                 id: 1,
-                title: "FastAPI Docs",
-                description: "FastAPI official documentation and tutorials.",
+                title: "FastAPI Official Docs",
+                description: "FastAPI documentation covering async APIs, data validation, and performance optimization.",
                 image: "/images/backend/FastAPI.svg",
-                tags: ["fastapi", "python", "docs"],
+                tags: ["fastapi", "python", "backend", "official", "docs"],
                 link: "https://fastapi.tiangolo.com/",
             },
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "FastAPI Tutorial - FreeCodeCamp",
-                description: "Learn FastAPI with this complete course.",
+                title: "FastAPI Full Course - FreeCodeCamp",
+                description: "Comprehensive FastAPI course teaching REST APIs, async support, and integrations.",
                 image: "/images/backend/FastAPI.svg",
-                tags: ["fastapi", "python", "course"],
+                tags: ["fastapi", "python", "backend", "course"],
                 link: "https://www.youtube.com/watch?v=0sOvCWFmrtA",
             },
         ],
     },
 };
 
-// export backend resourecs
+// export backend resources
 module.exports = backendResources;

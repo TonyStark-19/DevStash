@@ -1,24 +1,32 @@
-// database resourecs
+// database resources
 const databaseResources = {
     MongoDB: {
         docsResources: [
             {
                 id: 1,
                 title: "MongoDB Official Docs",
-                description: "Comprehensive official documentation for MongoDB.",
+                description: "Comprehensive MongoDB documentation covering queries, aggregation, indexing, and deployment.",
                 image: "/images/database/MongoDB.svg",
-                tags: ["database", "nosql", "official"],
+                tags: ["mongodb", "database", "nosql", "official", "docs"],
                 link: "https://www.mongodb.com/docs/"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "MongoDB Tutorial for Beginners",
-                description: "Step-by-step beginner tutorial for learning MongoDB.",
+                title: "MongoDB Crash Course - Traversy Media",
+                description: "Step-by-step beginner-friendly crash course introducing MongoDB basics.",
                 image: "/images/database/MongoDB.svg",
-                tags: ["mongodb", "beginner", "tutorial"],
+                tags: ["mongodb", "database", "nosql", "beginner", "tutorial"],
                 link: "https://youtu.be/-56x56UppqQ"
+            },
+            {
+                id: 2,
+                title: "MongoDB Tutorial - Code With Harry",
+                description: "Practical MongoDB tutorial in Hindi for beginners with hands-on examples.",
+                image: "/images/database/MongoDB.svg",
+                tags: ["mongodb", "database", "nosql", "beginner", "tutorial", "curated"],
+                link: "https://youtu.be/J6mDkcqU_ZE?si=kAmwKAv5Jnez1mL-"
             }
         ]
     },
@@ -28,20 +36,28 @@ const databaseResources = {
             {
                 id: 1,
                 title: "MySQL Official Docs",
-                description: "The official documentation for MySQL relational database.",
+                description: "Official MySQL documentation covering SQL queries, schemas, and server setup.",
                 image: "/images/database/MySQL.svg",
-                tags: ["database", "sql", "official"],
+                tags: ["mysql", "database", "sql", "official", "docs"],
                 link: "https://dev.mysql.com/doc/"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "MySQL Full Course (freeCodeCamp)",
-                description: "Complete MySQL tutorial covering database fundamentals.",
+                title: "MySQL Full Course - freeCodeCamp",
+                description: "Complete MySQL tutorial for beginners covering queries, joins, and relational database concepts.",
                 image: "/images/database/MySQL.svg",
-                tags: ["mysql", "sql", "beginner"],
+                tags: ["mysql", "database", "sql", "course", "beginner"],
                 link: "https://youtu.be/9ylj9NR0Lcg"
+            },
+            {
+                id: 2,
+                title: "SQL Tutorial using MySQL - Apna College",
+                description: "Beginner-friendly SQL tutorial in Hindi using MySQL, great for first-time learners.",
+                image: "/images/database/MySQL.svg",
+                tags: ["mysql", "database", "sql", "beginner", "tutorial", "curated"],
+                link: "https://youtu.be/hlGoQC332VM?si=uuJEInCpHHOxe9Rv"
             }
         ]
     },
@@ -51,19 +67,19 @@ const databaseResources = {
             {
                 id: 1,
                 title: "PostgreSQL Official Docs",
-                description: "The official PostgreSQL documentation for advanced SQL usage.",
+                description: "Detailed PostgreSQL documentation covering SQL features, performance, and extensions.",
                 image: "/images/database/PostgreSQL.svg",
-                tags: ["database", "sql", "official"],
+                tags: ["postgresql", "database", "sql", "official", "docs"],
                 link: "https://www.postgresql.org/docs/"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "PostgreSQL Tutorial for Beginners",
-                description: "Introductory PostgreSQL tutorial with real examples.",
+                title: "PostgreSQL Tutorial - freeCodeCamp",
+                description: "Introductory PostgreSQL tutorial with real-world examples and SQL queries.",
                 image: "/images/database/PostgreSQL.svg",
-                tags: ["postgresql", "sql", "tutorial"],
+                tags: ["postgresql", "database", "sql", "beginner", "tutorial"],
                 link: "https://youtu.be/qw--VYLpxG4"
             }
         ]
@@ -74,20 +90,20 @@ const databaseResources = {
             {
                 id: 1,
                 title: "SQLite Official Docs",
-                description: "The official SQLite documentation.",
+                description: "Official SQLite documentation including syntax and lightweight database usage.",
                 image: "/images/database/SQLite.svg",
-                tags: ["database", "sql", "official"],
+                tags: ["sqlite", "database", "sql", "official", "docs"],
                 link: "https://www.sqlite.org/docs.html"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "SQLite Crash Course",
-                description: "Beginner-friendly crash course on SQLite.",
+                title: "SQLite with Python - Traversy Media",
+                description: "Crash course on using SQLite with Python for database-driven apps.",
                 image: "/images/database/SQLite.svg",
-                tags: ["sqlite", "sql", "beginner"],
-                link: "https://youtu.be/8vYj4MZ5P_0"
+                tags: ["sqlite", "database", "sql", "python", "beginner", "tutorial"],
+                link: "https://youtu.be/byHcYRpMgI4?si=QQsU0VFHgAmsmYCl"
             }
         ]
     },
@@ -97,19 +113,19 @@ const databaseResources = {
             {
                 id: 1,
                 title: "Redis Official Docs",
-                description: "The official Redis documentation for caching and databases.",
+                description: "Redis documentation for caching, in-memory storage, and database use cases.",
                 image: "/images/database/Redis.svg",
-                tags: ["database", "nosql", "official"],
+                tags: ["redis", "database", "nosql", "official", "docs"],
                 link: "https://redis.io/docs/"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "Redis Crash Course",
-                description: "Quick start guide to Redis fundamentals.",
+                title: "Redis Crash Course - Traversy Media",
+                description: "Quick crash course to get started with Redis fundamentals and caching concepts.",
                 image: "/images/database/Redis.svg",
-                tags: ["redis", "database", "beginner"],
+                tags: ["redis", "database", "nosql", "beginner", "tutorial"],
                 link: "https://youtu.be/Hbt56gFj998"
             }
         ]
@@ -120,24 +136,24 @@ const databaseResources = {
             {
                 id: 1,
                 title: "Firebase Official Docs",
-                description: "Documentation for Firebase backend-as-a-service platform.",
+                description: "Firebase documentation for authentication, Firestore, hosting, and cloud functions.",
                 image: "/images/database/Firebase.svg",
-                tags: ["database", "baas", "official"],
+                tags: ["firebase", "database", "baas", "cloud", "official", "docs"],
                 link: "https://firebase.google.com/docs"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "Firebase Crash Course (Academind)",
-                description: "Learn Firebase quickly with this hands-on crash course.",
+                title: "Firebase Crash Course - Academind",
+                description: "Hands-on crash course covering Firebase basics: Firestore, auth, and hosting.",
                 image: "/images/database/Firebase.svg",
-                tags: ["firebase", "database", "tutorial"],
+                tags: ["firebase", "database", "baas", "beginner", "tutorial"],
                 link: "https://youtu.be/9kRgVxULbag"
             }
         ]
     }
 };
 
-// export database resourecs
+// export database resources
 module.exports = databaseResources;

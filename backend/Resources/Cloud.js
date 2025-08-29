@@ -1,23 +1,23 @@
-// cloud and hosting resourecs
+// cloud and hosting resources
 const cloudHostingResources = {
     AWS: {
         docsResources: [
             {
                 id: 1,
-                title: "AWS Documentation",
-                description: "Official documentation for Amazon Web Services.",
+                title: "AWS Official Docs",
+                description: "Comprehensive documentation for Amazon Web Services including compute, storage, and networking guides.",
                 image: "/images/CloudAndHosting/AWS.svg",
-                tags: ["aws", "cloud", "services"],
+                tags: ["aws", "cloud", "backend", "official", "docs"],
                 link: "https://docs.aws.amazon.com/"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "AWS Full Course",
-                description: "FreeCodeCamp AWS tutorial for beginners.",
+                title: "AWS Full Course - FreeCodeCamp",
+                description: "Beginner-friendly AWS course covering core cloud concepts, EC2, S3, and Lambda.",
                 image: "/images/CloudAndHosting/AWS.svg",
-                tags: ["aws", "cloud", "tutorial"],
+                tags: ["aws", "cloud", "beginner", "course"],
                 link: "https://youtu.be/SOTamWNgDKc"
             }
         ]
@@ -27,21 +27,21 @@ const cloudHostingResources = {
         docsResources: [
             {
                 id: 1,
-                title: "Azure Documentation",
-                description: "Official Microsoft Azure cloud platform documentation.",
+                title: "Azure Official Docs",
+                description: "Microsoft Azure documentation with tutorials and cloud platform references.",
                 image: "/images/CloudAndHosting/Azure.svg",
-                tags: ["azure", "cloud", "microsoft"],
+                tags: ["azure", "cloud", "microsoft", "official", "docs"],
                 link: "https://learn.microsoft.com/en-us/azure/"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "Azure Full Course",
-                description: "Azure cloud services tutorial for beginners.",
+                title: "Azure Full Course - Edureka",
+                description: "Beginner-friendly course introducing Microsoft Azure cloud services and deployments.",
                 image: "/images/CloudAndHosting/Azure.svg",
-                tags: ["azure", "cloud", "tutorial"],
-                link: "https://youtu.be/5sH8yAKXn34"
+                tags: ["azure", "cloud", "course", "beginner"],
+                link: "https://youtu.be/tDuruX7XSac?si=M2E1Bls2_kpH_0VA"
             }
         ]
     },
@@ -50,21 +50,21 @@ const cloudHostingResources = {
         docsResources: [
             {
                 id: 1,
-                title: "Google Cloud Docs",
-                description: "Official Google Cloud documentation and guides.",
+                title: "Google Cloud Official Docs",
+                description: "Official Google Cloud Platform documentation including compute, storage, and AI services.",
                 image: "/images/CloudAndHosting/GCP.svg",
-                tags: ["gcp", "google", "cloud"],
+                tags: ["gcp", "google", "cloud", "official", "docs"],
                 link: "https://cloud.google.com/docs"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "Google Cloud Tutorial",
-                description: "Google Cloud crash course for beginners.",
+                title: "Google Cloud Full Course - Simplilearn",
+                description: "Comprehensive GCP course covering cloud infrastructure, networking, and services.",
                 image: "/images/CloudAndHosting/GCP.svg",
-                tags: ["gcp", "google", "tutorial"],
-                link: "https://youtu.be/1S0aBV-Waeo"
+                tags: ["gcp", "google", "cloud", "course", "beginner"],
+                link: "https://youtu.be/EN4fEbcFZ_E?si=yzDhrVWieooRjmJR"
             }
         ]
     },
@@ -73,21 +73,21 @@ const cloudHostingResources = {
         docsResources: [
             {
                 id: 1,
-                title: "Vercel Documentation",
-                description: "Official docs for deploying with Vercel.",
+                title: "Vercel Official Docs",
+                description: "Documentation for deploying and scaling applications with Vercel.",
                 image: "/images/CloudAndHosting/Vercel.svg",
-                tags: ["vercel", "deployment", "hosting"],
+                tags: ["vercel", "hosting", "deployment", "official", "docs"],
                 link: "https://vercel.com/docs"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "Deploying on Vercel",
-                description: "Learn how to deploy projects using Vercel.",
+                title: "Vercel Product Walkthrough - Vercel",
+                description: "Official walkthrough by Vercel showcasing features, deployments, and workflows.",
                 image: "/images/CloudAndHosting/Vercel.svg",
-                tags: ["vercel", "deployment", "hosting"],
-                link: "https://youtu.be/8J-0J2qUQkg"
+                tags: ["vercel", "hosting", "deployment", "curated"],
+                link: "https://youtu.be/sPmat30SE4k?si=QItPLtzhAALy8plV"
             }
         ]
     },
@@ -96,25 +96,25 @@ const cloudHostingResources = {
         docsResources: [
             {
                 id: 1,
-                title: "Heroku Dev Center",
-                description: "Official Heroku documentation and guides.",
+                title: "Heroku Official Docs",
+                description: "Heroku Dev Center with guides on deploying, scaling, and managing apps.",
                 image: "/images/CloudAndHosting/Heroku.svg",
-                tags: ["heroku", "hosting", "deployment"],
+                tags: ["heroku", "cloud", "hosting", "deployment", "official", "docs"],
                 link: "https://devcenter.heroku.com/"
             }
         ],
         youtubeResources: [
             {
                 id: 1,
-                title: "Heroku Tutorial for Beginners",
-                description: "Learn to deploy apps on Heroku.",
+                title: "Heroku Tutorial for Beginners - ProgrammingKnowledge",
+                description: "Beginner-friendly tutorial on deploying and managing applications with Heroku.",
                 image: "/images/CloudAndHosting/Heroku.svg",
-                tags: ["heroku", "deployment", "cloud"],
+                tags: ["heroku", "cloud", "hosting", "deployment", "beginner", "tutorial"],
                 link: "https://youtu.be/QTOkqzCTGxw"
             }
         ]
     }
 };
 
-// export cloud and hosting resourecs
+// export cloud and hosting resources
 module.exports = cloudHostingResources;
