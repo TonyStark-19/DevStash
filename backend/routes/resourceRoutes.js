@@ -4,9 +4,16 @@ const User = require("../models/User");
 const Resource = require("../models/Resource");
 const { protect } = require("../middleware/authMiddleware");
 
+// import resources data
+const resourcesData = require("../resource")
+
 // router
 const router = express.Router();
 
+router.use((req, next) => {
+    console.log("Hit resources route:", req.method, req.originalUrl);
+    next();
+});
 /**
  * Save a specific resource (doc or youtube item)
  * expects body: { type: "docs" | "youtube", itemId: "subdocumentId" }
@@ -135,13 +142,30 @@ router.post("/contribute/:category/:subcategory", protect, async (req, res) => {
         }
 
         // Find the resource group (category + subcategory)
-        const resourceGroup = await Resource.findOne({ category, subcategory });
+        const resourceGroup = await Resource.findOne({
+            category: new RegExp(`^${category}$`, "i"),
+            subcategory: new RegExp(`^${subcategory}$`, "i"),
+        });
         if (!resourceGroup) {
             return res.status(404).json({ message: "Resource group not found" });
         }
 
-        // Auto image based on category (e.g. js.png, react.png)
-        const image = `/images/${subcategory.toLowerCase()}.png`;
+        // check for new resource only
+        const exists = resourceGroup.resources[type].some(
+            (r) => r.link === link
+        );
+        if (exists) {
+            return res.status(400).json({ message: "Resource already exists" });
+        }
+
+        let image = "/images/default.png"; // fallback
+
+        if (resourcesData[category]) {
+            const match = resourcesData[category].find(
+                (r) => r.subcategory.toLowerCase() === subcategory.toLowerCase()
+            );
+            if (match) image = match.src;
+        }
 
         // New resource object
         const newResource = {
@@ -161,7 +185,7 @@ router.post("/contribute/:category/:subcategory", protect, async (req, res) => {
         // Return the last added resource
         const added = resourceGroup.resources[type][resourceGroup.resources[type].length - 1];
 
-        res.status(201).json({ message: "Resource contributed successfully", resource: newResource });
+        res.status(201).json({ message: "Resource contributed successfully", resource: added });
     } catch (err) {
         res.status(500).json({ message: "Server Error", error: err.message });
     }

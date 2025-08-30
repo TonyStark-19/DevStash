@@ -42,10 +42,10 @@ function Content() {
 
     // fetch resources from DB
     useEffect(() => {
-        fetch(`http://localhost:3000/api/resources/${subcategory}`)
-            .then((res) => res.json())
-            .then((json) => {
-                setData(json);
+        setLoading(true);
+        api.get(`/resources/${subcategory}`)
+            .then((res) => {
+                setData(res.data);
                 setLoading(false);
             })
             .catch((err) => {
@@ -133,7 +133,7 @@ function Content() {
 
         try {
             const res = await api.post(
-                `/api/resources/contribute/${data.category}/${subcategory.toLowerCase()}`,
+                `/resources/contribute/${data.category}/${subcategory}`,
                 finalData
             );
 
@@ -341,6 +341,7 @@ function Content() {
                                         placeholder="Resource Title"
                                         className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
                                         onChange={handleChange}
+                                        value={formData.title}
                                         required
                                     />
                                     <textarea
@@ -349,6 +350,7 @@ function Content() {
                                         rows={1}
                                         className="w-full border border-gray-400 rounded-md p-3 mb-4 bg-transparent"
                                         onChange={handleChange}
+                                        value={formData.description}
                                         required
                                     />
                                     <input
@@ -357,6 +359,8 @@ function Content() {
                                         placeholder="Tags (comma separated, min 2, max 4)"
                                         className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
                                         onChange={handleChange}
+                                        value={formData.tags}
+
                                         required
                                     />
                                     <input
@@ -365,6 +369,7 @@ function Content() {
                                         placeholder="Valid Link to Resource"
                                         className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
                                         onChange={handleChange}
+                                        value={formData.link}
                                         required
                                     />
                                     <button
