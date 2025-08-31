@@ -29,7 +29,7 @@ function AppRoutes() {
     <Routes>
       {/* Public routes */}
       <Route
-        path="/"
+        path="/signup"
         element={
           <PublicRoute>
             <Signup />
@@ -37,7 +37,7 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/login"
+        path="/"
         element={
           <PublicRoute>
             <Login />

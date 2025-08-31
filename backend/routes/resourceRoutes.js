@@ -10,10 +10,6 @@ const resourcesData = require("../resource")
 // router
 const router = express.Router();
 
-router.use((req, next) => {
-    console.log("Hit resources route:", req.method, req.originalUrl);
-    next();
-});
 /**
  * Save a specific resource (doc or youtube item)
  * expects body: { type: "docs" | "youtube", itemId: "subdocumentId" }
