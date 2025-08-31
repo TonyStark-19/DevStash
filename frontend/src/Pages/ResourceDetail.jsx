@@ -14,11 +14,15 @@ import { useParams } from "react-router-dom";
 // import axios instance
 import api from "../api";
 
+// AOS animations
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 // resource page
 export function ResourceDetail() {
     return (
         <div
-            className="h-screen overflow-y-scroll scrollbar-transparent"
+            className="min-h-screen"
             style={{
                 background:
                     "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
@@ -157,6 +161,14 @@ function Content() {
         }
     };
 
+    // AOS animations
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    }, []);
+
     // loading
     if (loading) return <p className="text-white">Loading...</p>;
     if (!data) return <p className="text-red-500">No resources found</p>;
@@ -168,20 +180,23 @@ function Content() {
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             {/* Page heading */}
             <div className="w-[70%] text-center">
-                <h1 className="text-5xl mb-3 font-semibold leading-12 pb-10 border-b-2 border-white/30">
+                <h1 className="text-5xl mb-3 font-semibold leading-12 pb-10 border-b-2 border-white/30"
+                    data-aos="fade-up" data-aos-delay="100">
                     {subcategory.toUpperCase()} Resources
                 </h1>
             </div>
 
             {/* Resources Section */}
             <div className="w-[70%] mt-15">
-                <h2 className="text-3xl font-semibold mb-6">Docs & Articles :</h2>
+                <h2 className="text-3xl font-semibold mb-6" data-aos="fade-up" data-aos-delay="200">Docs & Articles :</h2>
 
                 {/* docs */}
-                <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10">
+                <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10"
+                    data-aos="fade-up" data-aos-delay="200">
                     {resources.docs.map((res, idx) => (
                         <div
                             key={`docs-${res.id || idx}`}
+                            data-aos="fade-up"
                             className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative
                             shadow-lg shadow-cyan-500/10"
                         >
@@ -238,13 +253,15 @@ function Content() {
                     ))}
                 </div>
 
-                <h2 className="text-3xl font-semibold mt-18 mb-6">Youtube Resources :</h2>
+                <h2 className="text-3xl font-semibold mt-18 mb-6" data-aos="fade-up" data-aos-delay="100">Youtube Resources :</h2>
 
                 {/* youtube */}
-                <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10">
+                <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10"
+                    data-aos="fade-up" data-aos-delay="200">
                     {resources.youtube.map((res, idx) => (
                         <div
                             key={`youtube-${res.id || idx}`}
+                            data-aos="fade-up"
                             className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative
                             shadow-lg shadow-cyan-500/10"
                         >
@@ -321,7 +338,7 @@ function Content() {
                                 background:
                                     "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
                             }}>
-                            <div className="bg-[#06B6D440]/40 py-6 px-8 rounded-xl w-[700px] shadow-xl">
+                            <div className="bg-[#06B6D440]/40 py-6 px-8 rounded-xl w-[700px] shadow-xl" data-aos="fade-up">
                                 <h3 className="text-3xl mb-8 font-bold text-gray-300">Contribute Resource</h3>
                                 <form onSubmit={handleSubmit} className="space-y-3 text-gray-300">
                                     <select

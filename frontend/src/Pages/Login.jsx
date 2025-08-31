@@ -4,11 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 // import axios
 import axios from 'axios';
 
-// import use state
-import { useState } from "react";
+// import useState and useEffect
+import { useState, useEffect } from "react";
 
 // import context
 import { useAuth } from "../Context/AuthContext";
+
+// AOS animations
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export function Login() {
     const navigate = useNavigate();
@@ -37,6 +41,14 @@ export function Login() {
         }
     };
 
+    // AOS animations
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    }, []);
+
     return (
         <div
             className="flex justify-center items-center h-screen px-4"
@@ -45,7 +57,7 @@ export function Login() {
             }}
         >
             <div className="flex flex-col md:flex-row bg-black/50 rounded-2xl overflow-hidden font-poppins w-[950px]
-            shadow-2xl shadow-cyan-500/20">
+            shadow-2xl shadow-cyan-500/20" data-aos="fade-down">
 
                 {/* Left: Login form */}
                 <div className="bg-[#06B6D440]/40 p-8 flex-1 text-gray-300">
@@ -93,7 +105,7 @@ export function Login() {
 
                     <div className="flex flex-row justify-center items-center text-[17px]">
                         <p>Don't have an account?</p>
-                        <Link to="/" className="ml-2 hover:underline text-cyan-500/70">
+                        <Link to="/signup" className="ml-2 hover:underline text-cyan-500/70">
                             Sign up now
                         </Link>
                     </div>

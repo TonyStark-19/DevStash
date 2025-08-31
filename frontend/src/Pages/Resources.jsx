@@ -6,10 +6,14 @@ import { Footer } from "../Components/Footer";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// AOS animations
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 // Resource page
 export function Resources() {
     return (
-        <div className="h-screen overflow-y-scroll scrollbar-transparent"
+        <div className="min-h-screen"
             style={{
                 background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
             }}>
@@ -43,15 +47,25 @@ function Content() {
             .catch((err) => console.error(err));
     }, []);
 
+    // AOS animations
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    }, []);
+
     return (
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
-            <h1 className="text-5xl text-center mb-3 font-semibold">Curated Tech & Coding Resources</h1>
-            <p className="text-[22px] text-center pb-10 border-b-2 border-white/30 tracking-wide">Discover, save, and
-                share top coding tutorials, tools, and guides for developers worldwide.</p>
+            <div data-aos="fade-up" data-aos-delay="100">
+                <h1 className="text-5xl text-center mb-3 font-semibold">Curated Tech & Coding Resources</h1>
+                <p className="text-[22px] text-center pb-10 border-b-2 border-white/30 tracking-wide">Discover, save, and
+                    share top coding tutorials, tools, and guides for developers worldwide.</p>
+            </div>
 
             {Object.entries(resources).map(([categoryKey, items]) => (
                 <section key={categoryKey} className="mb-6 mt-20 pb-10 border-b-2 border-white/30">
-                    <h2 className="text-3xl font-bold mb-6">
+                    <h2 className="text-3xl font-bold mb-6" data-aos="fade-up" data-aos-delay="200">
                         {labels[categoryKey] || categoryKey} :
                     </h2>
 
@@ -60,6 +74,8 @@ function Content() {
                             <Link
                                 to={`/resources/${res.subcategory}`}
                                 key={i}
+                                data-aos="fade-up"
+                                data-aos-delay="200"
                                 className="p-5 bg-white/10 hover:bg-white/15 rounded-2xl flex flex-col items-center gap-3
                                 transition cursor-pointer hover:transform hover:scale-105"
                             >

@@ -11,11 +11,15 @@ import { FaBookmark } from "react-icons/fa";
 // import axios instance
 import api from "../api";
 
+// AOS animations
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 // saved resources page
 export function SavedResources() {
     return (
         <>
-            <div className="min-h-screen overflow-hidden"
+            <div className="min-h-screen"
                 style={{
                     background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
                 }}>
@@ -64,20 +68,30 @@ function Content() {
         }
     };
 
+    // AOS animations
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    }, []);
+
     // // loading
     // if (loading) return <p className="text-white">Loading...</p>;
 
     return (
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
-            <h1 className="text-5xl text-center mb-3 font-semibold pb-10 border-b-2 border-white/30 w-[70%]">Saved Resources</h1>
+            <h1 className="text-5xl text-center mb-3 font-semibold pb-10 border-b-2 border-white/30 w-[70%]"
+                data-aos="fade-up">Saved Resources</h1>
 
             <div className="w-[70%] my-10 flex flex-col gap-8 min-h-60">
                 {savedResources.length === 0 ? (
-                    <p className="text-gray-400 text-center text-[18px]">No saved resources yet :(</p>
+                    <p className="text-gray-400 text-center text-[18px]" data-aos="fade-up">No saved resources yet :(</p>
                 ) : (
                     savedResources.map((res, idx) => (
                         <div
                             key={idx}
+                            data-aos="fade-up"
                             className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative
                             shadow-lg shadow-cyan-500/10"
                         >
