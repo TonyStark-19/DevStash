@@ -80,11 +80,13 @@ function Content() {
     // if (loading) return <p className="text-white">Loading...</p>;
 
     return (
-        <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
-            <h1 className="text-5xl text-center mb-3 font-semibold pb-10 border-b-2 border-white/30 w-[70%]"
+        <div className="py-8 text-white/80 font-poppins h-full flex flex-col items-center min-b:pt-20 max-b:pt-10">
+            <h1 className="text-center mb-3 font-semibold border-b-2 border-white/30 min-a:w-[70%] max-a:w-[80%]
+            min-b:text-5xl max-b:text-[40px] min-b:pb-10 max-b:pb-5 max-c:w-[90%] max-d:text-[35px]"
                 data-aos="fade-up">Saved Resources</h1>
 
-            <div className="w-[70%] my-10 flex flex-col gap-8 min-h-60">
+            <div className="flex flex-col gap-8 min-h-60 min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] min-b:my-10 max-b:mt-5
+            max-b:mb-10">
                 {savedResources.length === 0 ? (
                     <p className="text-gray-400 text-center text-[18px]" data-aos="fade-up">No saved resources yet :(</p>
                 ) : (
@@ -102,18 +104,6 @@ function Content() {
                                 className="w-10 h-auto mb-5"
                             />
 
-                            {/* Tags */}
-                            <div className="flex flex-row flex-wrap gap-2.5 absolute top-8 right-6">
-                                {res.tags.map((tag, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-[#06B6D440]/40 rounded-lg py-1 px-3 text-sm"
-                                    >
-                                        {tag}
-                                    </div>
-                                ))}
-                            </div>
-
                             {/* Title + Description */}
                             <h1 className="text-[22px] font-semibold mb-3">{res.title}</h1>
                             <p className="text-[17px]">{res.description}</p>
@@ -127,6 +117,19 @@ function Content() {
                             >
                                 Visit Resource →
                             </a>
+
+                            {/* Tags */}
+                            <div className="flex flex-row flex-wrap gap-2.5 min-b:absolute min-b:top-8 min-b:right-6 max-b:bottom-6
+                            max-b:left-6 max-b:max-w-[80%] max-b:flex-wrap max-b:mt-5">
+                                {res.tags.map((tag, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-[#06B6D440]/40 rounded-lg py-1 px-3 text-sm"
+                                    >
+                                        {tag}
+                                    </div>
+                                ))}
+                            </div>
 
                             {/* Save button */}
                             <button

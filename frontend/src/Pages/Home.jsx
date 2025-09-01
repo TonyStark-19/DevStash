@@ -87,14 +87,14 @@ function Content() {
 
                 <h1 className="text-[55px] leading-18 font-semibold" data-aos="fade-up" data-aos-delay="200">Discover & Share</h1>
                 <h2 className="text-[55px] mb-2 font-semibold" data-aos="fade-up" data-aos-delay="200">The Best Dev Resources</h2>
-                <p className="text-[20px] mb-3 w-[45%] text-center" data-aos="fade-up" data-aos-delay="400">Your go-to hub
+                <p className="text-[20px] mb-3 w-[45%] text-center" data-aos="fade-up" data-aos-delay="300">Your go-to hub
                     for curated coding tutorials, tools, and guides.</p>
-                <p className="text-[20px] mb-3 w-[45%] text-center" data-aos="fade-up" data-aos-delay="600">Explore top resources,
+                <p className="text-[20px] mb-3 w-[45%] text-center" data-aos="fade-up" data-aos-delay="400">Explore top resources,
                     save your favorites, and share your own finds with the developer community.</p>
-                <p className="text-[20px] mb-4 w-[45%] text-center" data-aos="fade-up" data-aos-delay="600">Built for developers,
+                <p className="text-[20px] mb-4 w-[45%] text-center" data-aos="fade-up" data-aos-delay="400">Built for developers,
                     powered by collaboration.</p>
 
-                <div className="flex flex-row gap-4 mt-5" data-aos="fade-up" data-aos-delay="800">
+                <div className="flex flex-row gap-4 mt-5" data-aos="fade-up" data-aos-delay="500">
                     <button className="text-[17px] py-2 px-4 cursor-pointer text-black bg-white rounded-xl capitalize
                     flex flex-row justify-center items-center gap-1.5 hover:-translate-y-0.5 duration-300">
                         <FiGithub />

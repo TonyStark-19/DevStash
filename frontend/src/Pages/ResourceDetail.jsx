@@ -179,16 +179,18 @@ function Content() {
     return (
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             {/* Page heading */}
-            <div className="w-[70%] text-center">
-                <h1 className="text-5xl mb-3 font-semibold leading-12 pb-10 border-b-2 border-white/30"
+            <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] text-center">
+                <h1 className="mb-3 font-semibold leading-12 border-b-2 border-white/30 min-b:text-5xl max-b:text-[40px]
+                min-b:pb-10 max-b:pb-5 max-d:text-[35px]"
                     data-aos="fade-up" data-aos-delay="100">
                     {subcategory.toUpperCase()} Resources
                 </h1>
             </div>
 
             {/* Resources Section */}
-            <div className="w-[70%] mt-15">
-                <h2 className="text-3xl font-semibold mb-6" data-aos="fade-up" data-aos-delay="200">Docs & Articles :</h2>
+            <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] min-b:mt-15 max-b:mt-0">
+                <h2 className="min-c:text-3xl max-c:text-[26px] font-semibold min-b:mt-18 max-b:mt-10 min-c:mb-6 max-c:mb-3"
+                    data-aos="fade-up" data-aos-delay="200">Docs & Articles :</h2>
 
                 {/* docs */}
                 <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10"
@@ -207,18 +209,6 @@ function Content() {
                                 className="w-10 h-auto mb-5"
                             />
 
-                            {/* Tags */}
-                            <div className="flex flex-row flex-wrap gap-2.5 absolute top-8 right-6">
-                                {res.tags.map((tag, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-[#06B6D440]/40 rounded-lg py-1 px-3 text-sm"
-                                    >
-                                        {tag}
-                                    </div>
-                                ))}
-                            </div>
-
                             {/* Title + Description */}
                             <h1 className="text-[22px] font-semibold mb-3">{res.title}</h1>
                             <p className="text-[17px]">{res.description}</p>
@@ -232,6 +222,19 @@ function Content() {
                             >
                                 Visit Resource →
                             </a>
+
+                            {/* Tags */}
+                            <div className="flex flex-row flex-wrap gap-2.5 min-b:absolute min-b:top-8 min-b:right-6 max-b:bottom-6
+                            max-b:left-6 max-b:max-w-[80%] max-b:flex-wrap max-b:mt-5">
+                                {res.tags.map((tag, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-[#06B6D440]/40 rounded-lg py-1 px-3 text-sm"
+                                    >
+                                        {tag}
+                                    </div>
+                                ))}
+                            </div>
 
                             {/* Save button */}
                             <button
@@ -253,7 +256,8 @@ function Content() {
                     ))}
                 </div>
 
-                <h2 className="text-3xl font-semibold mt-18 mb-6" data-aos="fade-up" data-aos-delay="100">Youtube Resources :</h2>
+                <h2 className="min-c:text-3xl max-c:text-[26px] font-semibold mt-18 min-c:mb-6 max-c:mb-3"
+                    data-aos="fade-up" data-aos-delay="100">Youtube Resources :</h2>
 
                 {/* youtube */}
                 <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10"
@@ -272,18 +276,6 @@ function Content() {
                                 className="w-10 h-auto mb-5"
                             />
 
-                            {/* Tags */}
-                            <div className="flex flex-row flex-wrap gap-2.5 absolute top-8 right-6">
-                                {res.tags.map((tag, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-[#06B6D440]/40 rounded-lg py-1 px-3 text-sm"
-                                    >
-                                        {tag}
-                                    </div>
-                                ))}
-                            </div>
-
                             {/* Title + Description */}
                             <h1 className="text-[22px] font-semibold mb-3">{res.title}</h1>
                             <p className="text-[17px]">{res.description}</p>
@@ -297,6 +289,19 @@ function Content() {
                             >
                                 Visit Resource →
                             </a>
+
+                            {/* Tags */}
+                            <div className="flex flex-row flex-wrap gap-2.5 min-b:absolute min-b:top-8 min-b:right-6 max-b:bottom-6
+                            max-b:left-6 max-b:max-w-[80%] max-b:flex-wrap max-b:mt-5">
+                                {res.tags.map((tag, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-[#06B6D440]/40 rounded-lg py-1 px-3 text-sm"
+                                    >
+                                        {tag}
+                                    </div>
+                                ))}
+                            </div>
 
                             {/* Save button */}
                             <button

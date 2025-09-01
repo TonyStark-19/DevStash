@@ -22,7 +22,8 @@ export function Navbar() {
     };
 
     return (
-        <div className="text-white/80 py-7 flex flex-row justify-evenly items-center w-full font-poppins relative">
+        <div className="text-white/80 py-7 flex flex-row items-center w-full font-poppins relative min-a:justify-evenly
+        max-a:justify-around max-d:justify-between max-d:px-8">
             <Link to="/home">
                 <div className="text-2xl font-semibold cursor-pointer">DevStash</div>
             </Link>
