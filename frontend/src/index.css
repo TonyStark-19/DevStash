@@ -4,6 +4,14 @@
 /* font */
 @theme {
     --font-poppins: "Poppins", sans-serif;
+    /* 1200px */
+    --breakpoint-a: 75rem;
+    /* 1000px */
+    --breakpoint-b: 62.5rem;
+    /* 800px */
+    --breakpoint-c: 50rem;
+    /* 600px */
+    --breakpoint-d: 37.5rem;
 }
 
 /* home page icons animations */
