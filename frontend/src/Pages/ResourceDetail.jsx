@@ -325,14 +325,14 @@ function Content() {
 
                 {/* contribute resource */}
                 <div className="mt-10 p-6 text-white text-center mb-5">
-                    <h2 className="text-xl font-bold mb-3">
+                    <h2 className="min-d:text-xl max-d:text-[18px] font-bold mb-3">
                         Do you want to contribute your own favorite resource which is not present here?
                     </h2>
-                    <p className="mb-4 text-[16px] opacity-90">
+                    <p className="mb-4 min-d:text-[16px] max-d:text-[14px] opacity-90">
                         Help others by sharing what has helped you in your learning journey.
                     </p>
                     <button className="px-6 py-2 rounded-lg font-semibold bg-cyan-500 hover:bg-cyan-600 text-black
-                    cursor-pointer"
+                    cursor-pointer min-d:text-[16px] max-d:text-[14px]"
                         onClick={() => setIsOpen(true)}>
                         Contribute Your Resource
                     </button>

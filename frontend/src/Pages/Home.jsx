@@ -79,30 +79,36 @@ function Content() {
                 <FaRust className="text-orange-500 text-4xl" />
             </div>
 
-            <div className="flex flex-col justify-center items-center w-full pt-10">
+            <div className="flex flex-col justify-center items-center w-full min-a:pt-10 max-a:pt-5">
                 {/* <div className="flex flex-row items-center gap-3 bg-white/10 py-2 px-4 rounded-2xl mb-5">
                     <span className="size-1.5 animate-ping rounded-full bg-green-500 opacity-75"></span>
                     <p className="text-[15px]">48 Resources accross domains</p>
                 </div> */}
 
-                <h1 className="text-[55px] leading-18 font-semibold" data-aos="fade-up" data-aos-delay="200">Discover & Share</h1>
-                <h2 className="text-[55px] mb-2 font-semibold" data-aos="fade-up" data-aos-delay="200">The Best Dev Resources</h2>
-                <p className="text-[20px] mb-3 w-[45%] text-center" data-aos="fade-up" data-aos-delay="300">Your go-to hub
+                <h1 className="min-a:text-[55px] max-a:text-[40px] max-b:text-[35px] min-a:leading-18 max-a:leading-14 font-semibold"
+                    data-aos="fade-up" data-aos-delay="200">Discover & Share</h1>
+                <h2 className="min-a:text-[55px] max-a:text-[40px] max-b:text-[35px] mb-2 font-semibold"
+                    data-aos="fade-up" data-aos-delay="200">The Best Dev Resources</h2>
+                <p className="min-a:text-[20px] max-a:text-[18px] max-b:text-[16px] mb-3 w-[45%] text-center"
+                    data-aos="fade-up" data-aos-delay="300">Your go-to hub
                     for curated coding tutorials, tools, and guides.</p>
-                <p className="text-[20px] mb-3 w-[45%] text-center" data-aos="fade-up" data-aos-delay="400">Explore top resources,
+                <p className="min-a:text-[20px] max-a:text-[18px] max-b:text-[16px] mb-3 w-[45%] text-center"
+                    data-aos="fade-up" data-aos-delay="400">Explore top resources,
                     save your favorites, and share your own finds with the developer community.</p>
-                <p className="text-[20px] mb-4 w-[45%] text-center" data-aos="fade-up" data-aos-delay="400">Built for developers,
-                    powered by collaboration.</p>
+                <p className="min-a:text-[20px] max-a:text-[18px] max-b:text-[16px] min-a:mb-4 max-a:mb-3 w-[45%] text-center"
+                    data-aos="fade-up" data-aos-delay="400">Built for developers, powered by collaboration.</p>
 
                 <div className="flex flex-row gap-4 mt-5" data-aos="fade-up" data-aos-delay="500">
-                    <button className="text-[17px] py-2 px-4 cursor-pointer text-black bg-white rounded-xl capitalize
-                    flex flex-row justify-center items-center gap-1.5 hover:-translate-y-0.5 duration-300">
+                    <button className="min-a:text-[17px] max-a:text-[15px] min-a:py-2 max-a:py-1.5 min-a:px-4 max-a:px-3
+                    cursor-pointer text-black bg-white rounded-xl capitalize flex flex-row justify-center items-center
+                    gap-1.5 hover:-translate-y-0.5 duration-300">
                         <FiGithub />
                         How to contribute resources?
                     </button>
                     <Link to="/resources">
-                        <button className="text-[17px] py-2 px-4 cursor-pointer text-white bg-white/10 rounded-xl capitalize
-                        flex flex-row justify-center items-center gap-1.5 hover:-translate-y-0.5 duration-300">
+                        <button className="min-a:text-[17px] max-a:text-[15px] min-a:py-2 max-a:py-1.5 min-a:px-4 max-a:px-3
+                        cursor-pointer text-white bg-white/10 rounded-xl capitalize flex flex-row justify-center items-center
+                        gap-1.5 hover:-translate-y-0.5 duration-300">
                             <GrResources />
                             Browse resources
                         </button>

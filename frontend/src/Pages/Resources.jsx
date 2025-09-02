@@ -57,19 +57,23 @@ function Content() {
 
     return (
         <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
-            <div data-aos="fade-up" data-aos-delay="100">
-                <h1 className="text-5xl text-center mb-3 font-semibold">Curated Tech & Coding Resources</h1>
-                <p className="text-[22px] text-center pb-10 border-b-2 border-white/30 tracking-wide">Discover, save, and
+            <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] text-center" data-aos="fade-up" data-aos-delay="100">
+                <h1 className="min-b:text-5xl max-b:leading-10 max-c:leading-12 max-b:text-[40px] max-d:text-[35px] text-center
+                mb-3 font-semibold">Curated Tech & Coding Resources</h1>
+                <p className="min-b:text-[22px] max-b:text-[20px] text-center pb-10 border-b-2 border-white/30
+                min-b:tracking-wide max-b:tracking-normal">Discover, save, and
                     share top coding tutorials, tools, and guides for developers worldwide.</p>
             </div>
 
             {Object.entries(resources).map(([categoryKey, items]) => (
-                <section key={categoryKey} className="mb-6 mt-20 pb-10 border-b-2 border-white/30">
+                <section key={categoryKey} className="mb-6 mt-20 pb-10 border-b-2 border-white/30 min-a:w-[70%]
+                max-a:w-[80%] max-c:w-[90%]">
                     <h2 className="text-3xl font-bold mb-6" data-aos="fade-up" data-aos-delay="200">
                         {labels[categoryKey] || categoryKey} :
                     </h2>
 
-                    <div className="grid grid-cols-5 gap-6 place-items-center">
+                    <div className="grid min-a:grid-cols-5 max-a:grid-cols-4 max-c:grid-cols-3 max-d:grid-cols-2 gap-6 
+                    place-items-center">
                         {items.map((res, i) => (
                             <Link
                                 to={`/resources/${res.subcategory}`}
