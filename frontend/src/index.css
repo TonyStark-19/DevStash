@@ -12,6 +12,12 @@
     --breakpoint-c: 50rem;
     /* 600px */
     --breakpoint-d: 37.5rem;
+    /* 700px */
+    --breakpoint-e: 43.75rem;
+    /* 500px */
+    --breakpoint-f: 31.25rem;
+    /* 900px */
+    --breakpoint-g: 56.25rem;
 }
 
 /* home page icons animations */
