@@ -51,17 +51,17 @@ export function Login() {
 
     return (
         <div
-            className="flex justify-center items-center h-screen px-4"
+            className="flex justify-center items-center min-h-screen px-4 max-c:py-10"
             style={{
                 background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
             }}
         >
-            <div className="flex flex-col md:flex-row bg-black/50 rounded-2xl overflow-hidden font-poppins w-[950px]
-            shadow-2xl shadow-cyan-500/20" data-aos="fade-down">
+            <div className="flex min-c:flex-row max-c:flex-col-reverse bg-black/50 rounded-2xl overflow-hidden font-poppins
+            shadow-2xl shadow-cyan-500/20 min-a:w-[950px] max-a:w-[90%] max-b:w-[95%]" data-aos="fade-down">
 
                 {/* Left: Login form */}
-                <div className="bg-[#06B6D440]/40 p-8 flex-1 text-gray-300">
-                    <h1 className="text-4xl mb-8 font-bold">Login</h1>
+                <div className="bg-[#06B6D440]/40 min-d:p-8 max-d:py-6 max-d:px-5 flex-1 text-gray-300">
+                    <h1 className="min-b:text-4xl max-b:text-[32px] max-d:text-[28px] mb-8 font-bold">Login</h1>
 
                     <form className="flex flex-col" onSubmit={handleSubmit}>
 
@@ -103,7 +103,8 @@ export function Login() {
                         </button>
                     </form>
 
-                    <div className="flex flex-row justify-center items-center text-[17px]">
+                    <div className="flex min-f:flex-row max-f:flex-col max-f:justify-center max-f:items-center min-d:text-[17px]
+                    max-d:text-[16px] max-f:text-[17px]">
                         <p>Don't have an account?</p>
                         <Link to="/signup" className="ml-2 hover:underline text-cyan-500/70">
                             Sign up now
@@ -113,14 +114,15 @@ export function Login() {
 
                 {/* Right: Side welcome box */}
                 <div className="bg-gradient-to-b from-cyan-500/20 to-cyan-700/20 flex flex-col justify-center items-center
-                py-8 px-6 flex-1 text-gray-300">
+                min-d:py-8 max-d:py-4 min-d:px-6 max-d:px-3 flex-1 text-gray-300">
                     <img
                         src="/images/Login/SideBox.png"
                         alt="Developer at desk"
-                        className="w-80 mb-6"
+                        className="min-d:w-80 max-d:w-70 mb-6"
                     />
-                    <h2 className="text-3xl font-bold mb-4">Welcome Back</h2>
-                    <p className="text-[17px] mb-2 text-center">
+                    <h2 className="min-a:text-3xl max-a:text-[26px] max-f:text-2xl font-bold mb-4">Welcome Back</h2>
+                    <p className="min-a:text-[17px] max-a:text-[16px] max-d:text-[15px] mb-2 text-center max-c:w-[80%]
+                    max-f:w-[90%]">
                         Access your DevStash account to continue exploring top-notch tutorials,
                         tools, and resources — all in one place.
                     </p>

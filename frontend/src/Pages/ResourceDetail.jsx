@@ -170,7 +170,7 @@ function Content() {
     }, []);
 
     // loading
-    if (loading) return <p className="text-white">Loading...</p>;
+    if (loading) return <div className="h-screen"></div>;
     if (!data) return <p className="text-red-500">No resources found</p>;
 
     // resources

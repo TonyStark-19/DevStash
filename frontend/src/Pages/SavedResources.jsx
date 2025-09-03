@@ -76,8 +76,8 @@ function Content() {
         });
     }, []);
 
-    // // loading
-    // if (loading) return <p className="text-white">Loading...</p>;
+    // loading
+    if (loading) return <div className="h-screen"></div>;
 
     return (
         <div className="py-8 text-white/80 font-poppins h-full flex flex-col items-center min-b:pt-20 max-b:pt-10">
@@ -88,7 +88,7 @@ function Content() {
             <div className="flex flex-col gap-8 min-h-60 min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] min-b:my-10 max-b:mt-5
             max-b:mb-10">
                 {savedResources.length === 0 ? (
-                    <p className="text-gray-400 text-center text-[18px]" data-aos="fade-up">No saved resources yet :(</p>
+                    <p className="text-gray-400 text-center text-[18px]">No saved resources yet :(</p>
                 ) : (
                     savedResources.map((res, idx) => (
                         <div

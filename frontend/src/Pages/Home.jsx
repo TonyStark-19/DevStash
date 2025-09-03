@@ -48,35 +48,34 @@ function Content() {
     return (
         <div className="text-white flex flex-col justify-center items-center p-8 h-[75%] font-poppins">
             {/* Floating Icons */}
-            <div className="p-4 absolute top-30 left-25 rounded-xl rotate-12 bg-white/5 backdrop-blur-sm animate-float
-            delay-300"
-                data-aos="fade-down">
-                <FaReact className="text-cyan-400 text-4xl" />
+            <div className="p-4 absolute rounded-xl rotate-12 bg-white/5 backdrop-blur-sm animate-float delay-300
+            top-30 min-a:left-25 max-a:left-15 max-e:left-7.5 max-d:hidden" data-aos="fade-down">
+                <FaReact className="text-cyan-400 min-a:text-4xl max-a:text-3xl" />
             </div>
 
-            <div className="p-4 absolute top-30 right-25 rounded-xl -rotate-12 bg-white/5 backdrop-blur-sm animate-float 
-            delay-300" data-aos="fade-down">
-                <VscAzure className="text-[#0078D4] text-4xl" />
+            <div className="p-4 absolute rounded-xl -rotate-12 bg-white/5 backdrop-blur-sm animate-float delay-300
+            top-30 min-a:right-25 max-a:right-15 max-e:right-7.5 max-d:hidden" data-aos="fade-down">
+                <VscAzure className="text-[#0078D4] min-a:text-4xl max-a:text-3xl" />
             </div>
 
-            <div className="p-4 absolute bottom-20 left-25 rounded-xl -rotate-12 bg-white/10 backdrop-blur-sm animate-float 
-            delay-600" data-aos="fade-down">
-                <GrDocker className="text-[#2496ED] text-4xl" />
+            <div className="p-4 absolute rounded-xl -rotate-12 bg-white/10 backdrop-blur-sm animate-float delay-600
+            bottom-20 min-a:left-25 max-a:left-15 max-e:left-7.5 max-d:hidden" data-aos="fade-down">
+                <GrDocker className="text-[#2496ED] min-a:text-4xl max-a:text-3xl" />
             </div>
 
-            <div className="p-4 absolute top-85 left-45 rounded-xl bg-white/10 backdrop-blur-sm animate-float delay-400"
-                data-aos="fade-down">
-                <SiFastapi className="text-[#009688] text-4xl" />
+            <div className="p-4 absolute rounded-xl bg-white/10 backdrop-blur-sm animate-float delay-400
+            min-a:top-87 max-a:top-75 min-a:left-45 max-a:left-15 max-e:left-7.5 max-d:hidden" data-aos="fade-down">
+                <SiFastapi className="text-[#009688] min-a:text-4xl max-a:text-3xl" />
             </div>
 
-            <div className="p-4 absolute top-85 right-45 rounded-xl bg-white/10 backdrop-blur-sm animate-float delay-400"
-                data-aos="fade-down">
-                <DiMongodb className="text-green-500 text-4xl" />
+            <div className="p-4 absolute rounded-xl bg-white/10 backdrop-blur-sm animate-float delay-400
+            min-a:top-87 max-a:top-75 min-a:right-45 max-a:right-15 max-e:right-7.5 max-d:hidden" data-aos="fade-down">
+                <DiMongodb className="text-green-500 min-a:text-4xl max-a:text-3xl" />
             </div>
 
-            <div className="p-4 absolute bottom-20 right-25 rounded-xl rotate-12 bg-white/10 backdrop-blur-sm animate-float 
-            delay-600" data-aos="fade-down">
-                <FaRust className="text-orange-500 text-4xl" />
+            <div className="p-4 absolute rounded-xl rotate-12 bg-white/10 backdrop-blur-sm animate-float delay-600
+            bottom-20 min-a:right-25 max-a:right-15 max-e:right-7.5 max-d:hidden" data-aos="fade-down">
+                <FaRust className="text-orange-500 min-a:text-4xl max-a:text-3xl" />
             </div>
 
             <div className="flex flex-col justify-center items-center w-full min-a:pt-10 max-a:pt-5">
@@ -85,30 +84,33 @@ function Content() {
                     <p className="text-[15px]">48 Resources accross domains</p>
                 </div> */}
 
-                <h1 className="min-a:text-[55px] max-a:text-[40px] max-b:text-[35px] min-a:leading-18 max-a:leading-14 font-semibold"
+                <h1 className="min-a:text-[55px] max-a:text-[40px] max-b:text-[35px] max-d:text-[26px] min-a:leading-18
+                max-a:leading-14 max-d:leading-10 text-center font-semibold"
                     data-aos="fade-up" data-aos-delay="200">Discover & Share</h1>
-                <h2 className="min-a:text-[55px] max-a:text-[40px] max-b:text-[35px] mb-2 font-semibold"
-                    data-aos="fade-up" data-aos-delay="200">The Best Dev Resources</h2>
-                <p className="min-a:text-[20px] max-a:text-[18px] max-b:text-[16px] mb-3 w-[45%] text-center"
-                    data-aos="fade-up" data-aos-delay="300">Your go-to hub
-                    for curated coding tutorials, tools, and guides.</p>
-                <p className="min-a:text-[20px] max-a:text-[18px] max-b:text-[16px] mb-3 w-[45%] text-center"
-                    data-aos="fade-up" data-aos-delay="400">Explore top resources,
-                    save your favorites, and share your own finds with the developer community.</p>
-                <p className="min-a:text-[20px] max-a:text-[18px] max-b:text-[16px] min-a:mb-4 max-a:mb-3 w-[45%] text-center"
+                <h2 className="min-a:text-[55px] max-a:text-[40px] max-b:text-[35px] max-d:text-[26px] mb-2 font-semibold
+                text-center" data-aos="fade-up" data-aos-delay="200">The Best Dev Resources</h2>
+                <p className="min-a:text-[20px] max-a:text-[18px] max-b:text-[16px] max-d:text-[15px] mb-3 min-a:w-[45%]
+                max-a:w-[55%] max-b:w-[70%] max-d:w-[90%] text-center" data-aos="fade-up" data-aos-delay="300">
+                    Your go-to hub for curated coding tutorials, tools, and guides.</p>
+                <p className="min-a:text-[20px] max-a:text-[18px] max-b:text-[16px] max-d:text-[15px] mb-3 min-a:w-[45%]
+                max-a:w-[55%] max-b:w-[70%] max-d:w-[90%] text-center" data-aos="fade-up" data-aos-delay="400">
+                    Explore top resources, save your favorites, and share your own finds with the developer community.</p>
+                <p className="min-a:text-[20px] max-a:text-[18px] max-b:text-[16px] max-d:text-[15px] min-a:mb-4 max-a:mb-3
+                min-a:w-[45%] max-a:w-[55%] max-b:w-[85%] max-d:w-[90%] text-center"
                     data-aos="fade-up" data-aos-delay="400">Built for developers, powered by collaboration.</p>
 
-                <div className="flex flex-row gap-4 mt-5" data-aos="fade-up" data-aos-delay="500">
-                    <button className="min-a:text-[17px] max-a:text-[15px] min-a:py-2 max-a:py-1.5 min-a:px-4 max-a:px-3
-                    cursor-pointer text-black bg-white rounded-xl capitalize flex flex-row justify-center items-center
-                    gap-1.5 hover:-translate-y-0.5 duration-300">
+                <div className="flex min-b:flex-row max-b:flex-col max-b:justify-center max-b:items-center gap-4 mt-5"
+                    data-aos="fade-up" data-aos-delay="500">
+                    <button className="min-a:text-[17px] max-a:text-[15px] max-d:text-[14px] min-a:py-2 max-a:py-1.5 min-a:px-4
+                    max-a:px-3 cursor-pointer text-black bg-white rounded-xl capitalize flex flex-row justify-center
+                    items-center gap-1.5 hover:-translate-y-0.5 duration-300">
                         <FiGithub />
                         How to contribute resources?
                     </button>
                     <Link to="/resources">
-                        <button className="min-a:text-[17px] max-a:text-[15px] min-a:py-2 max-a:py-1.5 min-a:px-4 max-a:px-3
-                        cursor-pointer text-white bg-white/10 rounded-xl capitalize flex flex-row justify-center items-center
-                        gap-1.5 hover:-translate-y-0.5 duration-300">
+                        <button className="min-a:text-[17px] max-a:text-[15px] max-d:text-[14px] min-a:py-2 max-a:py-1.5
+                        min-a:px-4 max-a:px-3 cursor-pointer text-white bg-white/10 rounded-xl capitalize flex flex-row
+                        justify-center items-center gap-1.5 hover:-translate-y-0.5 duration-300">
                             <GrResources />
                             Browse resources
                         </button>

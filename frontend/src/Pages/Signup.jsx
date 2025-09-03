@@ -64,33 +64,35 @@ export function Signup() {
 
     return (
         <div
-            className="flex justify-center items-center h-screen"
+            className="flex justify-center items-center min-h-screen px-4 max-c:py-10"
             style={{
                 background:
                     "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
             }}
         >
-            <div className="flex flex-row bg-[#06B6D440]/20 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/20 
-            w-[1000px] font-poppins" data-aos="fade-down">
+            <div className="flex min-g:flex-row max-g:flex-col bg-[#06B6D440]/20 rounded-2xl overflow-hidden shadow-2xl
+            shadow-cyan-500/20 min-a:w-[1000px] max-a:w-[90%] max-b:w-[95%] font-poppins" data-aos="fade-down">
 
                 {/* Left side - Image & Intro */}
-                <div className="w-1/2 bg-gradient-to-b from-cyan-500/20 to-cyan-700/20 py-8 px-6 flex flex-col 
-                justify-center items-center text-gray-300">
+                <div className="min-g:w-1/2 max-g:w-full bg-gradient-to-b from-cyan-500/20 to-cyan-700/20 flex flex-col 
+                min-d:py-8 max-d:py-4 min-d:px-6 max-d:px-3 justify-center items-center text-gray-300">
                     <img
                         src="/images/Login/SideBox.png"
                         alt="Developer at work"
                         className="w-90 h-auto mb-6"
                     />
-                    <h2 className="text-3xl font-bold mb-4">Welcome to DevStash</h2>
-                    <p className="text-[17px] mb-2 text-center">
+                    <h2 className="min-a:text-3xl max-a:text-[26px] max-f:text-2xl font-bold mb-4 text-center">
+                        Welcome to DevStash</h2>
+                    <p className="min-a:text-[17px] max-a:text-[16px] max-d:text-[15px mb-2 text-center max-c:w-[80%]
+                    max-g:w-[90%]">
                         Your personal hub for curated tech & coding resources.
                         Discover top-notch tutorials, tools, and guides — all in one place.
                     </p>
                 </div>
 
                 {/* Right box - Signup Form */}
-                <div className="w-1/2 p-8 text-gray-300">
-                    <h1 className="text-4xl mb-8 font-bold">Sign up</h1>
+                <div className="min-g:w-1/2 max-g:w-full min-d:p-8 max-d:py-6 max-d:px-5 text-gray-300 flex-1">
+                    <h1 className="min-b:text-4xl max-b:text-[32px] max-d:text-[28px] mb-8 font-bold">Sign up</h1>
 
                     <form className="flex flex-col" onSubmit={handleSubmit}>
                         <label htmlFor="email" className="mb-2 text-sm font-medium">
@@ -145,7 +147,8 @@ export function Signup() {
                         </button>
                     </form>
 
-                    <div className="flex justify-center items-center text-[17px]">
+                    <div className="flex min-f:flex-row max-f:flex-col max-f:justify-center max-f:items-center min-d:text-[17px]
+                    max-d:text-[16px] max-f:text-[17px]">
                         <p>Already have an account?</p>
                         <Link to="/" className="ml-2 hover:underline text-cyan-500/70">
                             Login now

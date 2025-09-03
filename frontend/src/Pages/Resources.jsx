@@ -29,6 +29,7 @@ export function Resources() {
 // resouces content
 function Content() {
     const [resources, setResources] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // prettier headings
     const labels = {
@@ -43,8 +44,14 @@ function Content() {
     useEffect(() => {
         fetch("http://localhost:3000/resources") // backend endpoint
             .then((res) => res.json())
-            .then((data) => setResources(data))
-            .catch((err) => console.error(err));
+            .then((data) => {
+                setResources(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error(err);
+                setLoading(false);
+            });
     }, []);
 
     // AOS animations
@@ -55,8 +62,11 @@ function Content() {
         });
     }, []);
 
+    // loading
+    if (loading) return <div className="h-screen"></div>;
+
     return (
-        <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
+        <div className="py-8 text-white/80 font-poppins h-full flex flex-col items-center min-b:pt-20 max-b:pt-10">
             <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] text-center" data-aos="fade-up" data-aos-delay="100">
                 <h1 className="min-b:text-5xl max-b:leading-10 max-c:leading-12 max-b:text-[40px] max-d:text-[35px] text-center
                 mb-3 font-semibold">Curated Tech & Coding Resources</h1>
