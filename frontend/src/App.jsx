@@ -63,7 +63,7 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/resources/:subcategory"
+        path="/resources/:category/:subcategory"
         element={
           <ProtectedRoute>
             <ResourceDetail />

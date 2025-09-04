@@ -88,7 +88,8 @@ function Content() {
             <div className="flex flex-col gap-8 min-h-60 min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] min-b:my-10 max-b:mt-5
             max-b:mb-10">
                 {savedResources.length === 0 ? (
-                    <p className="text-gray-400 text-center text-[18px]">No saved resources yet :(</p>
+                    <p className="text-gray-400 text-center min-e:text-[20px] max-e:text-[18px] min-e:tracking-wide
+                    max-e:tracking-normal" data-aos="fade-up">No saved resources yet :(</p>
                 ) : (
                     savedResources.map((res, idx) => (
                         <div

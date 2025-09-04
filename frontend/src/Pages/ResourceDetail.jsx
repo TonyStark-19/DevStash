@@ -38,7 +38,7 @@ export function ResourceDetail() {
 
 // content
 function Content() {
-    const { subcategory } = useParams();
+    const { category, subcategory } = useParams();
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [savedResources, setSavedResources] = useState([]);
@@ -47,7 +47,7 @@ function Content() {
     // fetch resources from DB
     useEffect(() => {
         setLoading(true);
-        api.get(`/resources/${subcategory}`)
+        api.get(`/resources/${category}/${subcategory}`)
             .then((res) => {
                 setData(res.data);
                 setLoading(false);
@@ -56,7 +56,7 @@ function Content() {
                 console.error(err);
                 setLoading(false);
             });
-    }, [subcategory]);
+    }, [category, subcategory]);
 
     // fetch saved resources on mount
     useEffect(() => {
@@ -137,7 +137,7 @@ function Content() {
 
         try {
             const res = await api.post(
-                `/resources/contribute/${data.category}/${subcategory}`,
+                `/resources/contribute/${category}/${subcategory}`,
                 finalData
             );
 
@@ -145,12 +145,9 @@ function Content() {
             if (res.status === 201) {
                 alert("Resource submitted!");
 
-                // Optimistic UI update → append resource locally
-                setData((prev) => {
-                    const updated = { ...prev };
-                    updated.resources[formData.type].push(res.data.resource);
-                    return updated;
-                });
+                // 🔄 Re-fetch instead of optimistic push
+                const refreshed = await api.get(`/resources/${category}/${subcategory}`);
+                setData(refreshed.data);
 
                 setIsOpen(false);
                 setFormData({ title: "", description: "", tags: "", link: "", type: "" });
@@ -348,7 +345,7 @@ function Content() {
                                 <form onSubmit={handleSubmit} className="space-y-3 text-gray-300">
                                     <select
                                         name="type"
-                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
+                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-gray-500"
                                         onChange={handleChange}
                                         value={formData.type}
                                         required

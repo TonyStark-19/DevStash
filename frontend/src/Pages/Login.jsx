@@ -103,7 +103,7 @@ export function Login() {
                         </button>
                     </form>
 
-                    <div className="flex min-f:flex-row max-f:flex-col max-f:justify-center max-f:items-center min-d:text-[17px]
+                    <div className="flex min-f:flex-row max-f:flex-col justify-center items-center min-d:text-[17px]
                     max-d:text-[16px] max-f:text-[17px]">
                         <p>Don't have an account?</p>
                         <Link to="/signup" className="ml-2 hover:underline text-cyan-500/70">

@@ -77,7 +77,7 @@ function Content() {
 
             {Object.entries(resources).map(([categoryKey, items]) => (
                 <section key={categoryKey} className="mb-6 mt-20 pb-10 border-b-2 border-white/30 min-a:w-[70%]
-                max-a:w-[80%] max-c:w-[90%]">
+                max-a:w-[80%] max-c:w-[90%]" data-aos="fade-up" data-aos-delay="100">
                     <h2 className="text-3xl font-bold mb-6" data-aos="fade-up" data-aos-delay="200">
                         {labels[categoryKey] || categoryKey} :
                     </h2>
@@ -86,7 +86,7 @@ function Content() {
                     place-items-center">
                         {items.map((res, i) => (
                             <Link
-                                to={`/resources/${res.subcategory}`}
+                                to={`/resources/${categoryKey}/${res.subcategory}`}
                                 key={i}
                                 data-aos="fade-up"
                                 data-aos-delay="200"
