@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import { FaBookmark } from "react-icons/fa";
 
 // import axios instance
-import api from "../api";
+import api from "../utils/api";
 
 // AOS animations
 import AOS from 'aos';

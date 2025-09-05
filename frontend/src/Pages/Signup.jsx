@@ -14,6 +14,9 @@ import { useAuth } from "../Context/AuthContext";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// import axios instance
+import api from "../utils/api";
+
 // Signup page
 export function Signup() {
     const navigate = useNavigate();
@@ -44,13 +47,14 @@ export function Signup() {
         }
 
         try {
-            const res = await axios.post("http://localhost:3000/api/auth/signup", { email, password });
+            const res = await api.post("/auth/signup", { email, password });
             login(res.data.token);
+
             // ✅ Redirect to home
             navigate("/home", { replace: true });
         } catch (err) {
             console.error(err);
-            alert("Signup failed: " + err.response.data.message);
+            alert("Signup failed: " + (err.response?.data?.message || "Something went wrong"));
         }
     };
 

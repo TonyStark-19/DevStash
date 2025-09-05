@@ -14,6 +14,9 @@ import { useAuth } from "../Context/AuthContext";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// import axios instance
+import api from "../utils/api";
+
 export function Login() {
     const navigate = useNavigate();
     const { login } = useAuth();
@@ -31,13 +34,14 @@ export function Login() {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:3000/api/auth/login", formData);
+            const res = await api.post("/auth/login", formData);
             login(res.data.token);
+
             // ✅ Redirect to home
             navigate("/home", { replace: true });
         } catch (err) {
             console.error(err);
-            alert("Login failed: " + err.response.data.message);
+            alert("Login failed: " + (err.response?.data?.message || "Something went wrong"));
         }
     };
 

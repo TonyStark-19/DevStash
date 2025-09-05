@@ -11,6 +11,7 @@ import { SavedResources } from "./Pages/SavedResources";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import PublicRoute from "./Components/PublicRoute";
 import { AuthProvider, useAuth } from "./Context/AuthContext";
+import ScrollToTop from "./Pages/ScrollToTop";
 
 function AppRoutes() {
   const { loading } = useAuth();
@@ -26,59 +27,62 @@ function AppRoutes() {
   }
 
   return (
-    <Routes>
-      {/* Public routes */}
-      <Route
-        path="/signup"
-        element={
-          <PublicRoute>
-            <Signup />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="/"
-        element={
-          <PublicRoute>
-            <Login />
-          </PublicRoute>
-        }
-      />
+    <>
+      <ScrollToTop />
+      <Routes>
+        {/* Public routes */}
+        <Route
+          path="/signup"
+          element={
+            <PublicRoute>
+              <Signup />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
 
-      {/* Protected routes */}
-      <Route
-        path="/home"
-        element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/resources"
-        element={
-          <ProtectedRoute>
-            <Resources />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/resources/:category/:subcategory"
-        element={
-          <ProtectedRoute>
-            <ResourceDetail />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/saved"
-        element={
-          <ProtectedRoute>
-            <SavedResources />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+        {/* Protected routes */}
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/resources"
+          element={
+            <ProtectedRoute>
+              <Resources />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/resources/:category/:subcategory"
+          element={
+            <ProtectedRoute>
+              <ResourceDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/saved"
+          element={
+            <ProtectedRoute>
+              <SavedResources />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 

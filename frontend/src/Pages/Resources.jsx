@@ -10,6 +10,9 @@ import { Link } from "react-router-dom";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// import axios instanse
+import api from "../utils/api";
+
 // Resource page
 export function Resources() {
     return (
@@ -42,16 +45,18 @@ function Content() {
     };
 
     useEffect(() => {
-        fetch("http://localhost:3000/resources") // backend endpoint
-            .then((res) => res.json())
-            .then((data) => {
-                setResources(data);
-                setLoading(false);
-            })
-            .catch((err) => {
+        const fetchResources = async () => {
+            try {
+                const res = await api.get("/allresources");
+                setResources(res.data);
+            } catch (err) {
                 console.error(err);
+            } finally {
                 setLoading(false);
-            });
+            }
+        };
+
+        fetchResources();
     }, []);
 
     // AOS animations

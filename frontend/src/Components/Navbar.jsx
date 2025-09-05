@@ -18,7 +18,7 @@ export function Navbar() {
     // handle logout
     const handleLogout = () => {
         logout();
-        navigate("/"); // back to signup
+        navigate("/"); // back to login
     };
 
     return (
