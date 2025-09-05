@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 // import axios instance
-import api from "../api";
+import api from "../utils/api";
 
 // AOS animations
 import AOS from 'aos';
@@ -166,6 +166,17 @@ function Content() {
         });
     }, []);
 
+    // custom heading for some resources
+    const headingMap = {
+        "html": "HTML", "css": "CSS", "javascript": "JavaScript", "typescript": "TypeScript", "react": "React",
+        "nextjs": "Next JS", "vue": "Vue JS", "nuxtjs": "Nuxt JS", "angular": "Angular JS", "svelte": "Svelte",
+        "bootstrap": "Bootstrap CSS", "tailwind": "Tailwind CSS", "materialui": "Material UI",
+        "nodejs": "Node JS", "express": "Express JS", "django": "Django", "flask": "Flask", "rubyonrails": "Ruby on rails",
+        "laravel": "Laraval", "fastapi": "Fast API",
+    }
+
+    const customHeading = headingMap[subcategory] || subcategory;
+
     // loading
     if (loading) return <div className="h-screen"></div>;
     if (!data) return <p className="text-red-500">No resources found</p>;
@@ -180,7 +191,7 @@ function Content() {
                 <h1 className="mb-3 font-semibold leading-12 border-b-2 border-white/30 min-b:text-5xl max-b:text-[40px]
                 min-b:pb-10 max-b:pb-5 max-d:text-[35px]"
                     data-aos="fade-up" data-aos-delay="100">
-                    {subcategory.toUpperCase()} Resources
+                    {customHeading} Resources
                 </h1>
             </div>
 
@@ -335,17 +346,33 @@ function Content() {
                     </button>
 
                     {isOpen && (
-                        <div className="fixed inset-0 flex justify-center items-center"
-                            style={{
-                                background:
-                                    "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
-                            }}>
-                            <div className="bg-[#06B6D440]/40 py-6 px-8 rounded-xl w-[700px] shadow-xl" data-aos="fade-up">
-                                <h3 className="text-3xl mb-8 font-bold text-gray-300">Contribute Resource</h3>
-                                <form onSubmit={handleSubmit} className="space-y-3 text-gray-300">
+                        <div className="fixed inset-0 flex justify-center items-center bg-black/70 backdrop-blur-sm z-50">
+                            <div
+                                className="bg-[#0d1b2a] border border-cyan-500/40 rounded-2xl w-[90%] max-w-2xl shadow-2xl
+                                relative animate-fadeIn py-8 min-e:px-10 max-e:px-8 max-f:pt-14 max-f:px-5"
+                                data-aos="zoom-in"
+                            >
+                                {/* Close button */}
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    className="absolute top-4 right-4 text-gray-400 hover:text-white text-xl cursor-pointer"
+                                >
+                                    ✕
+                                </button>
+
+                                <h3 className="min-e:text-3xl max-e:text-[25px] min-e:mb-6 max-e:mb-3 font-bold
+                                text-cyan-400 text-center">Contribute a Resource 🚀
+                                </h3>
+
+                                <p className="text-center text-gray-400 mb-8 max-e:text-[15px]">
+                                    Share a useful link, article, or tutorial that has helped you.
+                                </p>
+
+                                <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-gray-300">
                                     <select
                                         name="type"
-                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-gray-500"
+                                        className="col-span-2 border border-gray-600 rounded-lg p-3 bg-transparent
+                                        focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
                                         onChange={handleChange}
                                         value={formData.type}
                                         required
@@ -354,54 +381,65 @@ function Content() {
                                         <option value="docs">Docs / Article</option>
                                         <option value="youtube">YouTube</option>
                                     </select>
-                                    <input
-                                        type="text"
-                                        name="title"
-                                        placeholder="Resource Title"
-                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
-                                        onChange={handleChange}
-                                        value={formData.title}
-                                        required
-                                    />
+
+                                    <div className="flex min-e:flex-row max-e:flex-col gap-6">
+                                        <input
+                                            type="text"
+                                            name="title"
+                                            placeholder="Resource Title"
+                                            className="border border-gray-600 rounded-lg p-3 bg-transparent w-full
+                                            focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
+                                            onChange={handleChange}
+                                            value={formData.title}
+                                            required
+                                        />
+
+                                        <input
+                                            type="url"
+                                            name="link"
+                                            placeholder="Resource Link"
+                                            className="border border-gray-600 rounded-lg p-3 bg-transparent w-full
+                                            focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
+                                            onChange={handleChange}
+                                            value={formData.link}
+                                            required
+                                        />
+                                    </div>
+
                                     <textarea
                                         name="description"
                                         placeholder="Short Description"
-                                        rows={1}
-                                        className="w-full border border-gray-400 rounded-md p-3 mb-4 bg-transparent"
+                                        rows={2}
+                                        className="col-span-2 border border-gray-600 rounded-lg p-3 bg-transparent
+                                        focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
                                         onChange={handleChange}
                                         value={formData.description}
                                         required
                                     />
+
                                     <input
                                         type="text"
                                         name="tags"
                                         placeholder="Tags (comma separated, min 2, max 4)"
-                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
+                                        className="col-span-2 border border-gray-600 rounded-lg p-3 bg-transparent
+                                        focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
                                         onChange={handleChange}
                                         value={formData.tags}
+                                        required
+                                    />
 
-                                        required
-                                    />
-                                    <input
-                                        type="url"
-                                        name="link"
-                                        placeholder="Valid Link to Resource"
-                                        className="w-full border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
-                                        onChange={handleChange}
-                                        value={formData.link}
-                                        required
-                                    />
                                     <button
                                         type="submit"
-                                        className="w-full py-2.5 px-4 bg-[#06B6D440]/60 hover:bg-[#06B6D440]/80 
-                                        text-gray-300 font-semibold rounded-md cursor-pointer transition mb-6"
+                                        className="col-span-2 py-3 px-6 bg-cyan-500 hover:bg-cyan-600 text-black
+                                        font-semibold rounded-lg cursor-pointer transition transform hover:scale-[1.02]"
                                     >
-                                        Submit
+                                        🚀 Submit Resource
                                     </button>
                                 </form>
                             </div>
                         </div>
                     )}
+
                 </div>
             </div>
         </div>
