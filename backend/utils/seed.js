@@ -1,7 +1,9 @@
+// for inserting base data into DB
+
 // import mogoose, resource model, all resources and dotenv
 const mongoose = require("mongoose");
-const Resource = require("./models/Resource");
-const allResources = require("./allResources");
+const Resource = require("../models/Resource");
+const allResources = require("../allResources");
 const dotenv = require("dotenv");
 
 // use .env variables

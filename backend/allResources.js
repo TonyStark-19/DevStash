@@ -14,9 +14,9 @@ const allResources = [
     ...transformResources("Frontend", frontendResources),
     ...transformResources("Backend", backendResources),
     ...transformResources("Databases", databaseResources),
-    ...transformResources("Programming Languages", programmingLanguagesResources),
-    ...transformResources("DevOps & Version Control", devopsResources),
-    ...transformResources("Cloud & Hosting", cloudHostingResources),
+    ...transformResources("Programming", programmingLanguagesResources),
+    ...transformResources("DevOps", devopsResources),
+    ...transformResources("Cloud", cloudHostingResources),
 ];
 
 // export allResources

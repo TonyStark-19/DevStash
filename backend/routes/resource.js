@@ -4,7 +4,7 @@ const Resource = require("../models/Resource");
 const { protect } = require("../middleware/authMiddleware");
 
 // import resources data
-const resourcesData = require("../resource")
+const resourcesData = require("../Resources/resource")
 
 // router
 const router = express.Router();
@@ -40,12 +40,17 @@ router.post("/contribute/:category/:subcategory", protect, async (req, res) => {
         const { category, subcategory } = req.params;
         const { type, title, description, tags, link } = req.body;
 
+        // if any feild is missing
         if (!title || !description || !tags || !link || !type) {
             return res.status(400).json({ message: "All fields required" });
         }
+
+        // tags min and max
         if (tags.length < 2 || tags.length > 4) {
             return res.status(400).json({ message: "Tags must be 2-4" });
         }
+
+        // no resource type selected
         if (!["docs", "youtube"].includes(type)) {
             return res.status(400).json({ message: "Invalid resource type" });
         }
@@ -55,6 +60,8 @@ router.post("/contribute/:category/:subcategory", protect, async (req, res) => {
             category: new RegExp(`^${category}$`, "i"),
             subcategory: new RegExp(`^${subcategory}$`, "i"),
         });
+
+        // if not found
         if (!resourceGroup) {
             return res.status(404).json({ message: "Resource group not found" });
         }
@@ -69,6 +76,7 @@ router.post("/contribute/:category/:subcategory", protect, async (req, res) => {
 
         let image = "/images/default.png"; // fallback
 
+        // images for each resource
         if (resourcesData[category]) {
             const match = resourcesData[category].find(
                 (r) => r.subcategory.toLowerCase() === subcategory.toLowerCase()

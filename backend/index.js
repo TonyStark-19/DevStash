@@ -35,10 +35,10 @@ app.use("/api/resources", resourcesRoutes);
 app.use("/api/saved-resources", savedResourcesRoutes);
 
 // import resources
-const resources = require("./resource");
+const resources = require("./Resources/resource");
 
 // GET request to send all resources
-app.get("/resources", (req, res) => {
+app.get("/api/allresources", (req, res) => {
     res.json(resources);
 });
 

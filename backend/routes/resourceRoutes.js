@@ -64,6 +64,7 @@ router.post("/unsave/:resourceId", protect, async (req, res) => {
         const { type, itemId } = req.body;
         const userId = req.user.id;
 
+        // find user
         const user = await User.findById(userId);
 
         user.savedResources = user.savedResources.filter(
@@ -92,6 +93,7 @@ router.get("/saved", protect, async (req, res) => {
         const userId = req.user.id;
         const user = await User.findById(userId);
 
+        // saved resources array
         let saved = [];
 
         for (let sr of user.savedResources) {

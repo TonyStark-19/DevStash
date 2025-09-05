@@ -16,8 +16,8 @@ const UserSchema = new mongoose.Schema({
     savedResources: [
         {
             resourceId: { type: mongoose.Schema.Types.ObjectId, ref: "Resource" }, // parent Resource document
-            type: { type: String, enum: ["docs", "youtube"], required: true },     // which type
-            itemId: { type: mongoose.Schema.Types.ObjectId, required: true },      // the actual doc/youtube item _id
+            type: { type: String, enum: ["docs", "youtube"], required: true }, // which type
+            itemId: { type: mongoose.Schema.Types.ObjectId, required: true },  // the actual doc/youtube item _id
             savedAt: { type: Date, default: Date.now }
         }
     ]

@@ -43,6 +43,7 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     try {
+        // check if user exists
         const user = await User.findOne({ email });
         if (!user) return res.status(404).json({ message: "User not found" });
 
@@ -51,9 +52,11 @@ router.post("/login", async (req, res) => {
             return res.status(400).json({ message: "Email and password are required" });
         }
 
+        // check for correct password
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
+        // create token
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
         res.status(200).json({ token });
@@ -63,5 +66,5 @@ router.post("/login", async (req, res) => {
     }
 });
 
-// export
+// export router
 module.exports = router;
