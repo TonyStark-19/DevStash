@@ -17,6 +17,9 @@ import 'aos/dist/aos.css';
 // import axios instance
 import api from "../utils/api";
 
+// import toast
+import toast from "react-hot-toast";
+
 export function Login() {
     const navigate = useNavigate();
     const { login } = useAuth();
@@ -37,11 +40,15 @@ export function Login() {
             const res = await api.post("/auth/login", formData);
             login(res.data.token);
 
+            // ✅ Success toast
+            toast.success("Login successful!");
+
             // ✅ Redirect to home
             navigate("/home", { replace: true });
         } catch (err) {
             console.error(err);
-            alert("Login failed: " + (err.response?.data?.message || "Something went wrong"));
+            // ❌ Error toast
+            toast.error(err.response?.data?.message || "Something went wrong");
         }
     };
 

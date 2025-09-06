@@ -18,6 +18,9 @@ import api from "../utils/api";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// import toast
+import toast from "react-hot-toast";
+
 // resource page
 export function ResourceDetail() {
     return (
@@ -93,12 +96,15 @@ function Content() {
                             )
                     )
                 );
+                toast.success("Resource unsaved ❌");
             } else {
                 await api.post(`/saved-resources/save/${resourceId}`, { type, itemId });
                 setSavedResources((prev) => [...prev, { resourceId, type, itemId }]);
+                toast.success("Resource saved ✅");
             }
         } catch (err) {
             console.error("Error saving/unsaving resource:", err.response?.data || err.message);
+            toast.error("Error saving/unsaving resource");
         }
     };
 
@@ -128,7 +134,7 @@ function Content() {
 
         // min and max tags
         if (tagsArray.length < 2 || tagsArray.length > 4) {
-            alert("Please provide between 2 and 4 tags.");
+            toast.error("Please provide between 2 and 4 tags.");
             return;
         }
 
@@ -143,7 +149,7 @@ function Content() {
 
             // success
             if (res.status === 201) {
-                alert("Resource submitted!");
+                toast.success("Resource submitted 🚀");
 
                 // 🔄 Re-fetch instead of optimistic push
                 const refreshed = await api.get(`/resources/${category}/${subcategory}`);
@@ -154,7 +160,7 @@ function Content() {
             }
         } catch (err) {
             console.error("Error contributing resource:", err.response?.data || err.message);
-            alert("Error contributing resource");
+            toast.error(err.response?.data?.message || "Error contributing resource");
         }
     };
 

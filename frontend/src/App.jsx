@@ -13,16 +13,21 @@ import PublicRoute from "./Components/PublicRoute";
 import { AuthProvider, useAuth } from "./Context/AuthContext";
 import ScrollToTop from "./Pages/ScrollToTop";
 
+// ✅ import Toaster
+import { Toaster } from "react-hot-toast";
+
 function AppRoutes() {
   const { loading } = useAuth();
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen text-white"
+      <div
+        className="flex items-center justify-center h-screen text-white"
         style={{
-          background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
-        }}>
-      </div>
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
+        }}
+      ></div>
     );
   }
 
@@ -90,6 +95,24 @@ export default function App() {
   return (
     <AuthProvider>
       <AppRoutes />
+
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            background: "#111827", // dark background
+            color: "#fff",
+            fontSize: "15px",
+          },
+          success: {
+            iconTheme: {
+              primary: "#06B6D4",
+              secondary: "#fff",
+            },
+          },
+        }}
+      />
     </AuthProvider>
   );
 }

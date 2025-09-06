@@ -15,6 +15,9 @@ import api from "../utils/api";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// import toast
+import toast from "react-hot-toast";
+
 // saved resources page
 export function SavedResources() {
     return (
@@ -46,6 +49,7 @@ function Content() {
                 setSavedResources(res.data);
             } catch (err) {
                 console.error("Error fetching saved resources:", err.response?.data || err.message);
+                toast.error("Failed to fetch saved resources ❌");
             } finally {
                 setLoading(false);
             }
@@ -63,8 +67,10 @@ function Content() {
                         !(item.resourceId === resourceId && item.type === type && item.itemId === itemId)
                 )
             );
+            toast.success("Resource removed ❌");
         } catch (err) {
             console.error("Error unsaving resource:", err.response?.data || err.message);
+            toast.error("Error removing resource ❌");
         }
     };
 

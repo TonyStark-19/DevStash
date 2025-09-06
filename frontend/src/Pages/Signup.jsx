@@ -17,6 +17,9 @@ import 'aos/dist/aos.css';
 // import axios instance
 import api from "../utils/api";
 
+// import toast
+import toast from "react-hot-toast";
+
 // Signup page
 export function Signup() {
     const navigate = useNavigate();
@@ -42,7 +45,7 @@ export function Signup() {
 
         // if passowrd do not match
         if (password !== confirmPassword) {
-            alert("Passwords do not match");
+            toast.error("Passwords do not match ⚠️");
             return;
         }
 
@@ -50,11 +53,13 @@ export function Signup() {
             const res = await api.post("/auth/signup", { email, password });
             login(res.data.token);
 
-            // ✅ Redirect to home
-            navigate("/home", { replace: true });
+            toast.success("Signup successful 🎉");
+
+            // ✅ Redirect to home after a delay
+            setTimeout(() => navigate("/home", { replace: true }), 1500);
         } catch (err) {
             console.error(err);
-            alert("Signup failed: " + (err.response?.data?.message || "Something went wrong"));
+            toast.error("Signup failed: " + (err.response?.data?.message || "Something went wrong"));
         }
     };
 
