@@ -31,23 +31,23 @@ export function Navbar() {
             {/* Wrap icon + dropdown together */}
             <div
                 className="relative inline-block"
-                onMouseEnter={() => setShowMenu(true)}
+                onClick={() => setShowMenu(!showMenu)}
             >
                 <FaRegUser className="text-[22px] cursor-pointer" />
 
                 {showMenu && (
-                    <div className="absolute flex flex-col bg-white/10 right-0 w-45 mt-2 py-3 px-5 rounded-lg shadow-lg"
-                        onMouseLeave={() => setShowMenu(false)}>
+                    <div className="absolute flex flex-col bg-white/10 right-0 w-45 mt-2 py-3 px-5 rounded-lg shadow-lg">
                         <Link
                             to="/saved"
-                            className="text-[15px] mb-2 hover:text-cyan-400"
+                            className="text-[16px] mb-2 hover:text-cyan-400"
                         >
                             Saved Resources
                         </Link>
+
                         <button
                             onClick={handleLogout}
-                            className="text-[15px] text-red-400 flex flex-row items-center gap-2 hover:text-red-500 
-                            cursor-pointer"
+                            className="w-full flex flex-row items-center gap-2 text-left text-[16px] text-red-400
+                            hover:text-red-500 cursor-pointer"
                         >
                             Logout
                             <IoIosLogOut />

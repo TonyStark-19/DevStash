@@ -73,14 +73,15 @@ export function Signup() {
 
     return (
         <div
-            className="flex justify-center items-center min-h-screen px-4 max-c:py-10"
+            className="flex justify-center items-center min-h-screen min-f:px-4 max-f:px-0 min-c:py-10 max-c:py-10 max-f:py-0"
             style={{
                 background:
                     "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
             }}
         >
             <div className="flex min-g:flex-row max-g:flex-col bg-[#06B6D440]/20 rounded-2xl overflow-hidden shadow-2xl
-            shadow-cyan-500/20 min-a:w-[1000px] max-a:w-[90%] max-b:w-[95%] font-poppins" data-aos="fade-down">
+            shadow-cyan-500/20 min-a:w-[1000px] max-a:w-[90%] max-b:w-[95%] max-f:w-full max-f:rounded-none max-f:h-screen
+            font-poppins" data-aos="fade-down">
 
                 {/* Left side - Image & Intro */}
                 <div className="min-g:w-1/2 max-g:w-full bg-gradient-to-b from-cyan-500/20 to-cyan-700/20 flex flex-col 
@@ -156,8 +157,8 @@ export function Signup() {
                         </button>
                     </form>
 
-                    <div className="flex min-f:flex-row max-f:flex-col justify-center items-center min-d:text-[17px]
-                    max-d:text-[16px] max-f:text-[17px]">
+                    <div className="flex min-h:flex-row max-h:flex-col justify-center items-center min-d:text-[17px]
+                    max-d:text-[16px]">
                         <p>Already have an account?</p>
                         <Link to="/" className="ml-2 hover:underline text-cyan-500/70">
                             Login now

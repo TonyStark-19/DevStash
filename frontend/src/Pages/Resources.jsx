@@ -73,17 +73,20 @@ function Content() {
     return (
         <div className="py-8 text-white/80 font-poppins h-full flex flex-col items-center min-b:pt-20 max-b:pt-10">
             <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] text-center" data-aos="fade-up" data-aos-delay="100">
-                <h1 className="min-b:text-5xl max-b:leading-10 max-c:leading-12 max-b:text-[40px] max-d:text-[35px] text-center
-                mb-3 font-semibold">Curated Tech & Coding Resources</h1>
-                <p className="min-b:text-[22px] max-b:text-[20px] text-center pb-10 border-b-2 border-white/30
-                min-b:tracking-wide max-b:tracking-normal">Discover, save, and
-                    share top coding tutorials, tools, and guides for developers worldwide.</p>
+                <h1 className="max-b:leading-10 max-c:leading-12 min-a:text-5xl max-a:text-[44px] max-b:text-[40px]
+                max-g:text-[35px] max-e:text-[30px] max-e:leading-10 text-center mb-3 font-semibold">
+                    Curated Tech & Coding Resources</h1>
+
+                <p className="min-b:text-[22px] max-b:text-[20px] max-e:text-[18px] text-center pb-10 border-b-2
+                border-white/30 min-b:tracking-wide max-b:tracking-normal">
+                    Discover, save, and share top coding tutorials, tools, and guides for developers worldwide.</p>
             </div>
 
             {Object.entries(resources).map(([categoryKey, items]) => (
-                <section key={categoryKey} className="mb-6 mt-20 pb-10 border-b-2 border-white/30 min-a:w-[70%]
-                max-a:w-[80%] max-c:w-[90%]" data-aos="fade-up" data-aos-delay="100">
-                    <h2 className="text-3xl font-bold mb-6" data-aos="fade-up" data-aos-delay="200">
+                <section key={categoryKey} className="mb-6 min-c:mt-20 max-c:mt-10 max-e:mt-5 pb-10 border-b-2 border-white/30
+                min-a:w-[70%] max-a:w-[80%] max-c:w-[90%]" data-aos="fade-up" data-aos-delay="100">
+                    <h2 className="min-b:text-3xl max-b:text-[26px] max-e:text-2xl font-bold min-b:mb-6 max-b:mb-4"
+                        data-aos="fade-up" data-aos-delay="200">
                         {labels[categoryKey] || categoryKey} :
                     </h2>
 
@@ -101,7 +104,7 @@ function Content() {
                                 <img
                                     src={res.src}
                                     alt={res.alt}
-                                    className="w-[150px] h-[100px] object-contain"
+                                    className="w-[150px] min-f:h-[100px] max-f:h-[80px] object-contain"
                                 />
                                 <div className="uppercase text-sm font-semibold text-center">
                                     {res.name}
@@ -114,15 +117,15 @@ function Content() {
 
             {/* Call-to-action section */}
             <div className="p-8 text-center max-w-3xl mb-5">
-                <h2 className="text-2xl font-bold mb-4">
+                <h2 className="min-c:text-2xl max-c:text-[22px] max-d:text-[20px] font-bold min-c:mb-4 max-c:mb-3">
                     Do you see a missing tech & coding resource?
                 </h2>
-                <p className="text-lg mb-6">
+                <p className="min-c:text-lg max-c:text-[17px] max-d:text-[16px] mb-6">
                     Let us know and we will add it as soon as possible!
                 </p>
                 <button
-                    className="px-6 py-2.5 bg-cyan-500 hover:bg-cyan-600 rounded-lg text-black font-semibold transition
-                    cursor-pointer"
+                    className="bg-cyan-500 hover:bg-cyan-600 rounded-lg text-black font-semibold transition cursor-pointer
+                    min-c:px-6 max-c:px-4 min-c:py-2.5 max-c:py-2 max-c:text-[15px]"
                     onClick={() => alert("Feature coming soon!")}
                 >
                     Suggest a Resource

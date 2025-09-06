@@ -1,4 +1,5 @@
 // import components
+import { Navbar } from "../Components/Navbar";
 import { Footer } from "../Components/Footer";
 
 // react icons
@@ -31,6 +32,7 @@ export function ResourceDetail() {
                     "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
             }}
         >
+            <Navbar />
             <div>
                 <Content />
             </div>
@@ -191,11 +193,11 @@ function Content() {
     const { resources } = data;
 
     return (
-        <div className="py-8 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
+        <div className="min-e:py-10 max-e:py-6 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
             {/* Page heading */}
-            <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] text-center">
+            <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] text-center min-b:mt-10 max-b:mt-5 max-c:mt-3">
                 <h1 className="mb-3 font-semibold leading-12 border-b-2 border-white/30 min-b:text-5xl max-b:text-[40px]
-                min-b:pb-10 max-b:pb-5 max-d:text-[35px]"
+                min-b:pb-10 max-b:pb-5 max-d:text-[35px] max-f:text-[32px]"
                     data-aos="fade-up" data-aos-delay="100">
                     {customHeading} Resources
                 </h1>
@@ -342,7 +344,7 @@ function Content() {
                     <h2 className="min-d:text-xl max-d:text-[18px] font-bold mb-3">
                         Do you want to contribute your own favorite resource which is not present here?
                     </h2>
-                    <p className="mb-4 min-d:text-[16px] max-d:text-[14px] opacity-90">
+                    <p className="mb-6 min-d:text-[16px] max-d:text-[14px] opacity-90">
                         Help others by sharing what has helped you in your learning journey.
                     </p>
                     <button className="px-6 py-2 rounded-lg font-semibold bg-cyan-500 hover:bg-cyan-600 text-black
@@ -354,8 +356,9 @@ function Content() {
                     {isOpen && (
                         <div className="fixed inset-0 flex justify-center items-center bg-black/70 backdrop-blur-sm z-50">
                             <div
-                                className="bg-[#0d1b2a] border border-cyan-500/40 rounded-2xl w-[90%] max-w-2xl shadow-2xl
-                                relative animate-fadeIn py-8 min-e:px-10 max-e:px-8 max-f:pt-14 max-f:px-5"
+                                className="bg-[#0d1b2a] border border-cyan-500/40 min-e:rounded-2xl max-e:rounded-none
+                                min-e:w-[90%] max-w-2xl max-e:w-full max-e:h-full shadow-2xl relative animate-fadeIn py-8
+                                min-e:px-10 max-e:px-8 max-f:pt-14 max-f:px-5"
                                 data-aos="zoom-in"
                             >
                                 {/* Close button */}
