@@ -23,7 +23,7 @@ Built with **React, Node.js, Express, MongoDB** and deployed with **Vercel (fron
 
 ## 🖼️ Screenshots
 
-![DevStash Home Page](/frontend/public/images/image.png)
+![DevStash Home Page](/frontend/public/images/home.png)
 
 ---
 
