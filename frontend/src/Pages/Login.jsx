@@ -69,7 +69,7 @@ export function Login() {
         >
             <div className="flex min-c:flex-row max-c:flex-col-reverse bg-black/50 rounded-2xl overflow-hidden font-poppins
             shadow-2xl shadow-cyan-500/20 min-a:w-[950px] max-a:w-[90%] max-b:w-[95%] max-f:w-full max-f:rounded-none
-            max-f:h-screen" data-aos="fade-down">
+            max-f:min-h-screen" data-aos="fade-down">
 
                 {/* Left: Login form */}
                 <div className="bg-[#06B6D440]/40 min-d:p-8 max-d:py-6 max-d:px-5 flex-1 text-gray-300">

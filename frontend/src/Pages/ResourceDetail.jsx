@@ -358,7 +358,8 @@ function Content() {
                             <div
                                 className="bg-[#0d1b2a] border border-cyan-500/40 min-e:rounded-2xl max-e:rounded-none
                                 min-e:w-[90%] max-w-2xl max-e:w-full max-e:h-full shadow-2xl relative animate-fadeIn py-8
-                                min-e:px-10 max-e:px-8 max-f:pt-14 max-f:px-5"
+                                min-e:px-10 max-e:px-8 max-f:pt-14 max-f:px-5 max-e:flex max-e:flex-col max-e:justify-center
+                                max-e:items-center"
                                 data-aos="zoom-in"
                             >
                                 {/* Close button */}
@@ -377,7 +378,7 @@ function Content() {
                                     Share a useful link, article, or tutorial that has helped you.
                                 </p>
 
-                                <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-gray-300">
+                                <form onSubmit={handleSubmit} className="flex flex-col w-full gap-6 text-gray-300">
                                     <select
                                         name="type"
                                         className="col-span-2 border border-gray-600 rounded-lg p-3 bg-transparent

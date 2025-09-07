@@ -80,7 +80,7 @@ export function Signup() {
             }}
         >
             <div className="flex min-g:flex-row max-g:flex-col bg-[#06B6D440]/20 rounded-2xl overflow-hidden shadow-2xl
-            shadow-cyan-500/20 min-a:w-[1000px] max-a:w-[90%] max-b:w-[95%] max-f:w-full max-f:rounded-none max-f:h-screen
+            shadow-cyan-500/20 min-a:w-[1000px] max-a:w-[90%] max-b:w-[95%] max-f:w-full max-f:rounded-none max-f:min-sm:h-screen
             font-poppins" data-aos="fade-down">
 
                 {/* Left side - Image & Intro */}
@@ -89,7 +89,7 @@ export function Signup() {
                     <img
                         src="/images/Login/SideBox.png"
                         alt="Developer at work"
-                        className="w-90 h-auto mb-6"
+                        className="min-d:w-80 max-d:w-70 mb-6"
                     />
                     <h2 className="min-a:text-3xl max-a:text-[26px] max-f:text-2xl font-bold mb-4 text-center">
                         Welcome to DevStash</h2>
