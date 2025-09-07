@@ -10,12 +10,14 @@ This project thrives on the amazing resources shared by the community.
 1. **Navigate to the relevant technology page**  
    For example: If you want to contribute a **JavaScript Docs** resource, scroll down in the **JavaScript page**.
 
-2. **Click on the "Contribute" button**  
+    ![Contribute Resource](/frontend/public/images/con1.png)
+
+3. **Click on the "Contribute" button**  
    This will open a contribution form like this:  
 
-   ![Contribute Resource](/frontend/public/images/contribute.png)
+   ![Contribute Resource](/frontend/public/images/con2.png)
 
-3. **Fill in the form**  
+4. **Fill in the form**  
    - **Select Type** → Choose the resource type (Docs or Youtube resource).  
    - **Resource Title** → Enter the title of the resource.  
    - **Resource Link** → Provide the URL (Make sure it’s unique and not already added ✅).  
@@ -24,7 +26,7 @@ This project thrives on the amazing resources shared by the community.
 
    👉 By default, a `contributed` tag will also be added.
 
-4. **Click Submit 🚀**  
+5. **Click Submit 🚀**  
    And boom — your resource is now part of **DevStash** and available to all developers! 🎉
 
 ---
