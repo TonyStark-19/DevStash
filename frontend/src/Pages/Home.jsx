@@ -101,12 +101,16 @@ function Content() {
 
                 <div className="flex min-b:flex-row max-b:flex-col max-b:justify-center max-b:items-center gap-4 mt-5"
                     data-aos="fade-up" data-aos-delay="500">
-                    <button className="min-a:text-[17px] max-a:text-[15px] max-h:text-[14.5px] py-2 min-a:px-4 max-a:px-3
-                    cursor-pointer text-black bg-white rounded-xl capitalize flex flex-row justify-center
-                    items-center gap-1.5 hover:-translate-y-0.5 duration-300">
+                    <a
+                        href="https://github.com/TonyStark-19/DevStash/blob/main/CONTRIBUTING.md"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="min-a:text-[17px] max-a:text-[15px] max-h:text-[14.5px] py-2 min-a:px-4 max-a:px-3
+                        cursor-pointer text-black bg-white rounded-xl capitalize flex flex-row justify-center
+                        items-center gap-1.5 hover:-translate-y-0.5 duration-300">
                         <FiGithub />
                         How to contribute resources?
-                    </button>
+                    </a>
 
                     <Link to="/resources">
                         <button className="min-a:text-[17px] max-a:text-[15px] max-h:text-[14.5px] py-2 min-a:px-4 max-a:px-3

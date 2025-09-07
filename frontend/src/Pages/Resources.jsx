@@ -123,13 +123,15 @@ function Content() {
                 <p className="min-c:text-lg max-c:text-[17px] max-d:text-[16px] mb-6">
                     Let us know and we will add it as soon as possible!
                 </p>
-                <button
+                <a
+                    href="https://github.com/TonyStark-19/DevStash/issues/new?template=resource-suggestion.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-cyan-500 hover:bg-cyan-600 rounded-lg text-black font-semibold transition cursor-pointer
                     min-c:px-6 max-c:px-4 min-c:py-2.5 max-c:py-2 max-c:text-[15px]"
-                    onClick={() => alert("Feature coming soon!")}
                 >
                     Suggest a Resource
-                </button>
+                </a>
             </div>
         </div>
     );
