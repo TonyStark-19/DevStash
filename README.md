@@ -21,17 +21,38 @@ Built with **React, Node.js, Express, MongoDB** and deployed with **Vercel (fron
 
 ---
 
+## 🌐 Live Demo  
+
+The project is live and can be viewed here: [DevStash](https://devstash-nine.vercel.app)
+
+---
+
 ## 🖼️ Screenshots
+
+### Home Page
 
 ![DevStash Home Page](/frontend/public/images/home.png)
 
 ---
 
-## 🌐 Live Demo  
+### Resources Page
 
-The project is live and can be viewed here 👉 [DevStash](https://devstash-nine.vercel.app)
+![DevStash Home Page](/frontend/public/images/Resources.png)
 
 ---
+
+### Specific Resource Page
+
+![DevStash Home Page](/frontend/public/images/Specific.png)
+
+---
+
+### Saved Resources Page
+
+![DevStash Home Page](/frontend/public/images/Saved.png)
+
+---
+
 
 ## 🛠️ Tech Stack
 
