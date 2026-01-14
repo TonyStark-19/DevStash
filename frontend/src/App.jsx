@@ -11,29 +11,33 @@ import { SavedResources } from "./Pages/SavedResources";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import PublicRoute from "./Components/PublicRoute";
 import { AuthProvider, useAuth } from "./Context/AuthContext";
-import ScrollToTop from "./Pages/ScrollToTop";
+import ScrollToTop from "./Components/ScrollToTop";
 
-// ✅ import Toaster
+// import Toaster
 import { Toaster } from "react-hot-toast";
 
+// App Routes Component
 function AppRoutes() {
   const { loading } = useAuth();
 
+  // Show loading screen while auth state is being determined
   if (loading) {
     return (
       <div
-        className="flex items-center justify-center h-screen text-white"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
-        }}
-      ></div>
+        className="flex flex-col items-center justify-center h-screen bg-[#030712] font-poppins"
+      >
+        <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin"></div>
+        <p className="mt-4 text-slate-400 font-medium tracking-widest animate-pulse">
+          DEVSTASH
+        </p>
+      </div>
     );
   }
 
   return (
     <>
       <ScrollToTop />
+
       <Routes>
         {/* Public routes */}
         <Route
@@ -91,17 +95,17 @@ function AppRoutes() {
   );
 }
 
+// Main App Component
 export default function App() {
   return (
     <AuthProvider>
       <AppRoutes />
-
       <Toaster
         position="top-center"
         reverseOrder={false}
         toastOptions={{
           style: {
-            background: "#111827", // dark background
+            background: "#111827",
             color: "#fff",
             fontSize: "15px",
           },

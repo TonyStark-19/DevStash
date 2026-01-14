@@ -1,49 +1,31 @@
-// import Link and use navigate
 import { Link, useNavigate } from "react-router-dom";
-
-// import axios
-import axios from 'axios';
-
-// import useState and useEffect
 import { useState, useEffect } from "react";
-
-// import context
 import { useAuth } from "../Context/AuthContext";
-
-// AOS animations
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
-// import axios instance
 import api from "../utils/api";
-
-// import toast
 import toast from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
+import { FiMail, FiLock, FiArrowRight } from "react-icons/fi";
 
-// Signup page
 export function Signup() {
     const navigate = useNavigate();
     const { login } = useAuth();
 
-    // form entries
     const [formData, setFormData] = useState({
         email: "",
         password: "",
         confirmPassword: "",
     });
 
-    // handle change
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // handle submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const { email, password, confirmPassword } = formData;
 
-        // if passowrd do not match
         if (password !== confirmPassword) {
             toast.error("Passwords do not match ⚠️");
             return;
@@ -52,118 +34,141 @@ export function Signup() {
         try {
             const res = await api.post("/auth/signup", { email, password });
             login(res.data.token);
-
             toast.success("Signup successful 🎉");
-
-            // ✅ Redirect to home after a delay
             setTimeout(() => navigate("/home", { replace: true }), 1500);
         } catch (err) {
-            console.error(err);
-            toast.error("Signup failed: " + (err.response?.data?.message || "Something went wrong"));
+            toast.error(err.response?.data?.message || "Signup failed");
         }
     };
 
-    // AOS animations
+    const handleGoogleSignup = () => {
+        // Integrate your Google Auth Logic here
+        toast.loading("Redirecting to Google...");
+    };
+
     useEffect(() => {
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        AOS.init({ duration: 1000, once: true });
     }, []);
 
     return (
-        <div
-            className="flex justify-center items-center min-h-screen min-f:px-4 max-f:px-0 min-c:py-10 max-c:py-10 max-f:py-0"
-            style={{
-                background:
-                    "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
-            }}
-        >
-            <div className="flex min-g:flex-row max-g:flex-col bg-[#06B6D440]/20 rounded-2xl overflow-hidden shadow-2xl
-            shadow-cyan-500/20 min-a:w-[1000px] max-a:w-[90%] max-b:w-[95%] max-f:w-full max-f:rounded-none max-f:min-sm:h-screen
-            font-poppins" data-aos="fade-down">
+        <div className="min-h-screen bg-[#030712] flex items-center justify-center p-6 font-poppins relative overflow-hidden">
+            {/* Ambient Background Glows */}
+            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 blur-[120px] rounded-full" />
 
-                {/* Left side - Image & Intro */}
-                <div className="min-g:w-1/2 max-g:w-full bg-gradient-to-b from-cyan-500/20 to-cyan-700/20 flex flex-col 
-                min-d:py-8 max-d:py-4 min-d:px-6 max-d:px-3 justify-center items-center text-gray-300">
-                    <img
-                        src="/images/Login/SideBox.png"
-                        alt="Developer at work"
-                        className="min-d:w-80 max-d:w-70 mb-6"
-                    />
-                    <h2 className="min-a:text-3xl max-a:text-[26px] max-f:text-2xl font-bold mb-4 text-center">
-                        Welcome to DevStash</h2>
-                    <p className="min-a:text-[17px] max-a:text-[16px] max-d:text-[15px mb-2 text-center max-c:w-[80%]
-                    max-g:w-[90%]">
-                        Your personal hub for curated tech & coding resources.
-                        Discover top-notch tutorials, tools, and guides — all in one place.
-                    </p>
+            <div
+                className="w-full max-w-[1100px] grid grid-cols-1 lg:grid-cols-2 bg-white/[0.02] border border-white/10 rounded-[2.5rem] overflow-hidden backdrop-blur-md shadow-2xl"
+                data-aos="zoom-in"
+            >
+                {/* Left Side: Branding/Intro */}
+                <div className="hidden lg:flex flex-col justify-center p-12 bg-gradient-to-br from-cyan-500/10 to-transparent border-r border-white/5">
+                    <div className="mb-8">
+                        <div className="w-12 h-12 bg-cyan-500 rounded-2xl flex items-center justify-center text-black font-bold text-2xl mb-6">D</div>
+                        <h2 className="text-4xl font-bold text-white mb-4 leading-tight">
+                            Build your <br />
+                            <span className="text-cyan-400">Knowledge Stash</span>
+                        </h2>
+                        <p className="text-slate-400 text-lg leading-relaxed">
+                            Join 2,000+ developers organizing their learning journey. Curated, shared, and built for the community.
+                        </p>
+                    </div>
+
+                    {/* Visual Element: Subtle Floating Image or Placeholder */}
+                    <div className="relative mt-auto">
+                        <img
+                            src="/images/Login/SideBox.png"
+                            alt="Developer illustration"
+                            className="w-full h-auto opacity-80 animate-float"
+                        />
+                    </div>
                 </div>
 
-                {/* Right box - Signup Form */}
-                <div className="min-g:w-1/2 max-g:w-full min-d:p-8 max-d:py-6 max-d:px-5 text-gray-300 flex-1">
-                    <h1 className="min-b:text-4xl max-b:text-[32px] max-d:text-[28px] mb-8 font-bold">Sign up</h1>
+                {/* Right Side: Signup Form */}
+                <div className="p-8 md:p-14 flex flex-col justify-center">
+                    <div className="mb-10 text-center lg:text-left">
+                        <h1 className="text-3xl font-bold text-white mb-2">Create an account</h1>
+                        <p className="text-slate-400">Start your journey with DevStash today.</p>
+                    </div>
 
-                    <form className="flex flex-col" onSubmit={handleSubmit}>
-                        <label htmlFor="email" className="mb-2 text-sm font-medium">
-                            Email Address
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Email address"
-                            required
-                            autoComplete="email"
-                            className="border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
-                            value={formData.email}
-                            onChange={handleChange}
-                        />
+                    {/* Google Button */}
+                    <button
+                        onClick={handleGoogleSignup}
+                        className="w-full py-3 px-4 bg-white hover:bg-slate-100 text-black font-semibold rounded-xl flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-[1.01] active:scale-95 mb-6"
+                    >
+                        <FcGoogle className="text-2xl" />
+                        Sign up with Google
+                    </button>
 
-                        <label htmlFor="password" className="mb-2 text-sm font-medium">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Password"
-                            required
-                            className="border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
-                            value={formData.password}
-                            onChange={handleChange}
-                        />
+                    <div className="flex items-center gap-4 mb-6">
+                        <div className="h-px w-full bg-white/10"></div>
+                        <span className="text-xs text-slate-500 font-bold uppercase tracking-widest">OR</span>
+                        <div className="h-px w-full bg-white/10"></div>
+                    </div>
 
-                        <label htmlFor="confirm-password" className="mb-2 text-sm font-medium">
-                            Confirm Password
-                        </label>
-                        <input
-                            type="password"
-                            id="confirm-password"
-                            name="confirmPassword"
-                            placeholder="Confirm password"
-                            required
-                            className="border border-gray-400 rounded-md p-3 mb-6 bg-transparent"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
-                        />
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        <div className="space-y-1">
+                            <label className="text-xs font-bold text-slate-500 ml-1 uppercase">Email Address</label>
+                            <div className="relative">
+                                <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="name@company.com"
+                                    required
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-12 text-white outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-all"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="space-y-1">
+                            <label className="text-xs font-bold text-slate-500 ml-1 uppercase">Password</label>
+                            <div className="relative">
+                                <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="••••••••"
+                                    required
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-12 text-white outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-all"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="space-y-1">
+                            <label className="text-xs font-bold text-slate-500 ml-1 uppercase">Confirm Password</label>
+                            <div className="relative">
+                                <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+                                <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    placeholder="••••••••"
+                                    required
+                                    value={formData.confirmPassword}
+                                    onChange={handleChange}
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-12 text-white outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-all"
+                                />
+                            </div>
+                        </div>
 
                         <button
                             type="submit"
-                            className="py-2.5 px-4 bg-[#06B6D440]/60 hover:bg-[#06B6D440]/80 text-gray-300 font-semibold 
-                            rounded-md cursor-pointer transition mb-6"
+                            className="w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all flex items-center justify-center gap-2 group mt-4 transform hover:scale-[1.01]"
                         >
-                            Sign up
+                            Create Account
+                            <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
                         </button>
                     </form>
 
-                    <div className="flex min-h:flex-row max-h:flex-col justify-center items-center min-d:text-[17px]
-                    max-d:text-[16px]">
-                        <p>Already have an account?</p>
-                        <Link to="/" className="ml-2 hover:underline text-cyan-500/70">
+                    <p className="mt-8 text-center text-slate-400 text-sm">
+                        Already have an account?{" "}
+                        <Link to="/" className="text-cyan-400 font-bold hover:underline">
                             Login now
                         </Link>
-                    </div>
+                    </p>
                 </div>
             </div>
         </div>

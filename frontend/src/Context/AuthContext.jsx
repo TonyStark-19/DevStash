@@ -4,6 +4,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 // create context
 const AuthContext = createContext();
 
+// auth provider
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true); // ✅ loading state
@@ -38,6 +39,7 @@ export function AuthProvider({ children }) {
   );
 }
 
+// use auth hook
 export function useAuth() {
   return useContext(AuthContext);
 }

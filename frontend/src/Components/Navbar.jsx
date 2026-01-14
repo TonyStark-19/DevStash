@@ -1,60 +1,71 @@
-// react icons
-import { FaRegUser } from "react-icons/fa";
-import { IoIosLogOut } from "react-icons/io";
-
-// import Link and use navigate
-import { Link, useNavigate } from "react-router-dom";
-
-// import context
+// import necessary libraries and components
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
-import { useState } from "react";
+import { IoIosLogOut } from "react-icons/io";
+import { FiBookmark, FiHome, FiLayers } from "react-icons/fi";
 
-// Navbar component
+// Navbar Component
 export function Navbar() {
     const navigate = useNavigate();
+    const location = useLocation();
     const { logout } = useAuth();
-    const [showMenu, setShowMenu] = useState(false);
 
-    // handle logout
     const handleLogout = () => {
         logout();
-        navigate("/"); // back to login
+        navigate("/");
+    };
+
+    // This ensures "Resources" stays active even when viewing a detail page
+    const isActive = (path) => {
+        if (path === '/home') return location.pathname === '/home';
+        return location.pathname.startsWith(path);
     };
 
     return (
-        <div className="text-white/80 py-7 flex flex-row items-center w-full font-poppins relative min-a:justify-evenly
-        max-a:justify-around max-d:justify-between max-d:px-8">
-            <Link to="/home">
-                <div className="text-2xl font-semibold cursor-pointer">DevStash</div>
+        <nav className="w-full h-20 flex items-center justify-between px-8 md:px-16 border-b border-white/5 bg-black/20 backdrop-blur-md z-40 sticky top-0">
+            {/* Logo */}
+            <Link to="/home" className="flex items-center gap-2 group">
+                <span className="text-xl font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
+                    DevStash
+                </span>
             </Link>
 
-            {/* Wrap icon + dropdown together */}
-            <div
-                className="relative inline-block"
-                onClick={() => setShowMenu(!showMenu)}
-            >
-                <FaRegUser className="text-[22px] cursor-pointer" />
+            {/* Navigation Elements */}
+            <div className="flex items-center gap-8">
+                <div className="hidden md:flex items-center gap-6 border-r border-white/10 pr-8">
+                    <Link
+                        to="/home"
+                        className={`flex items-center gap-2 text-sm font-medium transition-colors
+                            ${isActive('/home') ? 'text-cyan-400' : 'text-slate-400 hover:text-white'}`}
+                    >
+                        <FiHome /> Home
+                    </Link>
+                    <Link
+                        to="/resources"
+                        className={`flex items-center gap-2 text-sm font-medium transition-colors
+                            ${isActive('/resources') ? 'text-cyan-400' : 'text-slate-400 hover:text-white'}`}
+                    >
+                        <FiLayers /> Resources
+                    </Link>
+                    <Link
+                        to="/saved"
+                        className={`flex items-center gap-2 text-sm font-medium transition-colors
+                            ${isActive('/saved') ? 'text-cyan-400' : 'text-slate-400 hover:text-white'}`}
+                    >
+                        <FiBookmark /> Saved
+                    </Link>
+                </div>
 
-                {showMenu && (
-                    <div className="absolute flex flex-col bg-white/10 right-0 w-45 mt-2 py-3 px-5 rounded-lg shadow-lg">
-                        <Link
-                            to="/saved"
-                            className="text-[16px] mb-2 hover:text-cyan-400"
-                        >
-                            Saved Resources
-                        </Link>
-
-                        <button
-                            onClick={handleLogout}
-                            className="w-full flex flex-row items-center gap-2 text-left text-[16px] text-red-400
-                            hover:text-red-500 cursor-pointer"
-                        >
-                            Logout
-                            <IoIosLogOut />
-                        </button>
-                    </div>
-                )}
+                {/* Logout Action */}
+                <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-400 bg-red-400/5 border border-red-400/10
+                    rounded-full hover:bg-red-400 hover:text-white transition-all duration-300 cursor-pointer"
+                >
+                    <span>Logout</span>
+                    <IoIosLogOut className="text-lg" />
+                </button>
             </div>
-        </div>
+        </nav>
     );
 }

@@ -5,6 +5,7 @@ import { Footer } from "../Components/Footer";
 // react icons
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
+import { FiArrowUpRight, FiPlus, FiX } from "react-icons/fi";
 
 // import useState and useEffect
 import { useState, useEffect } from "react";
@@ -22,95 +23,15 @@ import 'aos/dist/aos.css';
 // import toast
 import toast from "react-hot-toast";
 
-// resource page
+// Resource Detail Page Component
 export function ResourceDetail() {
-    return (
-        <div
-            className="min-h-screen"
-            style={{
-                background:
-                    "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
-            }}
-        >
-            <Navbar />
-            <div>
-                <Content />
-            </div>
-            <Footer />
-        </div>
-    );
-}
-
-// content
-function Content() {
     const { category, subcategory } = useParams();
-    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [savedResources, setSavedResources] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+    const [data, setData] = useState(null);
+    const [submitting, setSubmitting] = useState(false);
 
-    // fetch resources from DB
-    useEffect(() => {
-        setLoading(true);
-        api.get(`/resources/${category}/${subcategory}`)
-            .then((res) => {
-                setData(res.data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.error(err);
-                setLoading(false);
-            });
-    }, [category, subcategory]);
-
-    // fetch saved resources on mount
-    useEffect(() => {
-        const fetchSaved = async () => {
-            try {
-                const res = await api.get("/saved-resources/saved");
-                setSavedResources(res.data); // flat array from backend
-            } catch (err) {
-                console.error("Error fetching saved resources:", err.response?.data || err.message);
-            }
-        };
-        fetchSaved();
-    }, []);
-
-    // handle saving
-    const handleSave = async (resourceId, type, itemId) => {
-        try {
-            const exists = savedResources.some(
-                (item) =>
-                    item.resourceId === resourceId &&
-                    item.type === type &&
-                    item.itemId === itemId
-            );
-
-            if (exists) {
-                await api.post(`/saved-resources/unsave/${resourceId}`, { type, itemId });
-                setSavedResources((prev) =>
-                    prev.filter(
-                        (item) =>
-                            !(
-                                item.resourceId === resourceId &&
-                                item.type === type &&
-                                item.itemId === itemId
-                            )
-                    )
-                );
-                toast.success("Resource unsaved ❌");
-            } else {
-                await api.post(`/saved-resources/save/${resourceId}`, { type, itemId });
-                setSavedResources((prev) => [...prev, { resourceId, type, itemId }]);
-                toast.success("Resource saved ✅");
-            }
-        } catch (err) {
-            console.error("Error saving/unsaving resource:", err.response?.data || err.message);
-            toast.error("Error saving/unsaving resource");
-        }
-    };
-
-    // form data
+    // Form State
     const [formData, setFormData] = useState({
         type: "",
         title: "",
@@ -119,338 +40,312 @@ function Content() {
         link: "",
     });
 
-    // handle change
+    // Form logic
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // handle form submission
+    // Handle Form Submit
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitting(true); // Start loader
 
-        // prepare tags
-        const tagsArray = formData.tags
-            .split(",")
-            .map((tag) => tag.trim())
-            .filter((tag) => tag.length > 0);
+        const tagsArray = formData.tags.split(",").map(tag => tag.trim()).filter(tag => tag.length > 0);
 
-        // min and max tags
         if (tagsArray.length < 2 || tagsArray.length > 4) {
             toast.error("Please provide between 2 and 4 tags.");
             return;
         }
 
-        // final data
         const finalData = { ...formData, tags: tagsArray };
 
         try {
-            const res = await api.post(
-                `/resources/contribute/${category}/${subcategory}`,
-                finalData
-            );
-
-            // success
+            const res = await api.post(`/resources/contribute/${category}/${subcategory}`, finalData);
             if (res.status === 201) {
                 toast.success("Resource submitted 🚀");
-
-                // 🔄 Re-fetch instead of optimistic push
                 const refreshed = await api.get(`/resources/${category}/${subcategory}`);
                 setData(refreshed.data);
-
                 setIsOpen(false);
                 setFormData({ title: "", description: "", tags: "", link: "", type: "" });
             }
         } catch (err) {
-            console.error("Error contributing resource:", err.response?.data || err.message);
             toast.error(err.response?.data?.message || "Error contributing resource");
+        } finally {
+            setSubmitting(false); // Stop loader
         }
     };
 
-    // AOS animations
-    useEffect(() => {
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-    }, []);
-
-    // custom heading for some resources
-    const headingMap = {
-        "html": "HTML", "css": "CSS", "javascript": "JavaScript", "typescript": "TypeScript", "react": "React",
-        "nextjs": "Next JS", "vue": "Vue JS", "nuxtjs": "Nuxt JS", "angular": "Angular JS", "svelte": "Svelte",
-        "bootstrap": "Bootstrap CSS", "tailwind": "Tailwind CSS", "materialui": "Material UI",
-        "nodejs": "Node JS", "express": "Express JS", "django": "Django", "flask": "Flask", "rubyonrails": "Ruby on rails",
-        "laravel": "Laraval", "fastapi": "Fast API",
-    }
-
-    const customHeading = headingMap[subcategory] || subcategory;
-
-    // loading
-    if (loading) return <div className="h-screen"></div>;
-    if (!data) return <p className="text-red-500">No resources found</p>;
-
-    // resources
-    const { resources } = data;
-
     return (
-        <div className="min-e:py-10 max-e:py-6 text-white/80 font-poppins h-full pt-20 flex flex-col items-center">
-            {/* Page heading */}
-            <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] text-center min-b:mt-10 max-b:mt-5 max-c:mt-3">
-                <h1 className="mb-3 font-semibold leading-12 border-b-2 border-white/30 min-b:text-5xl max-b:text-[40px]
-                min-b:pb-10 max-b:pb-5 max-d:text-[35px] max-f:text-[32px]"
-                    data-aos="fade-up" data-aos-delay="100">
-                    {customHeading} Resources
-                </h1>
+        <div className="min-h-screen bg-[#030712] font-poppins text-slate-200">
+            {/* Ambient Background */}
+            <div className="fixed inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-cyan-500/10 blur-[120px] rounded-full opacity-50" />
             </div>
 
-            {/* Resources Section */}
-            <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] min-b:mt-15 max-b:mt-0">
-                <h2 className="min-c:text-3xl max-c:text-[26px] font-semibold min-b:mt-18 max-b:mt-10 min-c:mb-6 max-c:mb-3"
-                    data-aos="fade-up" data-aos-delay="200">Docs & Articles :</h2>
+            <Navbar />
+            <main className="relative z-10 pb-20">
+                <Content
+                    loading={loading}
+                    setLoading={setLoading}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    data={data}
+                    setData={setData}
+                    category={category}
+                    subcategory={subcategory}
+                />
+            </main>
 
-                {/* docs */}
-                <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10"
-                    data-aos="fade-up" data-aos-delay="200">
-                    {resources.docs.map((res, idx) => (
-                        <div
-                            key={`docs-${res.id || idx}`}
-                            data-aos="fade-up"
-                            className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative
-                            shadow-lg shadow-cyan-500/10"
-                        >
-                            {/* Logo */}
-                            <img
-                                src={res.image}
-                                alt={res.title}
-                                className="w-10 h-auto mb-5"
-                            />
+            {/* Contribution Modal */}
+            {isOpen && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={() => setIsOpen(false)} />
+                    <div className="relative w-full max-w-lg bg-[#0d1117] border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-2xl animate-in
+                    zoom-in-95 duration-300">
+                        <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors
+                        cursor-pointer">
+                            <FiX size={24} />
+                        </button>
 
-                            {/* Title + Description */}
-                            <h1 className="text-[22px] font-semibold mb-3">{res.title}</h1>
-                            <p className="text-[17px]">{res.description}</p>
+                        <h3 className="text-2xl font-bold text-white mb-2">Add New Resource</h3>
+                        <p className="text-slate-400 text-sm mb-8">Share a link that will help the community.</p>
 
-                            {/* CTA */}
-                            <a
-                                href={res.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-block text-blue-400 hover:text-blue-300 text-[15px] mt-4 cursor-pointer"
-                            >
-                                Visit Resource →
-                            </a>
-
-                            {/* Tags */}
-                            <div className="flex flex-row flex-wrap gap-2.5 min-b:absolute min-b:top-8 min-b:right-6 max-b:bottom-6
-                            max-b:left-6 max-b:max-w-[80%] max-b:flex-wrap max-b:mt-5">
-                                {res.tags.map((tag, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-[#06B6D440]/40 rounded-lg py-1 px-3 text-sm"
-                                    >
-                                        {tag}
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Save button */}
-                            <button
-                                onClick={() => handleSave(data._id, "docs", res._id)}
-                                className="text-blue-400 absolute right-6 bottom-6 text-xl cursor-pointer"
-                            >
-                                {savedResources.some(
-                                    (item) =>
-                                        item.resourceId === data._id &&
-                                        item.type === "docs" &&
-                                        item.itemId === res._id
-                                ) ? (
-                                    <FaBookmark />
-                                ) : (
-                                    <CiBookmark />
-                                )}
-                            </button>
-                        </div>
-                    ))}
-                </div>
-
-                <h2 className="min-c:text-3xl max-c:text-[26px] font-semibold mt-18 min-c:mb-6 max-c:mb-3"
-                    data-aos="fade-up" data-aos-delay="100">Youtube Resources :</h2>
-
-                {/* youtube */}
-                <div className="flex flex-col gap-10 border-b-2 border-b-white/30 pb-10"
-                    data-aos="fade-up" data-aos-delay="200">
-                    {resources.youtube.map((res, idx) => (
-                        <div
-                            key={`youtube-${res.id || idx}`}
-                            data-aos="fade-up"
-                            className="bg-[#06B6D440]/40 hover:bg-[#06B6D440]/60 duration-300 rounded-2xl p-6 w-full relative
-                            shadow-lg shadow-cyan-500/10"
-                        >
-                            {/* Logo */}
-                            <img
-                                src={res.image}
-                                alt={res.title}
-                                className="w-10 h-auto mb-5"
-                            />
-
-                            {/* Title + Description */}
-                            <h1 className="text-[22px] font-semibold mb-3">{res.title}</h1>
-                            <p className="text-[17px]">{res.description}</p>
-
-                            {/* CTA */}
-                            <a
-                                href={res.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-block text-blue-400 hover:text-blue-300 text-[15px] mt-4 cursor-pointer"
-                            >
-                                Visit Resource →
-                            </a>
-
-                            {/* Tags */}
-                            <div className="flex flex-row flex-wrap gap-2.5 min-b:absolute min-b:top-8 min-b:right-6 max-b:bottom-6
-                            max-b:left-6 max-b:max-w-[80%] max-b:flex-wrap max-b:mt-5">
-                                {res.tags.map((tag, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-[#06B6D440]/40 rounded-lg py-1 px-3 text-sm"
-                                    >
-                                        {tag}
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Save button */}
-                            <button
-                                onClick={() => handleSave(data._id, "youtube", res._id)}
-                                className="text-blue-400 absolute right-6 bottom-6 text-xl cursor-pointer"
-                            >
-                                {savedResources.some(
-                                    (item) =>
-                                        item.resourceId === data._id &&
-                                        item.type === "youtube" &&
-                                        item.itemId === res._id
-                                ) ? (
-                                    <FaBookmark />
-                                ) : (
-                                    <CiBookmark />
-                                )}
-                            </button>
-                        </div>
-                    ))}
-                </div>
-
-                {/* contribute resource */}
-                <div className="mt-10 p-6 text-white text-center mb-5">
-                    <h2 className="min-d:text-xl max-d:text-[18px] font-bold mb-3">
-                        Do you want to contribute your own favorite resource which is not present here?
-                    </h2>
-                    <p className="mb-6 min-d:text-[16px] max-d:text-[14px] opacity-90">
-                        Help others by sharing what has helped you in your learning journey.
-                    </p>
-                    <button className="px-6 py-2 rounded-lg font-semibold bg-cyan-500 hover:bg-cyan-600 text-black
-                    cursor-pointer min-d:text-[16px] max-d:text-[14px]"
-                        onClick={() => setIsOpen(true)}>
-                        Contribute Your Resource
-                    </button>
-
-                    {isOpen && (
-                        <div className="fixed inset-0 flex justify-center items-center bg-black/70 backdrop-blur-sm z-50">
-                            <div
-                                className="bg-[#0d1b2a] border border-cyan-500/40 min-e:rounded-2xl max-e:rounded-none
-                                min-e:w-[90%] max-w-2xl max-e:w-full max-e:h-full shadow-2xl relative animate-fadeIn py-8
-                                min-e:px-10 max-e:px-8 max-f:pt-14 max-f:px-5 max-e:flex max-e:flex-col max-e:justify-center
-                                max-e:items-center"
-                                data-aos="zoom-in"
-                            >
-                                {/* Close button */}
-                                <button
-                                    onClick={() => setIsOpen(false)}
-                                    className="absolute top-4 right-4 text-gray-400 hover:text-white text-xl cursor-pointer"
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div className="space-y-1">
+                                <label className="text-xs font-bold text-slate-500 ml-1">CONTENT TYPE</label>
+                                <select
+                                    name="type"
+                                    value={formData.type}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500
+                                    transition-colors text-white"
                                 >
-                                    ✕
-                                </button>
+                                    <option value="" disabled className="bg-[#0d1117]">Select Type</option>
+                                    <option value="docs" className="bg-[#0d1117]">Documentation / Article</option>
+                                    <option value="youtube" className="bg-[#0d1117]">YouTube Video</option>
+                                </select>
+                            </div>
 
-                                <h3 className="min-e:text-3xl max-e:text-[25px] min-e:mb-6 max-e:mb-3 font-bold
-                                text-cyan-400 text-center">Contribute a Resource 🚀
-                                </h3>
+                            <input
+                                name="title"
+                                type="text"
+                                placeholder="Resource Title"
+                                value={formData.title}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500 transition-colors
+                                text-white"
+                            />
 
-                                <p className="text-center text-gray-400 mb-8 max-e:text-[15px]">
-                                    Share a useful link, article, or tutorial that has helped you.
-                                </p>
+                            <input
+                                name="link"
+                                type="url"
+                                placeholder="Resource URL (https://...)"
+                                value={formData.link}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500 transition-colors
+                                text-white"
+                            />
 
-                                <form onSubmit={handleSubmit} className="flex flex-col w-full gap-6 text-gray-300">
-                                    <select
-                                        name="type"
-                                        className="col-span-2 border border-gray-600 rounded-lg p-3 bg-transparent
-                                        focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
-                                        onChange={handleChange}
-                                        value={formData.type}
-                                        required
-                                    >
-                                        <option value="" disabled>Select Type</option>
-                                        <option value="docs">Docs / Article</option>
-                                        <option value="youtube">YouTube</option>
-                                    </select>
+                            <textarea
+                                name="description"
+                                placeholder="Brief description..."
+                                rows={3}
+                                value={formData.description}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500 transition-colors
+                                text-white"
+                            />
 
-                                    <div className="flex min-e:flex-row max-e:flex-col gap-6">
-                                        <input
-                                            type="text"
-                                            name="title"
-                                            placeholder="Resource Title"
-                                            className="border border-gray-600 rounded-lg p-3 bg-transparent w-full
-                                            focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
-                                            onChange={handleChange}
-                                            value={formData.title}
-                                            required
-                                        />
+                            <input
+                                name="tags"
+                                type="text"
+                                placeholder="Tags (comma separated, e.g. React, UI, Frontend)"
+                                value={formData.tags}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500 transition-colors
+                                text-white"
+                            />
 
-                                        <input
-                                            type="url"
-                                            name="link"
-                                            placeholder="Resource Link"
-                                            className="border border-gray-600 rounded-lg p-3 bg-transparent w-full
-                                            focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
-                                            onChange={handleChange}
-                                            value={formData.link}
-                                            required
-                                        />
+                            <button
+                                type="submit"
+                                disabled={submitting} // Prevent double submission
+                                className={`w-full py-4 flex items-center justify-center gap-2 text-black font-bold rounded-xl transition-all mt-4 
+                                ${submitting ? 'bg-cyan-600 cursor-not-allowed opacity-70' : 'bg-cyan-500 hover:bg-cyan-400 cursor-pointer'}`}
+                            >
+                                {submitting ? (
+                                    <>
+                                        <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
+                                        SUBMITTING...
+                                    </>
+                                ) : (
+                                    'SUBMIT TO STASH'
+                                )}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Footer is conditionally rendered based on loading state */}
+            {!loading && <Footer />}
+        </div>
+    );
+}
+
+// Content Component
+function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, category, subcategory }) {
+    const [savedResources, setSavedResources] = useState([]);
+
+    // Pretty heading map
+    const headingMap = {
+        "html": "HTML", "css": "CSS", "javascript": "JavaScript", "typescript": "TypeScript",
+        "react": "React", "nextjs": "Next JS", "nodejs": "Node JS", "fastapi": "Fast API"
+    };
+    const customHeading = headingMap[subcategory] || subcategory;
+
+    // Fetch Resource Data
+    useEffect(() => {
+        setLoading(true);
+        api.get(`/resources/${category}/${subcategory}`)
+            .then((res) => {
+                setData(res.data);
+                setLoading(false);
+            })
+            .catch(() => setLoading(false));
+    }, [category, subcategory]);
+
+    // Fetch Saved Resources
+    useEffect(() => {
+        const fetchSaved = async () => {
+            try {
+                const res = await api.get("/saved-resources/saved");
+                setSavedResources(res.data);
+            } catch (err) { console.error(err); }
+        };
+        fetchSaved();
+    }, []);
+
+    // Initialize AOS
+    useEffect(() => {
+        AOS.init({ duration: 800, once: true });
+    }, []);
+
+    // Handle Save/Unsave Resource
+    const handleSave = async (resourceId, type, itemId) => {
+        try {
+            const exists = savedResources.some(item =>
+                item.resourceId === resourceId && item.type === type && item.itemId === itemId
+            );
+
+            if (exists) {
+                await api.post(`/saved-resources/unsave/${resourceId}`, { type, itemId });
+                setSavedResources(prev => prev.filter(item => !(item.resourceId === resourceId && item.itemId === itemId)));
+                toast.success("Removed from bookmarks");
+            } else {
+                await api.post(`/saved-resources/save/${resourceId}`, { type, itemId });
+                setSavedResources(prev => [...prev, { resourceId, type, itemId }]);
+                toast.success("Saved to bookmarks");
+            }
+        } catch (err) { toast.error("Action failed"); }
+    };
+
+    // Loading and Error States
+    if (loading) return <div className="h-[60vh] flex items-center justify-center">
+        <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div></div>;
+    if (!data) return <div className="h-[60vh] flex items-center justify-center text-red-400">Resource not found</div>;
+
+    return (
+        <div className="max-w-5xl mx-auto px-6 pt-16">
+            {/* Header Section */}
+            <div className="text-center mb-20" data-aos="fade-down">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 capitalize tracking-tight">
+                    {customHeading} <span className="text-cyan-400">Mastery</span>
+                </h1>
+                <div className="h-1 w-24 bg-cyan-500 mx-auto rounded-full" />
+            </div>
+
+            {/* Resource Groups */}
+            {['docs', 'youtube'].map((type) => (
+                <section key={type} className="mb-24">
+                    <div className="flex items-center gap-4 mb-10" data-aos="fade-right">
+                        <h2 className="text-2xl font-bold text-white uppercase tracking-widest">
+                            {type === 'docs' ? 'Official Docs & Articles' : 'Video Tutorials'}
+                        </h2>
+                        <div className="flex-1 h-px bg-white/10" />
+                    </div>
+
+                    <div className="space-y-6">
+                        {data.resources[type].map((res, idx) => (
+                            <div
+                                key={idx}
+                                data-aos="fade-up"
+                                className="group relative w-full bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8 hover:bg-white/[0.08]
+                                hover:border-cyan-500/30 transition-all duration-300"
+                            >
+                                <div className="flex flex-col md:flex-row gap-6 items-start">
+                                    {/* Icon/Image */}
+                                    <div className="w-14 h-14 rounded-2xl bg-white/5 p-3 flex-shrink-0 border border-white/10">
+                                        <img src={res.image} alt="" className="w-full h-full object-contain" />
                                     </div>
 
-                                    <textarea
-                                        name="description"
-                                        placeholder="Short Description"
-                                        rows={2}
-                                        className="col-span-2 border border-gray-600 rounded-lg p-3 bg-transparent
-                                        focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
-                                        onChange={handleChange}
-                                        value={formData.description}
-                                        required
-                                    />
+                                    {/* Content */}
+                                    <div className="flex-1">
+                                        <div className="flex justify-between items-start gap-4 mb-2">
+                                            <h3 className="text-xl md:text-2xl font-semibold text-white group-hover:text-cyan-400 transition-colors">
+                                                {res.title}
+                                            </h3>
+                                            <button
+                                                onClick={() => handleSave(data._id, type, res._id)}
+                                                className="text-2xl text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer"
+                                                title="Save to stash"
+                                            >
+                                                {savedResources.some(item => item.itemId === res._id) ? <FaBookmark className="text-cyan-500" /> : <CiBookmark />}
+                                            </button>
+                                        </div>
+                                        <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 max-w-3xl">
+                                            {res.description}
+                                        </p>
 
-                                    <input
-                                        type="text"
-                                        name="tags"
-                                        placeholder="Tags (comma separated, min 2, max 4)"
-                                        className="col-span-2 border border-gray-600 rounded-lg p-3 bg-transparent
-                                        focus:border-cyan-400 focus:ring focus:ring-cyan-500/40 outline-none transition"
-                                        onChange={handleChange}
-                                        value={formData.tags}
-                                        required
-                                    />
-
-                                    <button
-                                        type="submit"
-                                        className="col-span-2 py-3 px-6 bg-cyan-500 hover:bg-cyan-600 text-black
-                                        font-semibold rounded-lg cursor-pointer transition transform hover:scale-[1.02]"
-                                    >
-                                        🚀 Submit Resource
-                                    </button>
-                                </form>
+                                        <div className="flex flex-wrap items-center gap-3">
+                                            {res.tags.map((tag, i) => (
+                                                <span key={i} className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-cyan-500/10
+                                                text-cyan-400 border border-cyan-500/20">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                            <a
+                                                href={res.link}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="ml-auto flex items-center gap-2 text-sm font-bold text-white hover:text-cyan-400 transition-colors"
+                                            >
+                                                EXPLORE <FiArrowUpRight />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        ))}
+                    </div>
+                </section>
+            ))}
 
-                </div>
+            {/* Bottom CTA Card */}
+            <div className="bg-gradient-to-br from-cyan-500/20 to-transparent border border-cyan-500/20 rounded-3xl p-10 text-center" data-aos="zoom-in">
+                <h2 className="text-2xl font-bold text-white mb-4">Know a better resource?</h2>
+                <p className="text-slate-400 mb-8 max-w-md mx-auto">Share the tools that helped you and contribute to the collective developer growth.</p>
+                <button
+                    onClick={() => setIsOpen(true)}
+                    className="flex items-center gap-2 mx-auto px-8 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform
+                    cursor-pointer"
+                >
+                    <FiPlus /> Contribute Now
+                </button>
             </div>
         </div>
     );

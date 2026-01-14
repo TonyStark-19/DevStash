@@ -4,6 +4,8 @@ import { Footer } from "../Components/Footer";
 
 // import use state and use effect
 import { useState, useEffect } from "react";
+
+// import link
 import { Link } from "react-router-dom";
 
 // AOS animations
@@ -13,28 +15,37 @@ import 'aos/dist/aos.css';
 // import axios instanse
 import api from "../utils/api";
 
-// Resource page
-export function Resources() {
-    return (
-        <div className="min-h-screen"
-            style={{
-                background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
-            }}>
-            <Navbar />
-            <div>
-                <Content />
-            </div>
-            <Footer />
-        </div>
-    )
-}
+// import icons
+import { FiPlusCircle, FiSearch } from "react-icons/fi";
 
-// resouces content
-function Content() {
-    const [resources, setResources] = useState([]);
+// Resources Page Component
+export function Resources() {
     const [loading, setLoading] = useState(true);
 
-    // prettier headings
+    return (
+        <div className="min-h-screen bg-[#030712] font-poppins text-slate-200">
+            {/* Consistent Background Glow */}
+            <div className="fixed inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 blur-[120px] rounded-full" />
+                <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-600/10 blur-[100px] rounded-full" />
+            </div>
+
+            <Navbar />
+            <main className="relative z-10">
+                <Content loading={loading} setLoading={setLoading} />
+            </main>
+            {/* Footer is conditionally rendered based on loading state */}
+            {!loading && <Footer />}
+        </div>
+    );
+}
+
+// Content Component
+function Content({ loading, setLoading }) {
+    const [resources, setResources] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    // Category Labels
     const labels = {
         frontend: "Frontend",
         backend: "Backend",
@@ -44,6 +55,7 @@ function Content() {
         cloud: "Cloud & Hosting",
     };
 
+    // Fetch Resources on Mount
     useEffect(() => {
         const fetchResources = async () => {
             try {
@@ -55,83 +67,109 @@ function Content() {
                 setLoading(false);
             }
         };
-
         fetchResources();
     }, []);
 
-    // AOS animations
+    // Initialize AOS
     useEffect(() => {
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        AOS.init({ duration: 800, once: true });
     }, []);
 
-    // loading
-    if (loading) return <div className="h-screen"></div>;
+    // Loading State
+    if (loading) return (
+        <div className="flex flex-col items-center justify-center h-[60vh]">
+            <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin"></div>
+            <p className="mt-4 text-slate-400 animate-pulse">Fetching resources...</p>
+        </div>
+    );
 
     return (
-        <div className="py-8 text-white/80 font-poppins h-full flex flex-col items-center min-b:pt-20 max-b:pt-10">
-            <div className="min-a:w-[70%] max-a:w-[80%] max-c:w-[90%] text-center" data-aos="fade-up" data-aos-delay="100">
-                <h1 className="max-b:leading-10 max-c:leading-12 min-a:text-5xl max-a:text-[44px] max-b:text-[40px]
-                max-g:text-[35px] max-e:text-[30px] max-e:leading-10 text-center mb-3 font-semibold">
-                    Curated Tech & Coding Resources</h1>
+        <div className="max-w-7xl mx-auto px-6 py-12">
+            {/* Header Section */}
+            <div className="text-center mb-16" data-aos="fade-down">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+                    Curated <span className="text-cyan-400">Knowledge</span>
+                </h1>
+                <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                    Hand-picked tutorials and tools to help you build better software.
+                </p>
 
-                <p className="min-b:text-[22px] max-b:text-[20px] max-e:text-[18px] text-center pb-10 border-b-2
-                border-white/30 min-b:tracking-wide max-b:tracking-normal">
-                    Discover, save, and share top coding tutorials, tools, and guides for developers worldwide.</p>
+                {/* Subtle Search Bar */}
+                <div className="relative max-w-md mx-auto">
+                    <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+                    <input
+                        type="text"
+                        placeholder="Search categories..."
+                        className="w-full bg-white/5 border border-white/10 rounded-full py-3 px-12 focus:outline-none focus:border-cyan-500/50 transition-all"
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
             </div>
 
-            {Object.entries(resources).map(([categoryKey, items]) => (
-                <section key={categoryKey} className="mb-6 min-c:mt-20 max-c:mt-10 max-e:mt-5 pb-10 border-b-2 border-white/30
-                min-a:w-[70%] max-a:w-[80%] max-c:w-[90%]" data-aos="fade-up" data-aos-delay="100">
-                    <h2 className="min-b:text-3xl max-b:text-[26px] max-e:text-2xl font-bold min-b:mb-6 max-b:mb-4"
-                        data-aos="fade-up" data-aos-delay="200">
-                        {labels[categoryKey] || categoryKey} :
-                    </h2>
+            {/* Category Mapping */}
+            {Object.entries(resources).map(([categoryKey, items]) => {
+                // Simple search filter logic
+                if (searchTerm && !labels[categoryKey]?.toLowerCase().includes(searchTerm.toLowerCase())) return null;
 
-                    <div className="grid min-a:grid-cols-5 max-a:grid-cols-4 max-c:grid-cols-3 max-d:grid-cols-2 gap-6 
-                    place-items-center">
-                        {items.map((res, i) => (
-                            <Link
-                                to={`/resources/${categoryKey}/${res.subcategory}`}
-                                key={i}
-                                data-aos="fade-up"
-                                data-aos-delay="200"
-                                className="p-5 bg-white/10 hover:bg-white/15 rounded-2xl flex flex-col items-center gap-3
-                                transition cursor-pointer hover:transform hover:scale-105"
-                            >
-                                <img
-                                    src={res.src}
-                                    alt={res.alt}
-                                    className="w-[150px] min-f:h-[100px] max-f:h-[80px] object-contain"
-                                />
-                                <div className="uppercase text-sm font-semibold text-center">
-                                    {res.name}
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </section>
-            ))}
+                return (
+                    <section key={categoryKey} className="mb-20" data-aos="fade-up">
+                        <div className="flex items-center gap-4 mb-8">
+                            <h2 className="text-2xl md:text-3xl font-bold text-white flex-shrink-0">
+                                {labels[categoryKey] || categoryKey}
+                            </h2>
+                            <div className="h-[1px] w-full bg-gradient-to-r from-white/20 to-transparent"></div>
+                        </div>
 
-            {/* Call-to-action section */}
-            <div className="p-8 text-center max-w-3xl mb-5">
-                <h2 className="min-c:text-2xl max-c:text-[22px] max-d:text-[20px] font-bold min-c:mb-4 max-c:mb-3">
-                    Do you see a missing tech & coding resource?
-                </h2>
-                <p className="min-c:text-lg max-c:text-[17px] max-d:text-[16px] mb-6">
-                    Let us know and we will add it as soon as possible!
-                </p>
-                <a
-                    href="https://github.com/TonyStark-19/DevStash/issues/new?template=resource-suggestion.md"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-cyan-500 hover:bg-cyan-600 rounded-lg text-black font-semibold transition cursor-pointer
-                    min-c:px-6 max-c:px-4 min-c:py-2.5 max-c:py-2 max-c:text-[15px]"
-                >
-                    Suggest a Resource
-                </a>
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                            {items.map((res, i) => (
+                                <Link
+                                    to={`/resources/${categoryKey}/${res.subcategory}`}
+                                    key={i}
+                                    className="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10
+                                    hover:border-cyan-500/30 transition-all duration-300 flex flex-col items-center gap-4 overflow-hidden"
+                                >
+                                    {/* Hover Glow Effect */}
+                                    <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                                    <div className="relative z-10 w-20 h-20 md:w-24 md:h-24 flex items-center justify-center p-2">
+                                        <img
+                                            src={res.src}
+                                            alt={res.alt}
+                                            className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                        />
+                                    </div>
+                                    <div className="relative z-10 uppercase text-xs font-bold tracking-widest text-slate-400
+                                    group-hover:text-white transition-colors">
+                                        {res.name}
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </section>
+                );
+            })}
+
+            {/* Modern CTA */}
+            <div
+                className="mt-12 p-12 rounded-3xl bg-gradient-to-b from-white/10 to-transparent border border-white/10 text-center relative overflow-hidden"
+                data-aos="zoom-in"
+            >
+                <div className="relative z-10">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Missing something?</h2>
+                    <p className="text-slate-400 mb-8 max-w-md mx-auto">
+                        Help us grow the stash. If there's a tool or tutorial we missed, let the community know.
+                    </p>
+                    <a
+                        href="https://github.com/TonyStark-19/DevStash/issues/new?template=resource-suggestion.md"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all
+                        hover:scale-105"
+                    >
+                        <FiPlusCircle />
+                        Suggest a Resource
+                    </a>
+                </div>
             </div>
         </div>
     );
