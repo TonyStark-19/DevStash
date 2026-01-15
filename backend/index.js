@@ -5,7 +5,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 // import all resources, resource routes
-const Resource = require("./models/Resource");
+const allResources = require("./allResources");
 const resourcesRoutes = require("./routes/resource")
 const savedResourcesRoutes = require("./routes/resourceRoutes")
 
@@ -37,18 +37,9 @@ app.use("/api/saved-resources", savedResourcesRoutes);
 // import resources
 const resources = require("./Resources/resource");
 
-// GET all unique categories and subcategories from the DATABASE
-app.get("/api/allresources", async (req, res) => {
-    try {
-        // This fetches from MongoDB so it includes community contributions
-        const resources = await Resource.find({}, {
-            category: 1,
-            subcategory: 1, "resources.docs.src": 1, "resources.docs.name": 1
-        });
-        res.json(resources);
-    } catch (err) {
-        res.status(500).json({ error: "Failed to fetch aggregated resources" });
-    }
+// GET request to send all resources
+app.get("/api/allresources", (req, res) => {
+    res.json(resources);
 });
 
 // connect MongoDB
