@@ -77,7 +77,7 @@ function Content({ loading, setLoading }) {
 
     // Loading State
     if (loading) return (
-        <div className="flex flex-col items-center justify-center h-[60vh]">
+        <div className="flex flex-col items-center justify-center h-[80vh]">
             <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin"></div>
             <p className="mt-4 text-slate-400 animate-pulse">Fetching resources...</p>
         </div>

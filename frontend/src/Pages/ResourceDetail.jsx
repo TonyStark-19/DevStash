@@ -255,7 +255,7 @@ function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, catego
     };
 
     // Loading and Error States
-    if (loading) return <div className="h-[60vh] flex items-center justify-center">
+    if (loading) return <div className="h-[80vh] flex items-center justify-center">
         <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div></div>;
     if (!data) return <div className="h-[60vh] flex items-center justify-center text-red-400">Resource not found</div>;
 

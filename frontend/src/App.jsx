@@ -1,4 +1,4 @@
-// App.jsx
+// import routing library
 import { Routes, Route } from "react-router-dom";
 
 // import components, pages, context
@@ -12,6 +12,9 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import PublicRoute from "./Components/PublicRoute";
 import { AuthProvider, useAuth } from "./Context/AuthContext";
 import ScrollToTop from "./Components/ScrollToTop";
+
+// import Google OAuth Provider
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // import Toaster
 import { Toaster } from "react-hot-toast";
@@ -97,26 +100,31 @@ function AppRoutes() {
 
 // Main App Component
 export default function App() {
+  // Get Google Client ID from environment variables
+  const googleId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
   return (
-    <AuthProvider>
-      <AppRoutes />
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-        toastOptions={{
-          style: {
-            background: "#111827",
-            color: "#fff",
-            fontSize: "15px",
-          },
-          success: {
-            iconTheme: {
-              primary: "#06B6D4",
-              secondary: "#fff",
+    <GoogleOAuthProvider clientId={googleId}>
+      <AuthProvider>
+        <AppRoutes />
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          toastOptions={{
+            style: {
+              background: "#111827",
+              color: "#fff",
+              fontSize: "15px",
             },
-          },
-        }}
-      />
-    </AuthProvider>
+            success: {
+              iconTheme: {
+                primary: "#06B6D4",
+                secondary: "#fff",
+              },
+            },
+          }}
+        />
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }
