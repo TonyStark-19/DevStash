@@ -11,8 +11,19 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: function () {
+            return !this.googleId; // Only required if not a Google user
+        }
     },
+    // Google Auth
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true // Allows multiple users to have 'null' googleId
+    },
+    displayName: String,
+    avatar: String,
+
     savedResources: [
         {
             resourceId: { type: mongoose.Schema.Types.ObjectId, ref: "Resource" }, // parent Resource document

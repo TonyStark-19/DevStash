@@ -25,10 +25,17 @@ const protect = async (req, res, next) => {
 
             return next();
         } catch (error) {
-            return res.status(401).json({ message: "Token expired or invalid" });
+            if (error.name === 'TokenExpiredError') {
+                return res.status(401).json({ message: "Session expired. Please login again." });
+            }
+            if (error.name === 'JsonWebTokenError') {
+                return res.status(401).json({ message: "Invalid session token." });
+            }
+            return res.status(401).json({ message: "Authentication failed." });
         }
     }
 
+    // handle missing token
     if (!token) {
         return res.status(401).json({ message: "Not authorized, no token" });
     }

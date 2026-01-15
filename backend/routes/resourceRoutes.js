@@ -62,25 +62,21 @@ router.post("/unsave/:resourceId", protect, async (req, res) => {
     try {
         const { resourceId } = req.params;
         const { type, itemId } = req.body;
-        const userId = req.user.id;
 
-        // find user
-        const user = await User.findById(userId);
-
-        user.savedResources = user.savedResources.filter(
-            (sr) =>
-                !(
-                    sr.resourceId.toString() === resourceId &&
-                    sr.type === type &&
-                    sr.itemId.toString() === itemId
-                )
+        // Update user document to remove the saved resource
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user.id,
+            {
+                // Update user document to remove the saved resource
+                $pull: {
+                    savedResources: { resourceId, type, itemId }
+                }
+            },
+            { new: true }
         );
 
-        await user.save();
-
-        res.json({ success: true, savedResources: user.savedResources });
+        res.json({ success: true, savedResources: updatedUser.savedResources });
     } catch (err) {
-        console.error(err);
         res.status(500).json({ message: "Error unsaving resource" });
     }
 });
@@ -90,32 +86,35 @@ router.post("/unsave/:resourceId", protect, async (req, res) => {
  */
 router.get("/saved", protect, async (req, res) => {
     try {
-        const userId = req.user.id;
-        const user = await User.findById(userId);
+        const user = await User.findById(req.user.id);
+        if (!user.savedResources.length) return res.json([]);
 
-        // saved resources array
-        let saved = [];
+        // Get unique resource IDs to minimize DB calls
+        const resourceIds = [...new Set(user.savedResources.map(sr => sr.resourceId))];
+        const allParentResources = await Resource.find({ _id: { $in: resourceIds } });
 
-        for (let sr of user.savedResources) {
-            const resource = await Resource.findById(sr.resourceId);
-            if (!resource) continue;
+        // Hydrate saved resources with actual data
+        const hydratedResources = user.savedResources.map(sr => {
+            const parent = allParentResources.find(p => p._id.toString() === sr.resourceId.toString());
+            if (!parent) return null;
 
-            const item = resource.resources[sr.type].id(sr.itemId);
-            if (item) {
-                saved.push({
-                    ...item.toObject(),
-                    type: sr.type,
-                    category: resource.category,
-                    subcategory: resource.subcategory,
-                    resourceId: sr.resourceId,
-                    itemId: sr.itemId
-                });
-            }
-        }
+            // Get the actual item
+            const item = parent.resources[sr.type].id(sr.itemId);
+            if (!item) return null;
 
-        res.json(saved);
+            // Combine data
+            return {
+                ...item.toObject(),
+                type: sr.type,
+                category: parent.category,
+                subcategory: parent.subcategory,
+                resourceId: sr.resourceId,
+                itemId: sr.itemId
+            };
+        }).filter(Boolean); // Remove nulls if a parent or item was deleted
+
+        res.json(hydratedResources);
     } catch (err) {
-        console.error(err);
         res.status(500).json({ message: "Error fetching saved resources" });
     }
 });

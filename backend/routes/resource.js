@@ -15,10 +15,10 @@ router.get("/:category/:subcategory", async (req, res) => {
         const { category, subcategory } = req.params;
 
         // case-insensitive match
-        const resourceGroup = await Resource.findOne({
-            category: new RegExp(`^${category}$`, "i"),
-            subcategory: new RegExp(`^${subcategory}$`, "i"),
-        });
+        const resourceGroup = await Resource.findOne(
+            { category: new RegExp(`^${category}$`, "i"), subcategory: new RegExp(`^${subcategory}$`, "i") },
+            { resources: 1, category: 1, subcategory: 1 }
+        );
 
         // if not found
         if (!resourceGroup) {
@@ -56,10 +56,10 @@ router.post("/contribute/:category/:subcategory", protect, async (req, res) => {
         }
 
         // Find the resource group (category + subcategory)
-        const resourceGroup = await Resource.findOne({
-            category: new RegExp(`^${category}$`, "i"),
-            subcategory: new RegExp(`^${subcategory}$`, "i"),
-        });
+        const resourceGroup = await Resource.findOne(
+            { category: new RegExp(`^${category}$`, "i"), subcategory: new RegExp(`^${subcategory}$`, "i") },
+            { [`resources.${type}`]: 1 } // Only pull the specific array we need
+        );
 
         // if not found
         if (!resourceGroup) {
@@ -97,10 +97,14 @@ router.post("/contribute/:category/:subcategory", protect, async (req, res) => {
         resourceGroup.resources[type].push(newResource);
 
         // Save updated group
-        await resourceGroup.save();
+        const updatedDoc = await Resource.findOneAndUpdate(
+            { category: new RegExp(`^${category}$`, "i"), subcategory: new RegExp(`^${subcategory}$`, "i") },
+            { $push: { [`resources.${type}`]: newResource } },
+            { new: true, runValidators: true }
+        );
 
         // Return the last added resource
-        const added = resourceGroup.resources[type][resourceGroup.resources[type].length - 1];
+        const added = updatedDoc.resources[type].slice(-1)[0];
 
         res.status(201).json({ message: "Resource contributed successfully", resource: added });
     } catch (err) {
