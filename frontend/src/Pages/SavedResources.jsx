@@ -16,6 +16,9 @@ import api from "../utils/api";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// import link
+import { Link } from "react-router-dom";
+
 // import toast
 import toast from "react-hot-toast";
 
