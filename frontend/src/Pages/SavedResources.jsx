@@ -132,8 +132,17 @@ function Content({ loading, setLoading }) {
                                     <img src={res.image} alt="" className="w-full h-full object-contain" />
                                 </div>
 
+                                <button
+                                    onClick={() => handleRemove(res.resourceId, res.type, res.itemId)}
+                                    className="p-2 text-cyan-400 bg-cyan-400/10 rounded-xl hover:bg-red-500/20 hover:text-red-400 transition-all
+                                            cursor-pointer group/btn absolute top-8 right-8"
+                                    title="Remove from stash"
+                                >
+                                    <FaBookmark />
+                                </button>
+
                                 {/* Content Details */}
-                                <div className="flex-1">
+                                <div className="flex-1 max-[900px]:w-full">
                                     <div className="flex justify-between items-start gap-4 mb-2">
                                         <div>
                                             <span className="text-[10px] font-bold text-cyan-500 uppercase tracking-tighter mb-1 block">
@@ -143,32 +152,28 @@ function Content({ loading, setLoading }) {
                                                 {res.title}
                                             </h3>
                                         </div>
-                                        <button
-                                            onClick={() => handleRemove(res.resourceId, res.type, res.itemId)}
-                                            className="p-2 text-cyan-400 bg-cyan-400/10 rounded-xl hover:bg-red-500/20 hover:text-red-400 transition-all
-                                            cursor-pointer group/btn"
-                                            title="Remove from stash"
-                                        >
-                                            <FaBookmark />
-                                        </button>
                                     </div>
 
                                     <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 line-clamp-2 max-w-3xl">
                                         {res.description}
                                     </p>
 
-                                    <div className="flex flex-wrap items-center gap-3">
-                                        {res.tags?.map((tag, i) => (
-                                            <span key={i} className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-white/5
-                                            text-slate-400 border border-white/10">
-                                                {tag}
-                                            </span>
-                                        ))}
+                                    <div className="flex justify-between items-center gap-3 max-[900px]:flex-col max-[900px]:items-start
+                                    max-[900px]:gap-6 max-[900px]:w-full">
+                                        <div className="flex items-center gap-2 flex-wrap">
+                                            {res.tags?.map((tag, i) => (
+                                                <span key={i} className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-white/5
+                                              text-slate-400 border border-white/10">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
                                         <a
                                             href={res.link}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="ml-auto flex items-center gap-2 text-sm font-bold text-white hover:text-cyan-400 transition-all"
+                                            className="ml-auto flex items-center gap-2 text-sm font-bold text-white hover:text-cyan-400 transition-all
+                                            max-[900px]:self-end"
                                         >
                                             OPEN RESOURCE <FiExternalLink />
                                         </a>

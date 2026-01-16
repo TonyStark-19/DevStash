@@ -157,7 +157,7 @@ export function ResourceDetail() {
                                 onChange={handleChange}
                                 required
                                 className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500 transition-colors
-                                text-white"
+                                text-white resize-none"
                             />
 
                             <input
@@ -255,8 +255,9 @@ function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, catego
     };
 
     // Loading and Error States
-    if (loading) return <div className="h-[80vh] flex items-center justify-center">
-        <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div></div>;
+    if (loading) return <div className="h-[80vh] flex flex-col items-center justify-center">
+        <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+        <p className="mt-4 text-slate-400 animate-pulse">Fetching resources for {customHeading}</p></div>;
     if (!data) return <div className="h-[60vh] flex items-center justify-center text-red-400">Resource not found</div>;
 
     return (
@@ -293,36 +294,42 @@ function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, catego
                                         <img src={res.image} alt="" className="w-full h-full object-contain" />
                                     </div>
 
+                                    <button
+                                        onClick={() => handleSave(data._id, type, res._id)}
+                                        className="text-2xl text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer
+                                        absolute top-8 right-8"
+                                        title="Save to stash"
+                                    >
+                                        {savedResources.some(item => item.itemId === res._id) ? <FaBookmark className="text-cyan-500" /> : <CiBookmark />}
+                                    </button>
+
                                     {/* Content */}
-                                    <div className="flex-1">
-                                        <div className="flex justify-between items-start gap-4 mb-2">
+                                    <div className="flex-1 max-[900px]:w-full">
+                                        <div className="flex items-start gap-2 mb-2">
                                             <h3 className="text-xl md:text-2xl font-semibold text-white group-hover:text-cyan-400 transition-colors">
                                                 {res.title}
                                             </h3>
-                                            <button
-                                                onClick={() => handleSave(data._id, type, res._id)}
-                                                className="text-2xl text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer"
-                                                title="Save to stash"
-                                            >
-                                                {savedResources.some(item => item.itemId === res._id) ? <FaBookmark className="text-cyan-500" /> : <CiBookmark />}
-                                            </button>
                                         </div>
                                         <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 max-w-3xl">
                                             {res.description}
                                         </p>
 
-                                        <div className="flex flex-wrap items-center gap-3">
-                                            {res.tags.map((tag, i) => (
-                                                <span key={i} className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-cyan-500/10
+                                        <div className="flex justify-between items-center gap-3 max-[900px]:flex-col max-[900px]:items-start
+                                        max-[900px]:gap-6 max-[900px]:w-full">
+                                            <div className="flex items-center gap-2 flex-wrap">
+                                                {res.tags.map((tag, i) => (
+                                                    <span key={i} className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-cyan-500/10
                                                 text-cyan-400 border border-cyan-500/20">
-                                                    {tag}
-                                                </span>
-                                            ))}
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
                                             <a
                                                 href={res.link}
                                                 target="_blank"
                                                 rel="noreferrer"
-                                                className="ml-auto flex items-center gap-2 text-sm font-bold text-white hover:text-cyan-400 transition-colors"
+                                                className="flex items-center gap-2 text-sm font-bold text-white hover:text-cyan-400 transition-colors
+                                                max-[900px]:self-end"
                                             >
                                                 EXPLORE <FiArrowUpRight />
                                             </a>

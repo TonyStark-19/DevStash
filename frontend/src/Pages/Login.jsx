@@ -104,14 +104,14 @@ export function Login() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-[#030712] flex items-center justify-center p-6 font-poppins relative overflow-hidden">
+        <div className="min-h-screen bg-[#030712] flex items-center justify-center p-6 font-poppins relative overflow-hidden max-lg:p-0">
             {/* Ambient Background Glows */}
             <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full" />
             <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/10 blur-[120px] rounded-full" />
 
             <div
                 className="w-full max-w-[1100px] grid grid-cols-1 lg:grid-cols-2 bg-white/[0.02] border border-white/10 rounded-[2.5rem]
-                overflow-hidden backdrop-blur-md shadow-2xl"
+                overflow-hidden backdrop-blur-md shadow-2xl max-lg:rounded-none max-lg:h-screen max-lg:max-w-full"
                 data-aos="zoom-in"
             >
                 {/* Left Side: Login Form */}

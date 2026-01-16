@@ -99,7 +99,7 @@ function Content({ loading, setLoading }) {
                     <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
                     <input
                         type="text"
-                        placeholder="Search categories..."
+                        placeholder="Search resources..."
                         className="w-full bg-white/5 border border-white/10 rounded-full py-3 px-12 focus:outline-none focus:border-cyan-500/50 transition-all"
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -109,7 +109,13 @@ function Content({ loading, setLoading }) {
             {/* Category Mapping */}
             {Object.entries(resources).map(([categoryKey, items]) => {
                 // Simple search filter logic
-                if (searchTerm && !labels[categoryKey]?.toLowerCase().includes(searchTerm.toLowerCase())) return null;
+                const filteredItems = items.filter((res) =>
+                    res.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    res.subcategory.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+
+                // If no items match in this category, don't render the section at all
+                if (filteredItems.length === 0) return null;
 
                 return (
                     <section key={categoryKey} className="mb-20" data-aos="fade-up">
@@ -121,7 +127,7 @@ function Content({ loading, setLoading }) {
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                            {items.map((res, i) => (
+                            {filteredItems.map((res, i) => (
                                 <Link
                                     to={`/resources/${categoryKey}/${res.subcategory}`}
                                     key={i}
@@ -151,7 +157,8 @@ function Content({ loading, setLoading }) {
 
             {/* Modern CTA */}
             <div
-                className="mt-12 p-12 rounded-3xl bg-gradient-to-b from-white/10 to-transparent border border-white/10 text-center relative overflow-hidden"
+                className="mt-12 p-12 rounded-3xl bg-gradient-to-b from-white/10 to-transparent border border-white/10 text-center relative
+                overflow-hidden max-[380px]:px-6"
                 data-aos="zoom-in"
             >
                 <div className="relative z-10">
@@ -164,7 +171,7 @@ function Content({ loading, setLoading }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-8 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all
-                        hover:scale-105"
+                        hover:scale-105 max-[400px]:px-6"
                     >
                         <FiPlusCircle />
                         Suggest a Resource
