@@ -73,7 +73,8 @@ function Content() {
 
             {/* Hero Badge */}
             <div
-                className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium"
+                className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400
+                text-sm font-medium"
                 data-aos="fade-down"
             >
                 <span className="relative flex h-2 w-2">
@@ -106,13 +107,14 @@ function Content() {
 
             {/* Action Buttons */}
             <div
-                className="flex flex-col sm:flex-row gap-4 items-center"
+                className="flex flex-col sm:flex-row max-sm:w-full gap-4 items-center"
                 data-aos="fade-up"
                 data-aos-delay="300"
             >
-                <Link to="/resources">
+                <Link to="/resources" className="max-sm:w-full">
                     <button className="group px-8 py-3 bg-white text-black font-semibold rounded-full flex items-center gap-2 hover:bg-cyan-50
-                    transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-cyan-500/10 cursor-pointer">
+                    transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-cyan-500/10 cursor-pointer max-sm:w-full
+                    max-sm:justify-center">
                         <GrResources />
                         Browse Resources
                         <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -124,7 +126,7 @@ function Content() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-8 py-3 bg-white/5 text-white border border-white/10 font-semibold rounded-full flex items-center gap-2
-                    hover:bg-white/10 transition-all duration-300 active:scale-95"
+                    hover:bg-white/10 transition-all duration-300 active:scale-95 max-sm:w-full max-sm:justify-center"
                 >
                     <FiGithub />
                     Contribute
@@ -134,7 +136,7 @@ function Content() {
             {/* Stats Footer */}
             <div
                 className="mt-20 pt-10 border-t border-white/5 w-full max-w-4xl flex justify-around items-center opacity-50 grayscale hover:grayscale-0
-                transition-all text-white"
+                transition-all text-white max-[500px]:flex-wrap max-[500px]:gap-6 max-[500px]:pb-6"
             >
                 <div className="text-sm font-medium">100+ Tutorials</div>
                 <div className="h-8 w-px bg-white/10 hidden md:block"></div>
