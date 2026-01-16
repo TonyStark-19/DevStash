@@ -1,61 +1,75 @@
 # 🤝 Contributing to DevStash
 
-First off, thank you for showing interest in contributing to **DevStash**! 🙌  
-This project thrives on the amazing resources shared by the community.  
+First of all, thank you for your interest in contributing to **DevStash**! 🙌  
+This project is built **by developers, for developers**, and every quality resource makes it better.
 
 ---
 
 ## 📌 How to Contribute a Resource
 
-1. **Navigate to the relevant technology page**  
-   For example: If you want to contribute a **JavaScript Docs** resource, scroll down in the **JavaScript page**.
+### 1️⃣ Navigate to the relevant technology page
+Go to the page of the technology you want to contribute to.  
+For example, if you’re adding a **JavaScript Docs** resource, scroll to the **JavaScript** section.
 
-    ![Contribute Resource](/frontend/public/images/con1.png)
+![Contribute Resource](/frontend/public/Screenshot/image7.png)
 
-3. **Click on the "Contribute" button**  
-   This will open a contribution form like this:  
+---
 
-   ![Contribute Resource](/frontend/public/images/con2.png)
+### 2️⃣ Click the **"Contribute"** button
+This will open the contribution form.
 
-4. **Fill in the form**  
-   - **Select Type** → Choose the resource type (Docs or Youtube resource).  
-   - **Resource Title** → Enter the title of the resource.  
-   - **Resource Link** → Provide the URL (Make sure it’s unique and not already added ✅).  
-   - **Short Description** → Add a small description about the resource.  
-   - **Tags** → Add minimum **2 tags** and maximum **4 tags** (comma-separated).  
+![Contribute Resource](/frontend/public/Screenshot/image8.png)
 
-   👉 By default, a `contributed` tag will also be added.
+---
 
-5. **Click Submit 🚀**  
-   And boom — your resource is now part of **DevStash** and available to all developers! 🎉
+### 3️⃣ Fill in the contribution form
+
+Please provide the following details:
+
+- **Resource Type** → Choose between **Docs** or **YouTube**
+- **Resource Title** → Clear and descriptive title
+- **Resource Link** → Valid URL (ensure it’s not already added ✅)
+- **Short Description** → Brief summary of what the resource offers
+- **Tags** → Add **2–4 tags**, comma-separated (e.g. `javascript, docs`)
+
+> ℹ️ A default `contributed` tag is automatically added.
+
+---
+
+### 4️⃣ Submit 🚀
+Click **Submit**, and your resource will instantly be available on **DevStash** for everyone to explore! 🎉
 
 ---
 
 ## ✅ Contribution Guidelines
 
-- Make sure your resource is **relevant and helpful**.  
-- Avoid adding **duplicate resources**.  
-- Keep titles and descriptions **clear and concise**.  
-- Use proper tags so others can easily discover your resource.  
+To keep DevStash high-quality and useful, please ensure:
+
+- The resource is **relevant, accurate, and helpful**
+- No **duplicate resources** are submitted
+- Titles and descriptions are **clear and concise**
+- Tags are **meaningful and searchable**
 
 ---
 
-## 💡 Example
+## 💡 Example Contribution
 
-If you want to contribute **MDN Docs for JavaScript**:  
-- **Type**: Docs  
-- **Title**: MDN JavaScript Documentation  
-- **Link**: https://developer.mozilla.org/en-US/docs/Web/JavaScript  
-- **Description**: Official JavaScript documentation with examples, tutorials, and references.  
-- **Tags**: javascript, docs  
+**MDN JavaScript Documentation**
+
+- **Type:** Docs  
+- **Title:** MDN JavaScript Documentation  
+- **Link:** https://developer.mozilla.org/en-US/docs/Web/JavaScript  
+- **Description:** Official JavaScript documentation featuring tutorials, examples, and references.  
+- **Tags:** javascript, docs  
 
 ---
 
 ## 🌟 Support the Project
 
-If you find this project helpful:  
-- Give it a ⭐ on GitHub  
-- Contribute **at least one of your favorite resources**  
-- Share with your friends and community  
+If you enjoy using **DevStash**, consider supporting it by:
 
-Together, let’s make **DevStash** the best resource hub for developers! 💙
+- ⭐ Starring the repository on GitHub  
+- 📚 Contributing at least **one resource** you love  
+- 🔄 Sharing the project with your friends or community  
+
+Together, let’s build **DevStash** into the go-to learning hub for developers worldwide 💙
