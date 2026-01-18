@@ -32,10 +32,26 @@ export function Footer() {
                                 DevStash
                             </span>
                         </Link>
-                        <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
+                        <p className="text-slate-400 text-sm max-w-sm leading-relaxed mb-6">
                             Organizing the world's best developer resources.
                             Built for the community, by the community. Explore, save, and share your favorites.
                         </p>
+
+                        {/* Product Hunt Dark Badge */}
+                        <a
+                            href="https://www.producthunt.com/products/devstash?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-devstash"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block transition-all duration-300 hover:opacity-80 active:scale-95"
+                        >
+                            <img
+                                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064040&theme=dark&t=1768757417282"
+                                alt="DevStash - Product Hunt"
+                                width="230"
+                                height="54"
+                                className="w-[200px] h-auto md:w-[250px]"
+                            />
+                        </a>
                     </div>
 
                     {/* Quick Links */}
