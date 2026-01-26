@@ -150,6 +150,8 @@ We are officially live on Product Hunt! Support the project by checking us out:
 - MongoDB Atlas Account
 - Google Cloud Console Project (for OAuth Client ID)
 
+---
+
 ### Installation
 
 1. **Clone the repository**
