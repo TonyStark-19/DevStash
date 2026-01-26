@@ -68,18 +68,22 @@ We are officially live on Product Hunt! Support the project by checking us out:
 
 ## ✨ Features
 
-## 🔐 Authentication & Security
+### 🔐 Authentication & Security
 - **JWT-based authentication** with secure email/password login
 - Password hashing using **bcrypt**
 - **Google OAuth 2.0** implemented via a custom redirect flow <br />
   (Designed to safely bypass COOP/COEP browser security constraints)
 
-## 🧭 Routing & Access Control
+---
+
+### 🧭 Routing & Access Control
 - Protected routes using `ProtectedRoute`
 - Public-only routes using `PublicRoute`
 - Role-aware access handling
 
-## 📦 Resource Management
+---
+
+### 📦 Resource Management
 
 - Curated content across:
   - 6+ domains
@@ -87,18 +91,24 @@ We are officially live on Product Hunt! Support the project by checking us out:
   - 109+ developer resources
 - Save, explore, and manage learning materials efficiently
 
-## 🤝 Community-Driven
+---
+
+### 🤝 Community-Driven
 - GitHub Issue templates integrated directly into the app
 - Users can suggest new resources without modifying code
 
-## ⚡ Performance Optimizations
+---
+
+### ⚡ Performance Optimizations
 - Cold-start mitigation logic to wake Render backend proactively
 - Axios interceptors for:
    - Automatic JWT injection
    - Centralized error handling
    - Instant redirects on unauthorized access
 
-## 🎨 UI / UX
+---
+
+### 🎨 UI / UX
 - Fully responsive dark-themed UI
 - Built with Tailwind CSS
 - Subtle glow effects & smooth animations using AOS
@@ -116,11 +126,15 @@ We are officially live on Product Hunt! Support the project by checking us out:
 - **AOS** (Scroll Animations)
 - **Axios** (API Management)
 
+---
+
 ### Backend
 - **Node.js & Express**
 - **MongoDB & Mongoose** (Database)
 - **JWT** (Session Management)
 - **Axios** (Server-side API calls for OAuth verification)
+
+---
 
 ### Deployment
 - **Frontend:** Vercel
@@ -144,6 +158,7 @@ We are officially live on Product Hunt! Support the project by checking us out:
    git clone https://github.com/TonyStark-19/DevStash.git
    cd DevStash
    ```
+   
 2. **Frontend Setup**
    
    ```bash
@@ -156,7 +171,9 @@ We are officially live on Product Hunt! Support the project by checking us out:
    
    npm run dev
    ```
+   
 3. **Backend Setup**
+
    ```bash
    cd backend
    npm install
