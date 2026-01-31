@@ -40,16 +40,6 @@ The application follows a service-oriented deployment architecture, with fronten
 
 ---
 
-## 🏆 Featured on Product Hunt
-
-We are officially live on Product Hunt! Support the project by checking us out:
-
-<a href="https://www.producthunt.com/products/devstash?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-devstash" target="_blank">
-  <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064040&theme=dark" alt="DevStash - Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" />
-</a>
-
----
-
 ## 📸 Screenshots
 
 | 🏠 Home Page | 📚 All Resources Page |
@@ -66,9 +56,25 @@ We are officially live on Product Hunt! Support the project by checking us out:
 
 ---
 
+
+## 🏆 Recognition
+
+DevStash has been officially featured on **Product Hunt** 🚀  
+Your support helps the project grow and reach more developers!
+
+<a href="https://www.producthunt.com/products/devstash?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-devstash" target="_blank">
+  <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064040&theme=dark" alt="DevStash - Featured on Product Hunt" width="250" height="54" />
+</a>
+<br /><br />
+
+> 💬 If you like DevStash, consider upvoting and sharing your feedback!
+
+---
+
 ## ✨ Features
 
 ### 🔐 Authentication & Security
+
 - **JWT-based authentication** with secure email/password login
 - Password hashing using **bcrypt**
 - **Google OAuth 2.0** implemented via a custom redirect flow <br />
@@ -77,6 +83,7 @@ We are officially live on Product Hunt! Support the project by checking us out:
 ---
 
 ### 🧭 Routing & Access Control
+
 - Protected routes using `ProtectedRoute`
 - Public-only routes using `PublicRoute`
 - Role-aware access handling
@@ -86,22 +93,27 @@ We are officially live on Product Hunt! Support the project by checking us out:
 ### 📦 Resource Management
 
 - Curated content across:
+
   - 6+ domains
   - 48 technologies
   - 109+ developer resources
+
 - Save, explore, and manage learning materials efficiently
 
 ---
 
 ### 🤝 Community-Driven
+
 - GitHub Issue templates integrated directly into the app
 - Users can suggest new resources without modifying code
 
 ---
 
 ### ⚡ Performance Optimizations
+
 - Cold-start mitigation logic to wake Render backend proactively
 - Axios interceptors for:
+   
    - Automatic JWT injection
    - Centralized error handling
    - Instant redirects on unauthorized access
@@ -109,6 +121,7 @@ We are officially live on Product Hunt! Support the project by checking us out:
 ---
 
 ### 🎨 UI / UX
+
 - Fully responsive dark-themed UI
 - Built with Tailwind CSS
 - Subtle glow effects & smooth animations using AOS
@@ -119,6 +132,7 @@ We are officially live on Product Hunt! Support the project by checking us out:
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **React 18** (Vite-powered)
 - **Tailwind CSS** (Styling)
 - **React Router DOM** (Navigation)
@@ -129,6 +143,7 @@ We are officially live on Product Hunt! Support the project by checking us out:
 ---
 
 ### Backend
+
 - **Node.js & Express**
 - **MongoDB & Mongoose** (Database)
 - **JWT** (Session Management)
@@ -137,6 +152,7 @@ We are officially live on Product Hunt! Support the project by checking us out:
 ---
 
 ### Deployment
+
 - **Frontend:** Vercel
 - **Backend:** Render
 - **Database:** MongoDB Atlas
@@ -198,11 +214,16 @@ This project thrives on community input!
 - **Contribute**: Found a great tutorial? Use the "Suggest a Resource" button in the app to add it to the stash!
 - **Report Bugs:** Open an issue if you encounter any technical glitches.
 
+Please read the **[CONTRIBUTING.md](CONTRIBUTING.md)** before you start.
+
 ---
 
 ## 📜 License
 
-This project is open-source and available under the **MIT License**.  
+This project is licensed under the MIT License.
+Feel free to use, modify, and share it – just give proper credit.
+
+Check the [LICENSE](LICENSE) file for more details.
 
 ---
 
