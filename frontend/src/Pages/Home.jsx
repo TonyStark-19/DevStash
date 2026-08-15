@@ -27,11 +27,15 @@ export function Home() {
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-cyan-500/20 blur-[120px] rounded-full opacity-50" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 blur-[100px] rounded-full" />
+
                 {/* Grid Overlay */}
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
             </div>
 
+            {/* navbar */}
             <Navbar />
+
+            {/* content */}
             <Content />
         </div>
     );
@@ -43,6 +47,7 @@ function Content() {
         AOS.init({ duration: 800, once: true });
     }, []);
 
+    // floating icons for tech stack
     const floatingIcons = [
         { Icon: FaReact, color: "text-cyan-400", pos: "top-[10%] left-[8%]", delay: "0", rotate: "rotate-12" },
         { Icon: VscAzure, color: "text-[#0078D4]", pos: "top-[15%] right-[10%]", delay: "200", rotate: "-rotate-12" },
@@ -54,7 +59,6 @@ function Content() {
 
     return (
         <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-6 pt-12 text-center">
-
             {/* Floating Tech Stack */}
             {floatingIcons.map((item, index) => (
                 <div
@@ -111,10 +115,15 @@ function Content() {
                 data-aos="fade-up"
                 data-aos-delay="300"
             >
-                <Link to="/resources" className="max-sm:w-full">
-                    <button className="group px-8 py-3 bg-white text-black font-semibold rounded-full flex items-center gap-2 hover:bg-cyan-50
-                    transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-cyan-500/10 cursor-pointer max-sm:w-full
-                    max-sm:justify-center">
+                <Link
+                    to="/resources"
+                    className="max-sm:w-full"
+                >
+                    <button
+                        className="group px-8 py-3 bg-white text-black font-semibold rounded-full flex items-center gap-2 hover:bg-cyan-50
+                        transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-cyan-500/10 cursor-pointer max-sm:w-full
+                        max-sm:justify-center"
+                    >
                         <GrResources />
                         Browse Resources
                         <FiArrowRight className="group-hover:translate-x-1 transition-transform" />

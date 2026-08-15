@@ -25,8 +25,8 @@ import { FiMail, FiLock, FiArrowRight, FiLayers, FiBookmark, FiPlusCircle } from
 // Login Page Component
 export function Login() {
     const navigate = useNavigate();
-    const { login } = useAuth();
 
+    const { login } = useAuth();
     const [formData, setFormData] = useState({ email: "", password: "" });
 
     // Handle input changes
@@ -138,11 +138,16 @@ export function Login() {
                         <div className="h-px w-full bg-white/10"></div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="space-y-5"
+                    >
                         <div className="space-y-1">
                             <label className="text-xs font-bold text-slate-500 ml-1 uppercase tracking-wider">Email Address</label>
+
                             <div className="relative">
                                 <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-cyan-400" />
+
                                 <input
                                     type="email"
                                     name="email"
@@ -160,8 +165,10 @@ export function Login() {
                             <div className="flex justify-between items-center px-1">
                                 <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Password</label>
                             </div>
+
                             <div className="relative">
                                 <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+
                                 <input
                                     type="password"
                                     name="password"
@@ -187,21 +194,26 @@ export function Login() {
 
                     <p className="mt-8 text-center text-slate-400 text-sm">
                         Don't have an account yet?{" "}
-                        <Link to="/signup" className="text-cyan-400 font-bold hover:underline">
+                        <Link
+                            to="/signup"
+                            className="text-cyan-400 font-bold hover:underline"
+                        >
                             Create one
                         </Link>
                     </p>
                 </div>
 
                 {/* Right Side: Visual/Branding */}
-                <div className="hidden lg:flex flex-col justify-center p-12 bg-gradient-to-tl from-cyan-500/10 to-transparent border-l
-                border-white/5 order-1 lg:order-2">
+                <div
+                    className="hidden lg:flex flex-col justify-center p-12 bg-gradient-to-tl from-cyan-500/10 to-transparent border-l
+                    border-white/5 order-1 lg:order-2"
+                >
                     <div className="mb-8">
-
                         <h2 className="text-4xl font-bold text-white mb-4 leading-tight">
                             Your Dev Journey, <br />
                             <span className="text-cyan-400 font-extrabold">Organized.</span>
                         </h2>
+
                         <p className="text-slate-400 text-lg leading-relaxed">
                             Sign in to access your saved tutorials, favorite tools, and community contributions.
                         </p>
@@ -209,26 +221,35 @@ export function Login() {
 
                     <div className="space-y-6">
                         <div className="flex items-center gap-4 group">
-                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center
-                            text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all">
+                            <div
+                                className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center
+                                text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all"
+                            >
                                 <FiLayers size={20} />
                             </div>
+
                             <div className="text-sm font-medium text-slate-300">Curated Tech Resources</div>
                         </div>
 
                         <div className="flex items-center gap-4 group">
-                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center 
-                            text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all">
+                            <div
+                                className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center 
+                                text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all"
+                            >
                                 <FiBookmark size={20} />
                             </div>
+
                             <div className="text-sm font-medium text-slate-300">Personal Bookmarks & Collections</div>
                         </div>
 
                         <div className="flex items-center gap-4 group">
-                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center
-                            text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all">
+                            <div
+                                className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center
+                                text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all"
+                            >
                                 <FiPlusCircle size={20} />
                             </div>
+
                             <div className="text-sm font-medium text-slate-300">Community Powered Contributions</div>
                         </div>
                     </div>

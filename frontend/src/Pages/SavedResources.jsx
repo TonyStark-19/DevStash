@@ -34,10 +34,17 @@ export function SavedResources() {
                 <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-600/10 blur-[100px] rounded-full" />
             </div>
 
+            {/* navbar */}
             <Navbar />
+
+            {/* Main Content */}
             <main className="relative z-10 pb-20">
-                <Content loading={loading} setLoading={setLoading} />
+                <Content
+                    loading={loading}
+                    setLoading={setLoading}
+                />
             </main>
+
             {/* Footer is conditionally rendered based on loading state */}
             {!loading && <Footer />}
         </div>
@@ -91,13 +98,18 @@ function Content({ loading, setLoading }) {
     return (
         <div className="max-w-5xl mx-auto px-6 pt-16">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16" data-aos="fade-down">
+            <div
+                className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
+                data-aos="fade-down"
+            >
                 <div>
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
                         Your <span className="text-cyan-400">Stash</span>
                     </h1>
+
                     <p className="text-slate-400">Your personal collection of learning materials.</p>
                 </div>
+
                 <div className="text-sm font-medium text-slate-500 uppercase tracking-widest">
                     {savedResources.length} Saved Items
                 </div>
@@ -106,15 +118,24 @@ function Content({ loading, setLoading }) {
             {/* Content List */}
             <div className="space-y-6">
                 {savedResources.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center py-20 bg-white/5 border border-white/10 rounded-[2rem] text-center" data-aos="zoom-in">
+                    <div
+                        className="flex flex-col items-center justify-center py-20 bg-white/5 border border-white/10 rounded-[2rem] text-center"
+                        data-aos="zoom-in"
+                    >
                         <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-6 border border-white/10">
                             <FiLayers className="text-slate-500 text-2xl" />
                         </div>
+
                         <h2 className="text-xl font-semibold text-white mb-2">Your stash is empty</h2>
+
                         <p className="text-slate-400 mb-8 max-w-xs mx-auto">
                             Start exploring our curated resources and save your favorites here.
                         </p>
-                        <Link to="/resources" className="px-8 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all hover:scale-105">
+
+                        <Link
+                            to="/resources"
+                            className="px-8 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all hover:scale-105"
+                        >
                             Browse Resources
                         </Link>
                     </div>
@@ -129,13 +150,17 @@ function Content({ loading, setLoading }) {
                             <div className="flex flex-col md:flex-row gap-6 items-start">
                                 {/* Thumbnail */}
                                 <div className="w-14 h-14 rounded-2xl bg-white/10 p-3 flex-shrink-0 border border-white/10">
-                                    <img src={res.image} alt="" className="w-full h-full object-contain" />
+                                    <img
+                                        src={res.image}
+                                        alt={res.title}
+                                        className="w-full h-full object-contain"
+                                    />
                                 </div>
 
                                 <button
                                     onClick={() => handleRemove(res.resourceId, res.type, res.itemId)}
                                     className="p-2 text-cyan-400 bg-cyan-400/10 rounded-xl hover:bg-red-500/20 hover:text-red-400 transition-all
-                                            cursor-pointer group/btn absolute top-8 right-8"
+                                    cursor-pointer group/btn absolute top-8 right-8"
                                     title="Remove from stash"
                                 >
                                     <FaBookmark />
@@ -148,6 +173,7 @@ function Content({ loading, setLoading }) {
                                             <span className="text-[10px] font-bold text-cyan-500 uppercase tracking-tighter mb-1 block">
                                                 {res.type === 'youtube' ? 'Video Tutorial' : 'Article / Documentation'}
                                             </span>
+
                                             <h3 className="text-xl md:text-2xl font-semibold text-white group-hover:text-cyan-400 transition-colors">
                                                 {res.title}
                                             </h3>
@@ -158,16 +184,22 @@ function Content({ loading, setLoading }) {
                                         {res.description}
                                     </p>
 
-                                    <div className="flex justify-between items-center gap-3 max-[900px]:flex-col max-[900px]:items-start
-                                    max-[900px]:gap-6 max-[900px]:w-full">
+                                    <div
+                                        className="flex justify-between items-center gap-3 max-[900px]:flex-col max-[900px]:items-start
+                                        max-[900px]:gap-6 max-[900px]:w-full"
+                                    >
                                         <div className="flex items-center gap-2 flex-wrap">
                                             {res.tags?.map((tag, i) => (
-                                                <span key={i} className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-white/5
-                                              text-slate-400 border border-white/10">
+                                                <span
+                                                    key={i}
+                                                    className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-white/5
+                                                    text-slate-400 border border-white/10"
+                                                >
                                                     {tag}
                                                 </span>
                                             ))}
                                         </div>
+
                                         <a
                                             href={res.link}
                                             target="_blank"

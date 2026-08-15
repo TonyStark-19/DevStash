@@ -132,6 +132,7 @@ export function Signup() {
                             Build your <br />
                             <span className="text-cyan-400">Knowledge Stash</span>
                         </h2>
+
                         <p className="text-slate-400 text-lg leading-relaxed">
                             Join 2,000+ developers organizing their learning journey. Curated, shared, and built for the community.
                         </p>
@@ -139,26 +140,35 @@ export function Signup() {
 
                     <div className="space-y-6">
                         <div className="flex items-center gap-4 group">
-                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center
-                            text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all">
+                            <div
+                                className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center
+                                text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all"
+                            >
                                 <FiLayers size={20} />
                             </div>
+
                             <div className="text-sm font-medium text-slate-300">Curated Tech Resources</div>
                         </div>
 
                         <div className="flex items-center gap-4 group">
-                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center 
-                            text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all">
+                            <div
+                                className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center 
+                                text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all"
+                            >
                                 <FiBookmark size={20} />
                             </div>
+
                             <div className="text-sm font-medium text-slate-300">Personal Bookmarks & Collections</div>
                         </div>
 
                         <div className="flex items-center gap-4 group">
-                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center
-                            text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all">
+                            <div
+                                className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center
+                                text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all"
+                            >
                                 <FiPlusCircle size={20} />
                             </div>
+
                             <div className="text-sm font-medium text-slate-300">Community Powered Contributions</div>
                         </div>
                     </div>
@@ -197,11 +207,16 @@ export function Signup() {
                         <div className="h-px w-full bg-white/10"></div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="space-y-5"
+                    >
                         <div className="space-y-1">
                             <label className="text-xs font-bold text-slate-500 ml-1 uppercase">Email Address</label>
+
                             <div className="relative">
                                 <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+
                                 <input
                                     type="email"
                                     name="email"
@@ -217,8 +232,10 @@ export function Signup() {
 
                         <div className="space-y-1">
                             <label className="text-xs font-bold text-slate-500 ml-1 uppercase">Password</label>
+
                             <div className="relative">
                                 <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+
                                 <input
                                     type="password"
                                     name="password"
@@ -234,8 +251,10 @@ export function Signup() {
 
                         <div className="space-y-1">
                             <label className="text-xs font-bold text-slate-500 ml-1 uppercase">Confirm Password</label>
+
                             <div className="relative">
                                 <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+
                                 <input
                                     type="password"
                                     name="confirmPassword"
@@ -261,7 +280,10 @@ export function Signup() {
 
                     <p className="mt-8 text-center text-slate-400 text-sm">
                         Already have an account?{" "}
-                        <Link to="/" className="text-cyan-400 font-bold hover:underline">
+                        <Link
+                            to="/"
+                            className="text-cyan-400 font-bold hover:underline"
+                        >
                             Login now
                         </Link>
                     </p>

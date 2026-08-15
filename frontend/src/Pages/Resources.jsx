@@ -30,10 +30,17 @@ export function Resources() {
                 <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-600/10 blur-[100px] rounded-full" />
             </div>
 
+            {/* navbar */}
             <Navbar />
+
+            {/* Content */}
             <main className="relative z-10">
-                <Content loading={loading} setLoading={setLoading} />
+                <Content
+                    loading={loading}
+                    setLoading={setLoading}
+                />
             </main>
+
             {/* Footer is conditionally rendered based on loading state */}
             {!loading && <Footer />}
         </div>
@@ -86,10 +93,14 @@ function Content({ loading, setLoading }) {
     return (
         <div className="max-w-7xl mx-auto px-6 py-12">
             {/* Header Section */}
-            <div className="text-center mb-16" data-aos="fade-down">
+            <div
+                className="text-center mb-16"
+                data-aos="fade-down"
+            >
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
                     Curated <span className="text-cyan-400">Knowledge</span>
                 </h1>
+
                 <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
                     Hand-picked tutorials and tools to help you build better software.
                 </p>
@@ -97,6 +108,7 @@ function Content({ loading, setLoading }) {
                 {/* Subtle Search Bar */}
                 <div className="relative max-w-md mx-auto">
                     <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+
                     <input
                         type="text"
                         placeholder="Search resources..."
@@ -118,12 +130,17 @@ function Content({ loading, setLoading }) {
                 if (filteredItems.length === 0) return null;
 
                 return (
-                    <section key={categoryKey} className="mb-20" data-aos="fade-up">
+                    <section
+                        key={categoryKey}
+                        className="mb-20"
+                        data-aos="fade-up"
+                    >
                         <div className="flex items-center gap-4 mb-8">
                             <h2 className="text-2xl md:text-3xl font-bold text-white flex-shrink-0">
                                 {labels[categoryKey] || categoryKey}
                             </h2>
-                            <div className="h-[1px] w-full bg-gradient-to-r from-white/20 to-transparent"></div>
+
+                            <div className="h-[1px] w-full bg-gradient-to-r from-white/20 to-transparent" />
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -144,8 +161,11 @@ function Content({ loading, setLoading }) {
                                             className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
                                         />
                                     </div>
-                                    <div className="relative z-10 uppercase text-xs font-bold tracking-widest text-slate-400
-                                    group-hover:text-white transition-colors">
+
+                                    <div
+                                        className="relative z-10 uppercase text-xs font-bold tracking-widest text-slate-400
+                                        group-hover:text-white transition-colors"
+                                    >
                                         {res.name}
                                     </div>
                                 </Link>
@@ -163,9 +183,11 @@ function Content({ loading, setLoading }) {
             >
                 <div className="relative z-10">
                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Missing something?</h2>
+
                     <p className="text-slate-400 mb-8 max-w-md mx-auto">
                         Help us grow the stash. If there's a tool or tutorial we missed, let the community know.
                     </p>
+
                     <a
                         href="https://github.com/TonyStark-19/DevStash/issues/new?template=resource-suggestion.md"
                         target="_blank"

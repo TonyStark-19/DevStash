@@ -43,12 +43,16 @@ export function Navbar() {
     return (
         <nav className="w-full h-20 flex items-center justify-between px-8 md:px-16 border-b border-white/5 bg-black/40 backdrop-blur-md z-[100] sticky top-0">
             {/* Logo */}
-            <Link to="/home" className="flex items-center gap-2 group">
+            <Link
+                to="/home"
+                className="flex items-center gap-2 group"
+            >
                 <img
                     className="w-8 h-8"
                     src="/images/Favicon/DevStash.png"
                     alt="DevStash logo"
                 />
+
                 <span className="text-xl mt-2 font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
                     DevStash
                 </span>
@@ -62,7 +66,7 @@ export function Navbar() {
                             key={link.path}
                             to={link.path}
                             className={`flex items-center gap-2 text-sm font-medium transition-colors
-                                ${isActive(link.path) ? 'text-cyan-400' : 'text-slate-400 hover:text-white'}`}
+                            ${isActive(link.path) ? 'text-cyan-400' : 'text-slate-400 hover:text-white'}`}
                         >
                             {link.icon} {link.name}
                         </Link>
@@ -99,7 +103,7 @@ export function Navbar() {
                             key={link.path}
                             to={link.path}
                             className={`flex items-center gap-4 text-lg font-medium transition-colors
-                                ${isActive(link.path) ? 'text-cyan-400' : 'text-slate-300 hover:text-white'}`}
+                            ${isActive(link.path) ? 'text-cyan-400' : 'text-slate-300 hover:text-white'}`}
                         >
                             <span className="text-xl">{link.icon}</span>
                             {link.name}

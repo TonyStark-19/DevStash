@@ -82,7 +82,10 @@ export function ResourceDetail() {
                 <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-cyan-500/10 blur-[120px] rounded-full opacity-50" />
             </div>
 
+            {/* navbar */}
             <Navbar />
+
+            {/* Contribution Modal */}
             <main className="relative z-10 pb-20">
                 <Content
                     loading={loading}
@@ -99,20 +102,33 @@ export function ResourceDetail() {
             {/* Contribution Modal */}
             {isOpen && (
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={() => setIsOpen(false)} />
-                    <div className="relative w-full max-w-lg bg-[#0d1117] border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-2xl animate-in
-                    zoom-in-95 duration-300">
-                        <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors
-                        cursor-pointer">
+                    <div
+                        className="absolute inset-0 bg-black/80 backdrop-blur-md"
+                        onClick={() => setIsOpen(false)}
+                    />
+
+                    <div
+                        className="relative w-full max-w-lg bg-[#0d1117] border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-2xl animate-in
+                        zoom-in-95 duration-300"
+                    >
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors
+                            cursor-pointer"
+                        >
                             <FiX size={24} />
                         </button>
 
                         <h3 className="text-2xl font-bold text-white mb-2">Add New Resource</h3>
                         <p className="text-slate-400 text-sm mb-8">Share a link that will help the community.</p>
 
-                        <form onSubmit={handleSubmit} className="space-y-4">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="space-y-4"
+                        >
                             <div className="space-y-1">
                                 <label className="text-xs font-bold text-slate-500 ml-1">CONTENT TYPE</label>
+
                                 <select
                                     name="type"
                                     value={formData.type}
@@ -263,20 +279,31 @@ function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, catego
     return (
         <div className="max-w-5xl mx-auto px-6 pt-16">
             {/* Header Section */}
-            <div className="text-center mb-20" data-aos="fade-down">
+            <div
+                className="text-center mb-20"
+                data-aos="fade-down"
+            >
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 capitalize tracking-tight">
                     {customHeading} <span className="text-cyan-400">Mastery</span>
                 </h1>
+
                 <div className="h-1 w-24 bg-cyan-500 mx-auto rounded-full" />
             </div>
 
             {/* Resource Groups */}
             {['docs', 'youtube'].map((type) => (
-                <section key={type} className="mb-24">
-                    <div className="flex items-center gap-4 mb-10" data-aos="fade-right">
+                <section
+                    key={type}
+                    className="mb-24"
+                >
+                    <div
+                        className="flex items-center gap-4 mb-10"
+                        data-aos="fade-right"
+                    >
                         <h2 className="text-2xl font-bold text-white uppercase tracking-widest">
                             {type === 'docs' ? 'Official Docs & Articles' : 'Video Tutorials'}
                         </h2>
+
                         <div className="flex-1 h-px bg-white/10" />
                     </div>
 
@@ -291,7 +318,10 @@ function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, catego
                                 <div className="flex flex-col md:flex-row gap-6 items-start">
                                     {/* Icon/Image */}
                                     <div className="w-14 h-14 rounded-2xl bg-white/5 p-3 flex-shrink-0 border border-white/10">
-                                        <img src={res.image} alt="" className="w-full h-full object-contain" />
+                                        <img
+                                            src={res.image}
+                                            alt={res.title} className="w-full h-full object-contain"
+                                        />
                                     </div>
 
                                     <button
@@ -300,7 +330,10 @@ function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, catego
                                         absolute top-8 right-8"
                                         title="Save to stash"
                                     >
-                                        {savedResources.some(item => item.itemId === res._id) ? <FaBookmark className="text-cyan-500" /> : <CiBookmark />}
+                                        {savedResources.some(item => item.itemId === res._id)
+                                            ? <FaBookmark className="text-cyan-500" />
+                                            : <CiBookmark />
+                                        }
                                     </button>
 
                                     {/* Content */}
@@ -310,20 +343,27 @@ function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, catego
                                                 {res.title}
                                             </h3>
                                         </div>
+
                                         <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 max-w-3xl">
                                             {res.description}
                                         </p>
 
-                                        <div className="flex justify-between items-center gap-3 max-[900px]:flex-col max-[900px]:items-start
-                                        max-[900px]:gap-6 max-[900px]:w-full">
+                                        <div
+                                            className="flex justify-between items-center gap-3 max-[900px]:flex-col max-[900px]:items-start
+                                            max-[900px]:gap-6 max-[900px]:w-full"
+                                        >
                                             <div className="flex items-center gap-2 flex-wrap">
                                                 {res.tags.map((tag, i) => (
-                                                    <span key={i} className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-cyan-500/10
-                                                text-cyan-400 border border-cyan-500/20">
+                                                    <span
+                                                        key={i}
+                                                        className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-cyan-500/10
+                                                        text-cyan-400 border border-cyan-500/20"
+                                                    >
                                                         {tag}
                                                     </span>
                                                 ))}
                                             </div>
+
                                             <a
                                                 href={res.link}
                                                 target="_blank"
@@ -343,9 +383,13 @@ function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, catego
             ))}
 
             {/* Bottom CTA Card */}
-            <div className="bg-gradient-to-br from-cyan-500/20 to-transparent border border-cyan-500/20 rounded-3xl p-10 text-center" data-aos="zoom-in">
+            <div
+                className="bg-gradient-to-br from-cyan-500/20 to-transparent border border-cyan-500/20 rounded-3xl p-10 text-center"
+                data-aos="zoom-in"
+            >
                 <h2 className="text-2xl font-bold text-white mb-4">Know a better resource?</h2>
                 <p className="text-slate-400 mb-8 max-w-md mx-auto">Share the tools that helped you and contribute to the collective developer growth.</p>
+
                 <button
                     onClick={() => setIsOpen(true)}
                     className="flex items-center gap-2 mx-auto px-8 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform

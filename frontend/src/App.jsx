@@ -29,7 +29,8 @@ function AppRoutes() {
       <div
         className="flex flex-col items-center justify-center h-screen bg-[#030712] font-poppins"
       >
-        <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
+
         <p className="mt-4 text-slate-400 font-medium tracking-widest animate-pulse">
           DEVSTASH
         </p>
@@ -39,6 +40,7 @@ function AppRoutes() {
 
   return (
     <>
+      {/* scroll to top on route change */}
       <ScrollToTop />
 
       <Routes>
