@@ -6,6 +6,7 @@ import { Footer } from "../Components/Footer";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 import { FiArrowUpRight, FiPlus, FiX } from "react-icons/fi";
+import { FiPlusCircle, FiChevronDown, FiType, FiLink, FiAlignLeft, FiTag } from "react-icons/fi";
 
 // import useState and useEffect
 import { useState, useEffect } from "react";
@@ -102,104 +103,142 @@ export function ResourceDetail() {
             {/* Contribution Modal */}
             {isOpen && (
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+                    {/* Backdrop */}
                     <div
-                        className="absolute inset-0 bg-black/80 backdrop-blur-md"
+                        className="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity"
                         onClick={() => setIsOpen(false)}
                     />
 
-                    <div
-                        className="relative w-full max-w-lg bg-[#0d1117] border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-2xl animate-in
-                        zoom-in-95 duration-300"
-                    >
+                    {/* Modal Box */}
+                    <div className="relative w-full max-w-lg bg-[#0a0e17] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-cyan-500/5 animate-in fade-in zoom-in-95 duration-200 overflow-hidden">
+                        {/* Subtle Ambient Radial Glow */}
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                        {/* Close Button */}
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors
-                            cursor-pointer"
+                            className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
                         >
-                            <FiX size={24} />
+                            <FiX size={18} />
                         </button>
 
-                        <h3 className="text-2xl font-bold text-white mb-2">Add New Resource</h3>
-                        <p className="text-slate-400 text-sm mb-8">Share a link that will help the community.</p>
+                        {/* Header */}
+                        <div className="mb-6">
+                            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 mb-2.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+                                <FiPlusCircle size={13} />
+                                Contribute
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Add New Resource</h3>
+                            <p className="text-slate-400 text-xs sm:text-sm mt-1">Share a high-quality link to help the developer community.</p>
+                        </div>
 
-                        <form
-                            onSubmit={handleSubmit}
-                            className="space-y-4"
-                        >
+                        {/* Form */}
+                        <form onSubmit={handleSubmit} className="space-y-3.5">
+                            {/* Content Type Select with React Icon */}
                             <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-500 ml-1">CONTENT TYPE</label>
-
-                                <select
-                                    name="type"
-                                    value={formData.type}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500
-                                    transition-colors text-white"
-                                >
-                                    <option value="" disabled className="bg-[#0d1117]">Select Type</option>
-                                    <option value="docs" className="bg-[#0d1117]">Documentation / Article</option>
-                                    <option value="youtube" className="bg-[#0d1117]">YouTube Video</option>
-                                </select>
+                                <label className="text-[11px] font-bold text-slate-400 ml-1 uppercase tracking-wider">Content Type</label>
+                                <div className="relative group">
+                                    <select
+                                        name="type"
+                                        value={formData.type}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full appearance-none bg-white/5 border border-white/10 rounded-xl py-2.5 pl-3.5 pr-10 outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all text-sm text-white cursor-pointer"
+                                    >
+                                        <option value="" disabled className="bg-[#0a0e17] text-slate-500">Select content type...</option>
+                                        <option value="docs" className="bg-[#0a0e17] text-white">Documentation / Article</option>
+                                        <option value="youtube" className="bg-[#0a0e17] text-white">YouTube Video / Course</option>
+                                        <option value="tool" className="bg-[#0a0e17] text-white">Dev Tool / Library</option>
+                                    </select>
+                                    <FiChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none group-hover:text-cyan-400 transition-colors text-base" />
+                                </div>
                             </div>
 
-                            <input
-                                name="title"
-                                type="text"
-                                placeholder="Resource Title"
-                                value={formData.title}
-                                onChange={handleChange}
-                                required
-                                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500 transition-colors
-                                text-white"
-                            />
+                            {/* Resource Title */}
+                            <div className="space-y-1">
+                                <label className="text-[11px] font-bold text-slate-400 ml-1 uppercase tracking-wider">Resource Title</label>
+                                <div className="relative">
+                                    <FiType className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm" />
+                                    <input
+                                        name="title"
+                                        type="text"
+                                        placeholder="e.g. React 19 Full Architecture Guide"
+                                        value={formData.title}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-9 pr-3.5 text-sm outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all text-white placeholder:text-slate-600"
+                                    />
+                                </div>
+                            </div>
 
-                            <input
-                                name="link"
-                                type="url"
-                                placeholder="Resource URL (https://...)"
-                                value={formData.link}
-                                onChange={handleChange}
-                                required
-                                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500 transition-colors
-                                text-white"
-                            />
+                            {/* URL */}
+                            <div className="space-y-1">
+                                <label className="text-[11px] font-bold text-slate-400 ml-1 uppercase tracking-wider">Resource URL</label>
+                                <div className="relative">
+                                    <FiLink className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm" />
+                                    <input
+                                        name="link"
+                                        type="url"
+                                        placeholder="https://..."
+                                        value={formData.link}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-9 pr-3.5 text-sm outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all text-white placeholder:text-slate-600"
+                                    />
+                                </div>
+                            </div>
 
-                            <textarea
-                                name="description"
-                                placeholder="Brief description..."
-                                rows={3}
-                                value={formData.description}
-                                onChange={handleChange}
-                                required
-                                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500 transition-colors
-                                text-white resize-none"
-                            />
+                            {/* Description */}
+                            <div className="space-y-1">
+                                <label className="text-[11px] font-bold text-slate-400 ml-1 uppercase tracking-wider">Description</label>
+                                <div className="relative">
+                                    <FiAlignLeft className="absolute left-3.5 top-3 text-slate-500 text-sm" />
+                                    <textarea
+                                        name="description"
+                                        placeholder="Brief summary of why this resource is useful..."
+                                        rows={3}
+                                        value={formData.description}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-9 pr-3.5 text-sm outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all text-white resize-none placeholder:text-slate-600"
+                                    />
+                                </div>
+                            </div>
 
-                            <input
-                                name="tags"
-                                type="text"
-                                placeholder="Tags (comma separated, e.g. React, UI, Frontend)"
-                                value={formData.tags}
-                                onChange={handleChange}
-                                required
-                                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-cyan-500 transition-colors
-                                text-white"
-                            />
+                            {/* Tags */}
+                            <div className="space-y-1">
+                                <label className="text-[11px] font-bold text-slate-400 ml-1 uppercase tracking-wider">Tags</label>
+                                <div className="relative">
+                                    <FiTag className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm" />
+                                    <input
+                                        name="tags"
+                                        type="text"
+                                        placeholder="React, Frontend, State Management"
+                                        value={formData.tags}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-9 pr-3.5 text-sm outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all text-white placeholder:text-slate-600"
+                                    />
+                                </div>
+                            </div>
 
+                            {/* Submit Button */}
                             <button
                                 type="submit"
-                                disabled={submitting} // Prevent double submission
-                                className={`w-full py-4 flex items-center justify-center gap-2 text-black font-bold rounded-xl transition-all mt-4 
-                                ${submitting ? 'bg-cyan-600 cursor-not-allowed opacity-70' : 'bg-cyan-500 hover:bg-cyan-400 cursor-pointer'}`}
+                                disabled={submitting}
+                                className={`w-full py-3 mt-4 flex items-center justify-center gap-2 text-black font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-500/20 transform hover:scale-[1.01] active:scale-95 ${submitting ? 'bg-cyan-600 cursor-not-allowed opacity-75' : 'bg-cyan-500 hover:bg-cyan-400 cursor-pointer'
+                                    }`}
                             >
                                 {submitting ? (
                                     <>
-                                        <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
-                                        SUBMITTING...
+                                        <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                                        <span>Submitting...</span>
                                     </>
                                 ) : (
-                                    'SUBMIT TO STASH'
+                                    <>
+                                        <FiPlusCircle size={16} />
+                                        <span>Submit to Stash</span>
+                                    </>
                                 )}
                             </button>
                         </form>
@@ -384,19 +423,30 @@ function Content({ loading, setLoading, isOpen, setIsOpen, data, setData, catego
 
             {/* Bottom CTA Card */}
             <div
-                className="bg-gradient-to-br from-cyan-500/20 to-transparent border border-cyan-500/20 rounded-3xl p-10 text-center"
-                data-aos="zoom-in"
+                className="relative overflow-hidden bg-gradient-to-br from-cyan-500/20 via-cyan-950/10 to-transparent border border-cyan-500/20 rounded-3xl p-8 md:p-10 text-center group"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-offset="100"
             >
-                <h2 className="text-2xl font-bold text-white mb-4">Know a better resource?</h2>
-                <p className="text-slate-400 mb-8 max-w-md mx-auto">Share the tools that helped you and contribute to the collective developer growth.</p>
+                {/* Subtle Ambient Hover Glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-cyan-500/10 blur-3xl pointer-events-none group-hover:bg-cyan-500/20 transition-all duration-500" />
 
-                <button
-                    onClick={() => setIsOpen(true)}
-                    className="flex items-center gap-2 mx-auto px-8 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform
-                    cursor-pointer"
-                >
-                    <FiPlus /> Contribute Now
-                </button>
+                <div className="relative z-10">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
+                        Know a better resource?
+                    </h2>
+
+                    <p className="text-slate-400 text-sm md:text-base mb-8 max-w-md mx-auto leading-relaxed">
+                        Share the tools that helped you and contribute to the collective developer growth.
+                    </p>
+
+                    <button
+                        onClick={() => setIsOpen(true)}
+                        className="flex items-center gap-2 mx-auto px-8 py-3 bg-white hover:bg-slate-100 text-black font-semibold text-sm rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-white/10 cursor-pointer"
+                    >
+                        <FiPlus className="text-base" /> Contribute Now
+                    </button>
+                </div>
             </div>
         </div>
     );

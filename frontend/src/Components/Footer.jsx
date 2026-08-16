@@ -11,6 +11,13 @@ const socialLinks = [
     { icon: <BsGlobe2 size={18} />, href: "https://aditya-devfolio-one.vercel.app/", label: "Portfolio" },
 ];
 
+// quick links data
+const quickLinks = [
+    { name: "Home", href: "/home" },
+    { name: "Browse Resources", href: "/resources" },
+    { name: "Saved Stash", href: "/saved" },
+];
+
 // Footer Component
 export function Footer() {
     return (
@@ -19,7 +26,7 @@ export function Footer() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
 
             <div className="max-w-7xl mx-auto px-8 py-12">
-                <div className="grid max-[900px]:grid-cols-1 min-[900px]:grid-cols-4 gap-12 mb-12">
+                <div className="grid max-[900px]:grid-cols-1 min-[900px]:grid-cols-4 gap-12 mb-28">
                     {/* Brand Section */}
                     <div className="col-span-1 md:col-span-2">
                         <Link
@@ -41,22 +48,6 @@ export function Footer() {
                             Organizing the world's best developer resources.
                             Built for the community, by the community. Explore, save, and share your favorites.
                         </p>
-
-                        {/* Product Hunt Dark Badge */}
-                        <a
-                            href="https://www.producthunt.com/products/devstash?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-devstash"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block transition-all duration-300 hover:opacity-80 active:scale-95"
-                        >
-                            <img
-                                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064040&theme=dark&t=1768757417282"
-                                alt="DevStash - Product Hunt"
-                                width="230"
-                                height="54"
-                                className="w-[200px] h-auto md:w-[250px]"
-                            />
-                        </a>
                     </div>
 
                     {/* Quick Links */}
@@ -64,32 +55,16 @@ export function Footer() {
                         <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Navigation</h4>
 
                         <ul className="space-y-4">
-                            <li>
-                                <Link
-                                    to="/home"
-                                    className="text-slate-400 hover:text-cyan-400 transition-colors text-sm"
-                                >
-                                    Home
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    to="/resources"
-                                    className="text-slate-400 hover:text-cyan-400 transition-colors text-sm"
-                                >
-                                    Browse Resources
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    to="/saved"
-                                    className="text-slate-400 hover:text-cyan-400 transition-colors text-sm"
-                                >
-                                    Saved Stash
-                                </Link>
-                            </li>
+                            {quickLinks.map((link, idx) => (
+                                <li key={idx}>
+                                    <Link
+                                        to={link.href}
+                                        className="text-slate-400 hover:text-cyan-400 transition-colors text-sm"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 

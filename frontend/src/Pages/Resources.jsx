@@ -177,14 +177,20 @@ function Content({ loading, setLoading }) {
 
             {/* Modern CTA */}
             <div
-                className="mt-12 p-12 rounded-3xl bg-gradient-to-b from-white/10 to-transparent border border-white/10 text-center relative
-                overflow-hidden max-[380px]:px-6"
-                data-aos="zoom-in"
+                className="mt-12 p-10 md:p-12 rounded-3xl bg-gradient-to-b from-white/[0.06] to-transparent border border-white/10 text-center relative overflow-hidden max-[380px]:px-6 group"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-offset="100"
             >
-                <div className="relative z-10">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Missing something?</h2>
+                {/* Subtle Ambient Radial Glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-cyan-500/10 blur-3xl pointer-events-none group-hover:bg-cyan-500/20 transition-all duration-500" />
 
-                    <p className="text-slate-400 mb-8 max-w-md mx-auto">
+                <div className="relative z-10">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight">
+                        Missing something?
+                    </h2>
+
+                    <p className="text-slate-400 text-sm md:text-base mb-8 max-w-md mx-auto leading-relaxed">
                         Help us grow the stash. If there's a tool or tutorial we missed, let the community know.
                     </p>
 
@@ -192,10 +198,9 @@ function Content({ loading, setLoading }) {
                         href="https://github.com/TonyStark-19/DevStash/issues/new?template=resource-suggestion.md"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-8 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all
-                        hover:scale-105 max-[400px]:px-6"
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-sm rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-cyan-500/20 max-[400px]:px-6 cursor-pointer"
                     >
-                        <FiPlusCircle />
+                        <FiPlusCircle className="text-base" />
                         Suggest a Resource
                     </a>
                 </div>
