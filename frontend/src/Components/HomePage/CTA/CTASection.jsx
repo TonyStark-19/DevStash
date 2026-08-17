@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 // cta section
 export default function CTASection() {
     return (
-        <section className="relative z-10 pt-24 pb-12 px-6 max-w-4xl mx-auto text-center border-t-2 border-white/5">
+        <section className="relative z-10 pt-28 pb-12 px-6 max-w-4xl mx-auto text-center border-t-2 border-white/5">
             {/* Main Statement */}
             <div data-aos="fade-up">
                 <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 leading-18">

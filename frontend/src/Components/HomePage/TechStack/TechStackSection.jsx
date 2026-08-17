@@ -21,62 +21,86 @@ const categories = [
 // tech stack data
 const techStacks = [
     // Frontend (/images/frontend/)
-    { name: "HTML5", category: "frontend", icon: "/images/frontend/html5.svg" },
-    { name: "CSS3", category: "frontend", icon: "/images/frontend/css3.svg" },
-    { name: "JavaScript", category: "frontend", icon: "/images/frontend/javascript.svg" },
-    { name: "TypeScript", category: "frontend", icon: "/images/frontend/typescript.svg" },
-    { name: "React", category: "frontend", icon: "/images/frontend/react.svg" },
-    { name: "Next.js", category: "frontend", icon: "/images/frontend/nextjs.svg" },
-    { name: "Vue.js", category: "frontend", icon: "/images/frontend/vue.svg" },
-    { name: "Nuxt.js", category: "frontend", icon: "/images/frontend/nuxt.svg" },
-    { name: "Angular", category: "frontend", icon: "/images/frontend/angular.svg" },
-    { name: "Svelte", category: "frontend", icon: "/images/frontend/svelte.svg" },
-    { name: "Bootstrap", category: "frontend", icon: "/images/frontend/bootstrap.svg" },
-    { name: "Tailwind CSS", category: "frontend", icon: "/images/frontend/tailwind.svg" },
-    { name: "Material UI", category: "frontend", icon: "/images/frontend/materialui.svg" },
+    { name: "HTML5", category: "frontend", icon: "/images/frontend/HTML5.svg" },
+    { name: "CSS3", category: "frontend", icon: "/images/frontend/CSS3.svg" },
+    { name: "JavaScript", category: "frontend", icon: "/images/frontend/JavaScript.svg" },
+    { name: "TypeScript", category: "frontend", icon: "/images/frontend/TypeScript.svg" },
+    { name: "React", category: "frontend", icon: "/images/frontend/React.svg" },
+    { name: "Next.js", category: "frontend", icon: "/images/frontend/Next.js.svg" },
+    { name: "Vue.js", category: "frontend", icon: "/images/frontend/Vue.js.svg" },
+    { name: "Nuxt.js", category: "frontend", icon: "/images/frontend/Nuxt.svg" },
+    { name: "Angular", category: "frontend", icon: "/images/frontend/Angular.svg" },
+    { name: "Svelte", category: "frontend", icon: "/images/frontend/Svelte.svg" },
+    { name: "Bootstrap", category: "frontend", icon: "/images/frontend/Bootstrap.svg" },
+    { name: "Tailwind CSS", category: "frontend", icon: "/images/frontend/Tailwind.svg" },
+    { name: "Material UI", category: "frontend", icon: "/images/frontend/MaterialUI.svg" },
 
     // Backend (/images/backend/)
-    { name: "Node.js", category: "backend", icon: "/images/backend/nodejs.svg" },
-    { name: "Express", category: "backend", icon: "/images/backend/express.svg" },
-    { name: "Django", category: "backend", icon: "/images/backend/django.svg" },
-    { name: "Flask", category: "backend", icon: "/images/backend/flask.svg" },
-    { name: "Ruby on Rails", category: "backend", icon: "/images/backend/rubyonrails.svg" },
-    { name: "Laravel", category: "backend", icon: "/images/backend/laravel.svg" },
-    { name: "FastAPI", category: "backend", icon: "/images/backend/fastapi.svg" },
+    { name: "Node.js", category: "backend", icon: "/images/backend/Node.js.svg" },
+    { name: "Express", category: "backend", icon: "/images/backend/Express.svg" },
+    { name: "Django", category: "backend", icon: "/images/backend/Django.svg" },
+    { name: "Flask", category: "backend", icon: "/images/backend/Flask.svg" },
+    { name: "Ruby on Rails", category: "backend", icon: "/images/backend/RubyOnRails.svg" },
+    { name: "Laravel", category: "backend", icon: "/images/backend/Laravel.svg" },
+    { name: "FastAPI", category: "backend", icon: "/images/backend/FastAPI.svg" },
 
     // Database (/images/database/)
-    { name: "MongoDB", category: "database", icon: "/images/database/mongodb.svg" },
-    { name: "MySQL", category: "database", icon: "/images/database/mysql.svg" },
-    { name: "PostgreSQL", category: "database", icon: "/images/database/postgresql.svg" },
-    { name: "SQLite", category: "database", icon: "/images/database/sqlite.svg" },
-    { name: "Redis", category: "database", icon: "/images/database/redis.svg" },
-    { name: "Firebase", category: "database", icon: "/images/database/firebase.svg" },
+    { name: "MongoDB", category: "database", icon: "/images/database/MongoDB.svg" },
+    { name: "MySQL", category: "database", icon: "/images/database/MySQL.svg" },
+    { name: "PostgreSQL", category: "database", icon: "/images/database/PostgreSQL.svg" },
+    { name: "SQLite", category: "database", icon: "/images/database/SQLite.svg" },
+    { name: "Redis", category: "database", icon: "/images/database/Redis.svg" },
+    { name: "Firebase", category: "database", icon: "/images/database/Firebase.svg" },
 
     // Programming Languages (/images/programming/)
-    { name: "C", category: "programming", icon: "/images/programming/c.svg" },
-    { name: "C++", category: "programming", icon: "/images/programming/cplusplus.svg" },
-    { name: "Python", category: "programming", icon: "/images/programming/python.svg" }, +
-    { name: "Java", category: "programming", icon: "/images/programming/java.svg" },
-    { name: "Go", category: "programming", icon: "/images/programming/golang.svg" },
-    { name: "Rust", category: "programming", icon: "/images/programming/rust.svg" },
-    { name: "PHP", category: "programming", icon: "/images/programming/php.svg" },
-    { name: "Ruby", category: "programming", icon: "/images/programming/ruby.svg" },
-    { name: "Kotlin", category: "programming", icon: "/images/programming/kotlin.svg" },
-    { name: "Swift", category: "programming", icon: "/images/programming/swift.svg" },
-    { name: "Scala", category: "programming", icon: "/images/programming/scala.svg" },
+    { name: "C", category: "programming", icon: "/images/programming/C.svg" },
+    { name: "C++", category: "programming", icon: "/images/programming/CPlusPlus.svg" },
+    { name: "Python", category: "programming", icon: "/images/programming/Python.svg" },
+    { name: "Java", category: "programming", icon: "/images/programming/Java.svg" },
+    { name: "Go", category: "programming", icon: "/images/programming/Go.svg" },
+    { name: "Rust", category: "programming", icon: "/images/programming/Rust.svg" },
+    { name: "PHP", category: "programming", icon: "/images/programming/PHP.svg" },
+    { name: "Ruby", category: "programming", icon: "/images/programming/Ruby.svg" },
+    { name: "Kotlin", category: "programming", icon: "/images/programming/Kotlin.svg" },
+    { name: "Swift", category: "programming", icon: "/images/programming/Swift.svg" },
+    { name: "Scala", category: "programming", icon: "/images/programming/Scala.svg" },
 
     // DevOps & Cloud (/images/VersionControlAndDevOps/ & /images/CloudAndHosting/)
-    { name: "Git", category: "devops", icon: "/images/VersionControlAndDevOps/git.svg" },
-    { name: "GitHub", category: "devops", icon: "/images/VersionControlAndDevOps/github.svg" },
-    { name: "GitLab", category: "devops", icon: "/images/VersionControlAndDevOps/gitlab.svg" },
-    { name: "Docker", category: "devops", icon: "/images/VersionControlAndDevOps/docker.svg" },
-    { name: "Kubernetes", category: "devops", icon: "/images/VersionControlAndDevOps/kubernetes.svg" },
-    { name: "Jenkins", category: "devops", icon: "/images/VersionControlAndDevOps/jenkins.svg" },
-    { name: "AWS", category: "devops", icon: "/images/CloudAndHosting/aws.svg" },
-    { name: "Azure", category: "devops", icon: "/images/CloudAndHosting/azure.svg" },
-    { name: "Google Cloud", category: "devops", icon: "/images/CloudAndHosting/gcp.svg" },
-    { name: "Vercel", category: "devops", icon: "/images/CloudAndHosting/vercel.svg" },
-    { name: "Heroku", category: "devops", icon: "/images/CloudAndHosting/heroku.svg" },
+    { name: "Git", category: "devops", icon: "/images/VersionControlAndDevOps/Git.svg" },
+    { name: "GitHub", category: "devops", icon: "/images/VersionControlAndDevOps/GitHub.svg" },
+    { name: "GitLab", category: "devops", icon: "/images/VersionControlAndDevOps/GitLab.svg" },
+    { name: "Docker", category: "devops", icon: "/images/VersionControlAndDevOps/Docker.svg" },
+    { name: "Kubernetes", category: "devops", icon: "/images/VersionControlAndDevOps/Kubernetes.svg" },
+    { name: "Jenkins", category: "devops", icon: "/images/VersionControlAndDevOps/Jenkins.svg" },
+    { name: "AWS", category: "devops", icon: "/images/CloudAndHosting/AWS.svg" },
+    { name: "Azure", category: "devops", icon: "/images/CloudAndHosting/Azure.svg" },
+    { name: "Google Cloud", category: "devops", icon: "/images/CloudAndHosting/GoogleCloud.svg" },
+    { name: "Vercel", category: "devops", icon: "/images/CloudAndHosting/Vercel.svg" },
+    { name: "Heroku", category: "devops", icon: "/images/CloudAndHosting/Heroku.svg" },
+];
+
+// metrices data
+const metrics = [
+    {
+        style: "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400",
+        count: "45+",
+        title: "Tech Stacks"
+    },
+    {
+        style: "text-white",
+        count: "150+",
+        title: "Vetted Resources"
+    },
+    {
+        style: "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400",
+        count: "6",
+        title: "Core Domains"
+    },
+    {
+        style: "text-white",
+        count: "100%",
+        title: "Community Free"
+    }
 ];
 
 // tech stack section
@@ -116,41 +140,23 @@ export default function TechStackSection() {
             </div>
 
             {/* Metrics Bar */}
+            {/* Metrics Bar */}
             <div
                 className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
                 data-aos="fade-up"
             >
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md text-center">
-                    <div className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-1">
-                        45+
+                {metrics.map((metric, idx) => (
+                    <div
+                        key={idx}
+                        className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md text-center"
+                    >
+                        <div className={`text-3xl md:text-4xl font-extrabold ${metric.style} mb-1`}>
+                            {metric.count}
+                        </div>
+
+                        <div className="text-xs uppercase tracking-wider font-semibold text-slate-400">{metric.title}</div>
                     </div>
-
-                    <div className="text-xs uppercase tracking-wider font-semibold text-slate-400">Tech Stacks</div>
-                </div>
-
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md text-center">
-                    <div className="text-3xl md:text-4xl font-extrabold text-white mb-1">
-                        150+
-                    </div>
-
-                    <div className="text-xs uppercase tracking-wider font-semibold text-slate-400">Vetted Resources</div>
-                </div>
-
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md text-center">
-                    <div className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-1">
-                        6
-                    </div>
-
-                    <div className="text-xs uppercase tracking-wider font-semibold text-slate-400">Core Domains</div>
-                </div>
-
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md text-center">
-                    <div className="text-3xl md:text-4xl font-extrabold text-white mb-1">
-                        100%
-                    </div>
-
-                    <div className="text-xs uppercase tracking-wider font-semibold text-slate-400">Community Free</div>
-                </div>
+                ))}
             </div>
 
             {/* Category Tabs */}
@@ -161,6 +167,7 @@ export default function TechStackSection() {
                 {categories.map((cat) => {
                     const IconComponent = cat.icon;
                     const isActive = activeTab === cat.id;
+
                     return (
                         <button
                             key={cat.id}

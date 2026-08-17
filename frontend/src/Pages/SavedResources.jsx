@@ -38,7 +38,7 @@ export function SavedResources() {
             <Navbar />
 
             {/* Main Content */}
-            <main className="relative z-10 pb-20">
+            <main className="relative z-10 pb-0">
                 <Content
                     loading={loading}
                     setLoading={setLoading}

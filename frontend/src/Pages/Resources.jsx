@@ -16,7 +16,7 @@ import 'aos/dist/aos.css';
 import api from "../utils/api";
 
 // import icons
-import { FiPlusCircle, FiSearch } from "react-icons/fi";
+import { FiPlusCircle, FiSearch, FiArrowUpRight } from "react-icons/fi";
 
 // Resources Page Component
 export function Resources() {
@@ -91,7 +91,7 @@ function Content({ loading, setLoading }) {
     );
 
     return (
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-6 pt-12 pb-0">
             {/* Header Section */}
             <div
                 className="text-center mb-16"
@@ -120,54 +120,80 @@ function Content({ loading, setLoading }) {
 
             {/* Category Mapping */}
             {Object.entries(resources).map(([categoryKey, items]) => {
-                // Simple search filter logic
+                // Search filter logic
                 const filteredItems = items.filter((res) =>
                     res.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                     res.subcategory.toLowerCase().includes(searchTerm.toLowerCase())
                 );
 
-                // If no items match in this category, don't render the section at all
+                // If no items match in this category, do not render the section
                 if (filteredItems.length === 0) return null;
 
                 return (
                     <section
                         key={categoryKey}
-                        className="mb-20"
+                        className="mb-16 md:mb-20"
                         data-aos="fade-up"
                     >
-                        <div className="flex items-center gap-4 mb-8">
-                            <h2 className="text-2xl md:text-3xl font-bold text-white flex-shrink-0">
-                                {labels[categoryKey] || categoryKey}
-                            </h2>
+                        {/* Section Category Header */}
+                        <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+                            <div className="flex items-center gap-3 flex-shrink-0">
+                                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight">
+                                    {labels[categoryKey] || categoryKey}
+                                </h2>
 
-                            <div className="h-[1px] w-full bg-gradient-to-r from-white/20 to-transparent" />
+                                {/* Item Count Badge */}
+                                <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold">
+                                    {filteredItems.length}
+                                </span>
+                            </div>
+
+                            <div className="h-px flex-1 bg-gradient-to-r from-white/15 via-white/5 to-transparent" />
                         </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                        {/* Resource Card Grid */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 md:gap-4">
                             {filteredItems.map((res, i) => (
                                 <Link
                                     to={`/resources/${categoryKey}/${res.subcategory}`}
-                                    key={i}
-                                    className="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10
-                                    hover:border-cyan-500/30 transition-all duration-300 flex flex-col items-center gap-4 overflow-hidden"
+                                    key={res.subcategory || i}
+                                    className="group relative p-5 md:p-6 bg-white/[0.02] border border-white/10 rounded-2xl hover:bg-white/[0.05] 
+                                    hover:border-cyan-500/40 transition-all duration-300 flex flex-col items-center justify-between gap-3 overflow-hidden 
+                                    transform hover:-translate-y-1 shadow-lg shadow-black/20"
                                 >
-                                    {/* Hover Glow Effect */}
-                                    <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    {/* Hover Top Glow */}
+                                    <div
+                                        className="absolute -top-12 -right-12 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 
+                                        transition-all pointer-events-none"
+                                    />
 
-                                    <div className="relative z-10 w-20 h-20 md:w-24 md:h-24 flex items-center justify-center p-2">
-                                        <img
-                                            src={res.src}
-                                            alt={res.alt}
-                                            className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                    {/* Top corner external link indicator */}
+                                    <div className="w-full flex justify-end">
+                                        <FiArrowUpRight
+                                            size={14}
+                                            className="text-slate-600 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-all duration-200 
+                                            -translate-x-1 group-hover:translate-x-0"
                                         />
                                     </div>
 
-                                    <div
-                                        className="relative z-10 uppercase text-xs font-bold tracking-widest text-slate-400
-                                        group-hover:text-white transition-colors"
+                                    {/* Logo Image */}
+                                    <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center p-1">
+                                        <img
+                                            src={res.src}
+                                            alt={res.alt || res.name}
+                                            loading="lazy"
+                                            className="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 
+                                            group-hover:scale-110 transition-all duration-300"
+                                        />
+                                    </div>
+
+                                    {/* Stack Name */}
+                                    <span
+                                        className="text-xs md:text-sm font-semibold tracking-wide text-slate-400 group-hover:text-white transition-colors 
+                                        text-center truncate max-w-full"
                                     >
                                         {res.name}
-                                    </div>
+                                    </span>
                                 </Link>
                             ))}
                         </div>
@@ -177,13 +203,17 @@ function Content({ loading, setLoading }) {
 
             {/* Modern CTA */}
             <div
-                className="mt-12 p-10 md:p-12 rounded-3xl bg-gradient-to-b from-white/[0.06] to-transparent border border-white/10 text-center relative overflow-hidden max-[380px]:px-6 group"
+                className="mt-12 p-10 md:p-12 rounded-3xl bg-gradient-to-b from-white/[0.06] to-transparent border border-white/10 text-center 
+                relative overflow-hidden max-[380px]:px-6 group"
                 data-aos="fade-up"
                 data-aos-duration="800"
                 data-aos-offset="100"
             >
                 {/* Subtle Ambient Radial Glow */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-cyan-500/10 blur-3xl pointer-events-none group-hover:bg-cyan-500/20 transition-all duration-500" />
+                <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-cyan-500/10 blur-3xl pointer-events-none 
+                    group-hover:bg-cyan-500/20 transition-all duration-500"
+                />
 
                 <div className="relative z-10">
                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight">
@@ -198,7 +228,9 @@ function Content({ loading, setLoading }) {
                         href="https://github.com/TonyStark-19/DevStash/issues/new?template=resource-suggestion.md"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-sm rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-cyan-500/20 max-[400px]:px-6 cursor-pointer"
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-sm 
+                        rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-cyan-500/20 
+                        max-[400px]:px-6 cursor-pointer"
                     >
                         <FiPlusCircle className="text-base" />
                         Suggest a Resource
