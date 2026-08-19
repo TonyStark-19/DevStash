@@ -19,9 +19,9 @@ import toast from "react-hot-toast";
 import { useGoogleLogin } from '@react-oauth/google';
 
 // import components
-import Background from "../Components/Auth/Background";
-import LoginForm from "../Components/Auth/Login/LoginForm";
-import LoginVisual from "../Components/Auth/Login/LoginVisual";
+import Background from "../Components/auth/Background";
+import LoginForm from "../Components/auth/Login/LoginForm";
+import LoginVisual from "../Components/auth/Login/LoginVisual";
 
 // Login Page Component
 export function Login() {

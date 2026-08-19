@@ -8,10 +8,10 @@ import { ResourceDetail } from "./Pages/ResourceDetail";
 import { Login } from "./Pages/Login";
 import { Signup } from "./Pages/Signup";
 import { SavedResources } from "./Pages/SavedResources";
-import ProtectedRoute from "./Components/ProtectedRoute";
-import PublicRoute from "./Components/PublicRoute";
+import ProtectedRoute from "./Components/utils/ProtectedRoute";
+import PublicRoute from "./Components/utils/PublicRoute";
 import { AuthProvider, useAuth } from "./Context/AuthContext";
-import ScrollToTop from "./Components/ScrollToTop";
+import ScrollToTop from "./Components/utils/ScrollToTop";
 
 // import Google OAuth Provider
 import { GoogleOAuthProvider } from '@react-oauth/google';

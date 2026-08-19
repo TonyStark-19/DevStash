@@ -1,6 +1,6 @@
 // import navigate and use auth
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../Context/AuthContext";
+import { useAuth } from "../../Context/AuthContext";
 
 // PublicRoute Component
 export default function PublicRoute({ children }) {

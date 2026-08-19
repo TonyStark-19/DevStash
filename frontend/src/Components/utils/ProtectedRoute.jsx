@@ -1,6 +1,6 @@
 // import navigate and use auth
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../Context/AuthContext";
+import { useAuth } from "../../Context/AuthContext";
 
 // ProtectedRoute Component
 export default function ProtectedRoute({ children }) {

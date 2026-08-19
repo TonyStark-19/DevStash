@@ -10,11 +10,11 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 // import components
-import Background from "../Components/HomePage/Background";
-import Content from "../Components/HomePage/Home/Content";
-import AboutSection from "../Components/HomePage/About/AboutSection";
-import TechStackSection from "../Components/HomePage/TechStack/TechStackSection";
-import CTASection from "../Components/HomePage/CTA/CTASection";
+import Background from "../Components/home/Background";
+import Content from "../Components/home/Home/Content";
+import AboutSection from "../Components/home/About/AboutSection";
+import TechStackSection from "../Components/home/TechStack/TechStackSection";
+import CTASection from "../Components/home/CTA/CTASection";
 
 // Home Page Component
 export function Home() {
