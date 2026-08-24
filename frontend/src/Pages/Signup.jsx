@@ -20,8 +20,8 @@ import { useGoogleLogin } from '@react-oauth/google';
 
 // import components
 import BackgroundAuth from "../Components/Auth/BackgroundAuth";
-import LeftVisual from "../Components/auth/Signup/LeftVisual";
-import SignupForm from "../Components/auth/Signup/SignupForm";
+import LeftVisual from "../Components/Auth/Signup/LeftVisual";
+import SignupForm from "../Components/Auth/Signup/SignupForm";
 
 // Signup Page Component
 export function Signup() {
