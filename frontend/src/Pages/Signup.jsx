@@ -19,7 +19,7 @@ import toast from "react-hot-toast";
 import { useGoogleLogin } from '@react-oauth/google';
 
 // import components
-import Background from "../Components/auth/Background";
+import BackgroundAuth from "../Components/auth/BackgroundAuth";
 import LeftVisual from "../Components/auth/Signup/LeftVisual";
 import SignupForm from "../Components/auth/Signup/SignupForm";
 
@@ -118,7 +118,7 @@ export function Signup() {
     return (
         <div className="min-h-screen bg-[#030712] flex items-center justify-center p-4 font-poppins relative overflow-hidden max-lg:p-0">
             {/* Ambient Background Glows */}
-            <Background />
+            <BackgroundAuth />
 
             <div
                 className="w-full max-w-[940px] grid grid-cols-1 lg:grid-cols-2 bg-white/[0.02] border border-white/10 rounded-3xl
