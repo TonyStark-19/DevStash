@@ -56,106 +56,38 @@ The application follows a service-oriented deployment architecture, with fronten
 
 ---
 
-
-## 🏆 Recognition
-
-DevStash has been officially featured on **Product Hunt** 🚀  
-Your support helps the project grow and reach more developers!
-
-<a href="https://www.producthunt.com/products/devstash?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-devstash" target="_blank">
-  <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064040&theme=dark" alt="DevStash - Featured on Product Hunt" width="250" height="54" />
-</a>
-<br /><br />
-
-> 💬 If you like DevStash, consider upvoting and sharing your feedback!
-
----
-
 ## ✨ Features
 
-### 🔐 Authentication & Security
-
-- **JWT-based authentication** with secure email/password login
-- Password hashing using **bcrypt**
-- **Google OAuth 2.0** implemented via a custom redirect flow <br />
-  (Designed to safely bypass COOP/COEP browser security constraints)
-
----
-
-### 🧭 Routing & Access Control
-
-- Protected routes using `ProtectedRoute`
-- Public-only routes using `PublicRoute`
-- Role-aware access handling
-
----
-
-### 📦 Resource Management
-
-- Curated content across:
-
-  - 6+ domains
-  - 48 technologies
-  - 109+ developer resources
-
-- Save, explore, and manage learning materials efficiently
-
----
-
-### 🤝 Community-Driven
-
-- GitHub Issue templates integrated directly into the app
-- Users can suggest new resources without modifying code
-
----
-
-### ⚡ Performance Optimizations
-
-- Cold-start mitigation logic to wake Render backend proactively
-- Axios interceptors for:
-   
-   - Automatic JWT injection
-   - Centralized error handling
-   - Instant redirects on unauthorized access
-
----
-
-### 🎨 UI / UX
-
-- Fully responsive dark-themed UI
-- Built with Tailwind CSS
-- Subtle glow effects & smooth animations using AOS
-- Mobile-first design approach
+| Category                         | Overview                                                                                               |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 🔐 **Authentication & Security** | Secure JWT authentication with bcrypt password hashing and Google OAuth 2.0.                           |
+| 🧭 **Routing & Access Control**  | Protected and public routes with role-based access handling.                                           |
+| 📦 **Resource Management**       | 109+ curated developer resources across 6+ domains and 48 technologies.                                |
+| 🤝 **Community-Driven**          | GitHub-powered resource suggestions that let users contribute easily.                                  |
+| ⚡ **Performance**                | Optimized API handling with JWT interceptors, error handling, and backend cold-start mitigation.       |
+| 🎨 **UI / UX**                   | Responsive dark-themed interface built with Tailwind CSS, AOS animations, and a mobile-first approach. |
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-
-- **React 18** (Vite-powered)
-- **Tailwind CSS** (Styling)
-- **React Router DOM** (Navigation)
-- **React Hot Toast** (Notifications)
-- **AOS** (Scroll Animations)
-- **Axios** (API Management)
-
----
-
-### Backend
-
-- **Node.js & Express**
-- **MongoDB & Mongoose** (Database)
-- **JWT** (Session Management)
-- **Axios** (Server-side API calls for OAuth verification)
-
----
-
-### Deployment
-
-- **Frontend:** Vercel
-- **Backend:** Render
-- **Database:** MongoDB Atlas
+| Technology           | Purpose                                      |
+| -------------------- | -------------------------------------------- |
+| **React 18**         | Frontend framework, Vite-powered             |
+| **Tailwind CSS**     | Styling                                      |
+| **React Router DOM** | Navigation & routing                         |
+| **React Hot Toast**  | Notifications                                |
+| **AOS**              | Scroll animations                            |
+| **Axios**            | API management & HTTP requests               |
+| **Node.js**          | Backend runtime                              |
+| **Express**          | Backend framework                            |
+| **MongoDB**          | Database                                     |
+| **Mongoose**         | MongoDB object modeling                      |
+| **JWT**              | Session & authentication management          |
+| **Axios**            | Server-side API calls for OAuth verification |
+| **Vercel**           | Frontend deployment                          |
+| **Render**           | Backend deployment                           |
+| **MongoDB Atlas**    | Cloud database hosting                       |
 
 ---
 
