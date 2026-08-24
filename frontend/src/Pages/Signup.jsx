@@ -19,7 +19,7 @@ import toast from "react-hot-toast";
 import { useGoogleLogin } from '@react-oauth/google';
 
 // import components
-import BackgroundAuth from "../Components/auth/BackgroundAuth";
+import BackgroundAuth from "../Components/Auth/BackgroundAuth";
 import LeftVisual from "../Components/auth/Signup/LeftVisual";
 import SignupForm from "../Components/auth/Signup/SignupForm";
 
