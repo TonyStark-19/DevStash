@@ -1,114 +1,161 @@
-// features dat
+// import icons
+import { FiBookmark, FiCode, FiCompass, FiGithub, FiShield, FiUsers, FiZap, } from "react-icons/fi";
+
+// Features
 const features = [
     {
         icon: FiCompass,
         title: "Discover Without Noise",
-        description: "Say goodbye to outdated blog posts and broken tutorials. Find vetted, high-impact documentation, roadmaps, and dev tools in seconds."
+        description:
+            "Skip outdated tutorials and broken resources. Find high-quality documentation, roadmaps, repositories, and developer tools in one place.",
     },
     {
         icon: FiBookmark,
-        title: "Personal Knowledge Vault",
-        description: "Organize what you learn. Save articles, bookmark repositories, and build custom stacks ready to reference whenever you code."
+        title: "Your Knowledge Vault",
+        description:
+            "Save what matters. Bookmark resources, organize your discoveries, and build a personal library you can return to whenever you code.",
     },
     {
         icon: FiUsers,
-        title: "Community Driven",
-        description: "Built for devs, maintained by devs. Submit your favorite packages, upvote game-changing libraries, and help junior engineers level up."
+        title: "Built by the Community",
+        description:
+            "Discover resources shared by developers, contribute your own, and help others find tools and learning material worth their time.",
     },
     {
         icon: FiShield,
-        title: "Security-First Architecture",
-        description: "Engineered on a modern MERN stack featuring OAuth 2.0 verification, JWT encryption, and rapid backend data retrieval."
-    }
+        title: "Security First",
+        description:
+            "Built with a modern MERN architecture featuring OAuth authentication, JWT-based sessions, protected routes, and optimized API access.",
+    },
 ];
 
-// import icons
-import { FiCompass, FiBookmark, FiUsers, FiShield, FiCode, FiZap, FiGithub } from "react-icons/fi";
-
-// about section component
+// about section
 export default function AboutSection() {
     return (
-        <section className="relative z-10 py-24 px-6 max-w-6xl mx-auto border-t-2 border-white/5">
+        <section
+            id="about"
+            className="relative z-10 mx-auto max-w-7xl border-t border-white/[0.06] px-6 py-24 sm:px-8 lg:px-10"
+        >
+            {/* Section Header */}
             <div
-                className="text-center mb-16"
+                className="mx-auto mb-14 max-w-3xl text-center"
                 data-aos="fade-up"
             >
+                {/* Eyebrow */}
                 <div
-                    className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 
-                    text-xs font-semibold uppercase tracking-widest"
+                    className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/15 bg-cyan-400/[0.06] px-3 py-1.5 text-[11px] 
+                    font-semibold uppercase tracking-[0.18em] text-cyan-400"
                 >
-                    <FiCode className="text-sm" />
+                    <FiCode size={13} />
                     About DevStash
                 </div>
 
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight leading-16">
-                    Engineered to Accelerate Your <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                {/* Heading */}
+                <h2
+                    className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl"
+                >
+                    Engineered to Accelerate Your
+                    <br />
+
+                    <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                         Engineering Workflow
                     </span>
                 </h2>
 
-                <p className="max-w-2xl mx-auto text-slate-400 text-sm md:text-base leading-relaxed">
-                    DevStash is an open platform built to solve tutorial fatigue. We curate, verify, and organize high-quality software resources so you
-                    spend less time searching and more time shipping.
+                {/* Description */}
+                <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
+                    DevStash is an open platform built to eliminate tutorial fatigue. Discover, save, and share high-quality developer
+                    resources without wasting hours searching for them.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {features.map((feature, index) => (
-                    <div
-                        key={index}
-                        className="group p-8 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-md hover:border-cyan-500/40 
-                        hover:bg-white/[0.04] transition-all duration-300 relative overflow-hidden"
-                        data-aos="fade-up"
-                        data-aos-delay={index * 100}
-                    >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl group-hover:bg-cyan-500/15 transition-all" />
+            {/* Features */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                {features.map((feature, index) => {
+                    const Icon = feature.icon;
 
+                    return (
                         <div
-                            className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6 
-                            group-hover:bg-cyan-400 group-hover:text-black transition-all"
+                            key={feature.title}
+                            className="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] p-7 transition-all duration-300 
+                            hover:-translate-y-0.5 hover:border-cyan-400/20 hover:bg-white/[0.035]"
+                            data-aos="fade-up"
+                            data-aos-delay={index * 75}
                         >
-                            <feature.icon size={22} />
+                            {/* Subtle glow */}
+                            <div
+                                className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-cyan-400/[0.06] blur-3xl transition-all 
+                                duration-500 group-hover:bg-cyan-400/[0.10]"
+                            />
+
+                            {/* Icon */}
+                            <div
+                                className="relative mb-6 flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-400/15 bg-cyan-400/[0.06] 
+                                text-cyan-400 transition-all duration-300 group-hover:border-cyan-400/30 group-hover:bg-cyan-400/10"
+                            >
+                                <Icon size={20} />
+                            </div>
+
+                            {/* Content */}
+                            <div className="relative">
+                                <h3 className="mb-2 text-lg font-semibold tracking-tight text-white">
+                                    {feature.title}
+                                </h3>
+
+                                <p className="text-sm leading-6 text-slate-400">
+                                    {feature.description}
+                                </p>
+                            </div>
+
+                            {/* Bottom accent */}
+                            <div
+                                className="absolute bottom-0 left-7 right-7 h-px bg-gradient-to-r from-cyan-400/0 via-cyan-400/20 to-cyan-400/0 opacity-0 
+                                transition-opacity duration-300 group-hover:opacity-100"
+                            />
                         </div>
-
-                        <h3 className="text-xl font-semibold text-white mb-2.5">
-                            {feature.title}
-                        </h3>
-
-                        <p className="text-slate-400 text-sm leading-relaxed">
-                            {feature.description}
-                        </p>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
+            {/* Open Source */}
             <div
-                className="mt-10 p-8 md:p-10 rounded-3xl bg-gradient-to-r from-cyan-950/20 via-blue-950/20 to-transparent border border-cyan-500/20 
-                backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-6"
+                className="relative mt-5 overflow-hidden rounded-2xl border border-cyan-400/10 bg-gradient-to-br from-cyan-400/[0.06] via-blue-500/[0.03] 
+                to-transparent p-7 sm:p-8"
                 data-aos="fade-up"
             >
-                <div className="space-y-2 text-center md:text-left">
-                    <h4 className="text-lg font-bold text-white flex items-center justify-center md:justify-start gap-2">
-                        <FiZap className="text-cyan-400" />
-                        Our Open-Source Pledge
-                    </h4>
+                {/* Background glow */}
+                <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-cyan-400/[0.07] blur-3xl" />
 
-                    <p className="text-slate-400 text-sm max-w-xl">
-                        DevStash will always remain open and ad-free. Anyone can audit our code, suggest new features, or contribute learning materials on GitHub.
-                    </p>
+                <div className="relative flex flex-col items-center justify-between gap-6 md:flex-row">
+                    {/* Content */}
+                    <div className="max-w-2xl text-center md:text-left">
+                        <div className="mb-2 flex items-center justify-center gap-2 md:justify-start">
+                            <FiZap className="text-cyan-400" size={17} />
+
+                            <h3 className="text-base font-semibold text-white">
+                                Built in the Open
+                            </h3>
+                        </div>
+
+                        <p className="text-sm leading-6 text-slate-400">
+                            DevStash is open-source and ad-free. Explore the code, suggest improvements, or contribute resources
+                            that can help developers learn and build better.
+                        </p>
+                    </div>
+
+                    {/* CTA */}
+                    <a
+                        href="https://github.com/TonyStark-19/DevStash"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-cyan-400/20 bg-cyan-400/10 px-4 py-2.5 text-sm 
+                        font-medium text-cyan-300 transition-all duration-200 hover:border-cyan-400/30 hover:bg-cyan-400/15 hover:text-cyan-200 
+                        active:scale-95"
+                    >
+                        <FiGithub size={16} />
+                        View Source
+                    </a>
                 </div>
-
-                <a
-                    href="https://github.com/TonyStark-19/DevStash"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-6 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold rounded-xl text-sm transition-all duration-300 transform 
-                    active:scale-95 shrink-0 flex items-center gap-2"
-                >
-                    <FiGithub size={16} />
-                    View Source Code
-                </a>
             </div>
         </section>
     );

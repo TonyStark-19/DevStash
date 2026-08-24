@@ -1,22 +1,36 @@
-// background component
+// Background component
 export default function Background() {
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-cyan-500/20 blur-[120px] rounded-full opacity-50" />
-            <div className="absolute top-[35%] -right-40 w-[600px] h-[600px] bg-blue-600/10 blur-[140px] rounded-full" />
-            <div className="absolute top-[65%] -left-40 w-[600px] h-[600px] bg-cyan-500/10 blur-[140px] rounded-full" />
-            <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-500/10 blur-[150px] rounded-full" />
+        <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 overflow-hidden"
+        >
+            {/* Ambient glows */}
+            <div className="absolute left-1/2 top-[-15%] h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-cyan-500/[0.12] blur-[130px]" />
 
-            {/* Cyber/Dev Grid Pattern */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+            <div className="absolute right-[-15%] top-[35%] h-[500px] w-[500px] rounded-full bg-blue-500/[0.07] blur-[140px]" />
 
-            {/* Self-contained SVG Noise Texture */}
+            <div className="absolute bottom-[-10%] left-1/2 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-cyan-500/[0.06] blur-[150px]" />
+
+            {/* Subtle developer grid */}
             <div
-                className="absolute inset-0 opacity-[0.035] mix-blend-screen pointer-events-none"
+                className="
+                    absolute inset-0
+                    bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)]
+                    bg-[size:4rem_4rem]
+                    [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_45%,transparent_100%)]
+                "
+            />
+
+            {/* Noise texture */}
+            <div
+                className="absolute inset-0 opacity-[0.025] mix-blend-screen"
                 style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter 
+                    id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect 
+                    width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
                 }}
             />
         </div>
-    )
+    );
 }

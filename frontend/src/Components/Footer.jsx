@@ -26,7 +26,7 @@ export function Footer() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
 
             <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 mb-20">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 mb-24">
                     {/* Brand Section */}
                     <div className="md:col-span-6 space-y-4">
                         <Link
