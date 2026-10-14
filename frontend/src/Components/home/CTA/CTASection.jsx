@@ -1,5 +1,8 @@
+// import icons
 import { GrResources } from "react-icons/gr";
 import { FiArrowUpRight, FiStar } from "react-icons/fi";
+
+// import link
 import { Link } from "react-router-dom";
 
 export default function CTASection() {
@@ -18,9 +21,11 @@ export default function CTASection() {
                 {/* Small label */}
                 <div className="mb-7 flex items-center justify-center gap-3">
                     <span className="h-px w-8 bg-white/10" />
+
                     <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
                         Keep building
                     </span>
+
                     <span className="h-px w-8 bg-white/10" />
                 </div>
 
@@ -43,7 +48,8 @@ export default function CTASection() {
                 <div className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row">
                     <Link
                         to="/resources"
-                        className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-slate-950 transition-all duration-300 hover:bg-cyan-300"
+                        className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-slate-950 transition-all 
+                        duration-300 hover:bg-cyan-300"
                     >
                         <GrResources />
                         Explore DevStash

@@ -58,7 +58,7 @@ export default function Resources({ loading, setLoading }) {
     // Loading State
     if (loading) return (
         <div className="h-[80vh] flex items-center justify-center">
-            <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
         </div>
     );
 

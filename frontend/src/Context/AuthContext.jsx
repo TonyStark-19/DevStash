@@ -13,6 +13,7 @@ export function AuthProvider({ children }) {
   // Helper to check if token is expired locally
   const isTokenExpired = (token) => {
     if (!token) return true;
+
     try {
       const payload = JSON.parse(atob(token.split(".")[1])); // Decode JWT payload
       return payload.exp * 1000 < Date.now(); // Check if expiry time is in the past
@@ -31,6 +32,7 @@ export function AuthProvider({ children }) {
   // Check auth status on initial load and when tab gains focus
   const checkAuth = () => {
     const token = localStorage.getItem("token");
+
     if (token && !isTokenExpired(token)) {
       setIsAuthenticated(true);
     } else {
@@ -47,6 +49,7 @@ export function AuthProvider({ children }) {
     // 2. Check when user switches back to this tab (Fixes your lag issue)
     const handleFocus = () => {
       const token = localStorage.getItem("token");
+
       if (token && isTokenExpired(token)) {
         toast.error("Session expired. Please login again.");
         logout();

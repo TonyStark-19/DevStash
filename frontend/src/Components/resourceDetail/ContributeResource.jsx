@@ -99,6 +99,7 @@ export default function ContributeResource({ setIsOpen, handleSubmit, formData, 
 
                         <div className="relative">
                             <FiLink className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm" />
+
                             <input
                                 name="link"
                                 type="url"

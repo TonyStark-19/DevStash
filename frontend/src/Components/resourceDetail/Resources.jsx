@@ -17,7 +17,7 @@ import api from "../../utils/api";
 import toast from "react-hot-toast";
 
 // resource component
-export default function Resources({ loading, setLoading, isOpen, setIsOpen, data, setData, category, subcategory }) {
+export default function Resources({ loading, setLoading, setIsOpen, data, setData, category, subcategory }) {
     const [savedResources, setSavedResources] = useState([]);
 
     // Pretty heading map

@@ -93,7 +93,7 @@ router.post("/contribute/:category/:subcategory", protect, async (req, res) => {
             tags: [...tags, "contributed"],
         };
 
-        // ✅ Push into correct array
+        // Push into correct array
         resourceGroup.resources[type].push(newResource);
 
         // Save updated group

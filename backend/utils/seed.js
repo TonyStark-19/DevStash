@@ -12,12 +12,12 @@ dotenv.config();
 // connect mongodb
 mongoose.connect(process.env.MONGO_URI)
     .then(async () => {
-        console.log("DB connected ✅");
+        console.log("DB connected successfully");
 
         await Resource.deleteMany();
         await Resource.insertMany(allResources);
 
-        console.log("Resources inserted 🚀");
+        console.log("Resources inserted successfully");
         process.exit();
     })
     .catch(err => console.error(err));

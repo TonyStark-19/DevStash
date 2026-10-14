@@ -45,9 +45,9 @@ app.get("/api/allresources", (req, res) => {
 // connect MongoDB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        console.log("✅ Connected to MongoDB");
-        app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+        console.log("Connected to MongoDB");
+        app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
     })
     .catch(err => {
-        console.error("❌ MongoDB connection failed:", err.message);
+        console.error("MongoDB connection failed:", err.message);
     });

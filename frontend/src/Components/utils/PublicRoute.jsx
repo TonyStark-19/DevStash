@@ -10,7 +10,7 @@ export default function PublicRoute({ children }) {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#030712] flex items-center justify-center">
-        <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
